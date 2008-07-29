@@ -1,0 +1,21 @@
+##
+# Set shell options
+###
+setopt auto_menu auto_cd correct auto_name_dirs auto_remove_slash
+setopt extended_history hist_ignore_dups hist_ignore_space prompt_subst
+setopt pushd_ignore_dups rm_star_silent sun_keyboard_hack
+setopt extended_glob list_types no_beep always_last_prompt
+setopt cdable_vars sh_word_split auto_param_keys
+autoload -U compinit; compinit -u
+PROMPT="%U$USER@%m%%%u "
+RPROMPT="[%~]"
+alias ll='ls -trAlF'
+alias debupdate='sudo apt-get update; sudo apt-get upgrade'
+alias getmixi='plagger -c /home/spooky/plagger/config-mixi.yaml'
+alias ldr='./feature-server/bin/plaggerldr_server.pl --port=3000 > /dev/null 2>&1 &'
+export PERL5LIB="/home/spooky/plagger/lib"
+export LANG=ja_JP.eucJP
+export EDITOR="/usr/bin/jvim"
+export PATH=/opt/local/bin:/opt/local/sbin/:$PATH
+export MANPATH=/opt/local/man:$MANPATH
+
