@@ -13,6 +13,7 @@ alias ll='ls -trAlF'
 alias debupdate='sudo apt-get update; sudo apt-get upgrade'
 alias getmixi='plagger -c /home/spooky/plagger/config-mixi.yaml'
 alias ldr='./feature-server/bin/plaggerldr_server.pl --port=3000 > /dev/null 2>&1 &'
+alias pylibdir='python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"'
 export PERL5LIB="/home/spooky/plagger/lib"
 export LANG=ja_JP.eucJP
 export EDITOR="/usr/bin/jvim"
