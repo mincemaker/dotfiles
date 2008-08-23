@@ -19,4 +19,10 @@ export LANG=ja_JP.eucJP
 export EDITOR="/usr/bin/jvim"
 export PATH=/opt/local/bin:/opt/local/sbin/:$PATH
 export MANPATH=/opt/local/man:$MANPATH
+bindkey -e
+bindkey "^?"    backward-delete-char
+bindkey "^H"    backward-delete-char
+bindkey "^[[3~" delete-char
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
 
