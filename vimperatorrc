@@ -1,0 +1,139 @@
+set verbose=9
+set wildmode=list:full
+set wildoptions=auto
+set guioptions=
+set preload
+set noinsertmode
+set complete=sl
+set visualbell
+set history=1000
+set hlsearch
+
+set hintmatching=custom
+
+noremap <C-c> :echo Yank!<CR>Y
+
+noremap j 3<C-e>
+noremap k 3<C-y>
+noremap J <PageDown>
+noremap K <PageUp>
+noremap <Tab> <C-v><Tab>
+noremap I <C-z>
+
+map s <esc>:google<space>
+map ! :set invum<CR>
+
+" ime_controller.js
+let g:ex_ime_mode = "inactive"
+let g:textarea_ime_mode = "inactive"
+
+"]]
+set nextpattern+=next, 次(の)?ページ,\b次.*,→\b,下一頁,Следующая,다음
+"[[
+set previouspattern+=prev, 前(の)?ページ,\b前.*,\b←
+
+noremap <BS> <A-Left>
+                      
+noremap h <A-Left>
+noremap l <A-Right>
+
+noremap H gT
+noremap L gt
+map <S-Right> :tabmove! +1<CR>
+map <S-Left>  :tabmove! -1<CR>
+
+noremap <C-1> :set guioptions=<cr>
+noremap <C-2> :set guioptions=b<cr>
+noremap <C-3> :set guioptions=bmT<cr>
+
+" ex modeでC-jを無効化
+cmap <C-j> <Nop>
+
+" ex modeでUp/DownをTab/S-Tab互換に
+cmap <Down> <Tab>
+cmap <Up> <S-Tab>
+
+" vimperator 1.2 06-17以降でOS側のショートカットが効かなくなったので代替
+imap <C-f> <Right>
+imap <C-b> <Left>
+imap <C-n> <Down>
+cmap <C-f> <Right>
+cmap <C-b> <Left>
+cmap <C-n> <Down>
+map  <M-c> <C-v><M-c>
+imap <M-a> <C-v><M-a>
+imap <M-z> <C-v><M-z>
+imap <M-x> <C-v><M-x>
+imap <M-c> <C-v><M-c>
+imap <M-v> <C-v><M-v>
+cmap <M-a> <C-v><M-a>
+cmap <M-z> <C-v><M-z>
+cmap <M-x> <C-v><M-x>
+cmap <M-c> <C-v><M-c>
+cmap <M-v> <C-v><M-v>
+
+" pukka plugin variable
+let g:pukka_normalizelink = "true"
+
+" ldr_cooperation.js
+let g:ldrc_captureMappings = "['t', 'T', 'h', 'l', 'j', 'k', 'p', 'o', '?']"
+"let g:ldrc_hints = "true"
+let g:ldrc_intelligence_bind = "true"
+let g:ldrc_skip = "0.5"
+
+" sbmcommentsviewer
+map ,b :viewSBMComments<CR>
+map ,c :hbinfo<CR>
+let g:def_sbm_format = "id,timestamp,tagsAndComment"
+
+let g:ldrc_captureMappings = "['?','j','k','p','o']"
+let g:styles = "niconico,ldr,mixi"
+
+":javascript FirebugCommandLineAPI.prototype.vimperator = liberator
+
+" Show feed-button to statusbar
+:javascript <<EOM
+(function(){
+ var feedPanel = document.createElement('statusbarpanel');
+ var feedButton = document.getElementById('feed-button');
+ feedPanel.setAttribute('id','feed-panel-clone');
+ feedPanel.appendChild(feedButton.cloneNode(true));
+ feedButton.parentNode.removeChild(feedButton);
+ document.getElementById('status-bar').insertBefore(feedPanel,document.getElementById('security-button'));
+ })();
+EOM
+
+:javascript <<EOM
+liberator.commands.addUserCommand(['tb'],'Toggle Tablist',
+    function(arg){
+        with(gBrowser.mTabContainer){
+            collapsed ? collapsed = false : collapsed = true;
+        }
+    },{
+    }
+);
+EOM
+
+autocmd LocationChange .* :fmapc
+
+" Gmail
+js <<EOF
+autocommands.add('LocationChange',/mail\.google\.com\/(mail|a)\//,[
+  'js plugins.feedKey.setup(',
+  '"c / y j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gc".split(/ +/).map(function(i) [i, "4" + i])',
+  ');'
+].join(''));
+EOF
+
+" livedoorReader
+" ldrのレートを++/--できるようにするgreasemonkeyスクリプト(http://d.hatena.ne.jp/kusigahama/20071107#1194447701)用に q,w もスルー対象に指定している
+js <<EOF
+autocommands.add('LocationChange',/reader\.livedoor\.com\/reader\//,
+  'js plugins.feedKey.setup("j J k g s ? r a p v c <Space> <S-Space> z Z < > q w b i".split(/ +/));');
+EOF
+autocmd LocationChange http://reader\.livedoor\.com/reader/ :fmap o vj
+
+" direct_bookmark
+let g:direct_sbm_use_services_by_tag = 'd'
+let g:direct_sbm_use_services_by_post = "hdl"
+map a :sbm<space>
