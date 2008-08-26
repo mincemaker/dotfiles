@@ -1,10 +1,10 @@
 ;; PATH
 (setq load-path (append '("~/lisp/"
-			  "~/.emacs.d/conf")
-			load-path))
+              "~/.emacs.d/conf")
+            load-path))
 (setq exec-path (cons "/usr/local/bin" exec-path))
 (setenv "PATH"
-		(concat '"/usr/local/bin:" (getenv "PATH")))
+        (concat '"/usr/local/bin:" (getenv "PATH")))
 
 ;; 行数表示
 (line-number-mode t)
@@ -23,9 +23,9 @@
 
 ;; フォント設定
 ;(if (eq window-system 'mac)
-;	(progn
-;	  (require 'carbon-font)
-;	  (fixed-width-set-fontset "hiramaru" 12)))
+;   (progn
+;     (require 'carbon-font)
+;     (fixed-width-set-fontset "hiramaru" 12)))
 
 ;; ウィンドウ設定
 (if window-system (progn
@@ -202,6 +202,10 @@
 ;; (setq migemo-dictionary "/usr/local/share/migemo/euc-jp/migemo-dict")
 ;; (setq migemo-user-dictionary nil)
 ;; (setq migemo-regex-dictionary nil)
+
+;; installer
+(require 'install-elisp)
+(setq install-elisp-repository-directory "~/lisp/")
 
 ;; 各種設定ファイル
 (load "init-c")
