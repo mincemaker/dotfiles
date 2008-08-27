@@ -6,42 +6,42 @@
 (setenv "PATH"
         (concat '"/usr/local/bin:" (getenv "PATH")))
 
-;; $B9T?tI=<((B
+;; 行数表示
 (line-number-mode t)
-;; $B;XDj9T$X%8%c%s%W(B
+;; 指定行へジャンプ
 (global-set-key "\M-g" 'goto-line)
-;; $BBP1~$9$k3g8L$r%O%$%i%$%H(B
+;; 対応する括弧をハイライト
 (show-paren-mode 1)
-;; $B%9%?!<%H%"%C%W%Z!<%8$rI=<($7$J$$(B
+;; スタートアップページを表示しない
 (setq inhibit-startup-message t)
 
-;; ASCII$B%b!<%I$G(BC-j$B$,(BAquaSKK$B$KEA$o$i$J$$$h$&$K$9$k(B
+;; ASCIIモードでC-jがAquaSKKに伝わらないようにする
 ;(setq mac-pass-control-to-system nil) 
 
-;; Control + $B$9$Y$F$N%-!<(B $B$rL5;k$9$k(B
+;; Control + すべてのキー を無視する
 (mac-add-ignore-shortcut '(control))
 
-;; $B%U%)%s%H@_Dj(B
+;; フォント設定
 ;(if (eq window-system 'mac)
 ;   (progn
 ;     (require 'carbon-font)
 ;     (fixed-width-set-fontset "hiramaru" 12)))
 
-;; $B%&%#%s%I%&@_Dj(B
+;; ウィンドウ設定
 (if window-system (progn
   (set-background-color "Black")
   (set-foreground-color "White")
   (set-cursor-color "Gray")
 ))
 
-;; $B%?%V%-!<(B
+;; タブキー
 (setq default-tab-width 4)
 (setq tab-width 4)
 ;(setq indent-line-function 'indent-relative-maybe)
 
-;; $B%&%#%s%I%&$rF)L@2=(B
+;; ウィンドウを透明化
 (add-to-list 'default-frame-alist '(alpha . (0.85 0.85)))
-;; $B%a%K%e!<%P!<$r1#$9(B
+;; メニューバーを隠す
 ;(tool-bar-mode -1)
 
 (autoload 'javascript-mode "javascript" "JavaScript mode" t)
@@ -87,7 +87,7 @@
 (setq cssm-indent-function #'cssm-c-style-indenter)
 (setq javascript-indent-level 8)
 
-(defalias 'perl-mode 'cperl-mode) ; cperl$B%b!<%I(B
+(defalias 'perl-mode 'cperl-mode) ; cperlモード
 (setq cperl-indent-level 4)
 (setq cperl-continued-statement-offset 4)
 (setq cperl-brace-offset -4)
@@ -108,13 +108,13 @@
   (interactive)
   (save-excursion (mark-defun)
   (perltidy-region)))
-(defun my-insert-date () ; $BF|IUF~$l$k4X?t!#(Bperl$B%b%8%e!<%k$N(BChanges$B=q$/$H$-$K<g$K;HMQ(B
+(defun my-insert-date () ; 日付入れる関数。perlモジュールのChanges書くときに主に使用
   (interactive)
   (insert (format-time-string "%Y-%m-%dT%R:%S+09:00" (current-time))))
 
 (global-set-key "\C-ct" 'perltidy-region)
 
-; colors ; $B$3$C$+$i%+%i!<$N@_Dj$@$1$I$3$l$O(BMeadow$B;H$C$F$?$H$-$N@_Dj!#%3%s%=!<%k$G$O0UL#$J$$(B(256$B?'%b!<%I;H$C$F$J$$$N$G(B)
+; colors ; こっからカラーの設定だけどこれはMeadow使ってたときの設定。コンソールでは意味ない(256色モード使ってないので)
 ;;(require 'font-lock)
 ;;(set-face-foreground 'font-lock-comment-face "red")
 
@@ -126,33 +126,33 @@
 (defvar my-face-u-2 'my-face-u-2)
 (defvar my-face-u-1 'my-face-u-1)
 
-; $B%?%V$HA43Q%9%Z!<%9$N?'$+$($k(B
+; タブと全角スペースの色かえる
 (defadvice font-lock-mode (before my-font-lock-mode ())
   (font-lock-add-keywords
    major-mode
    '(
 //     ("\t" 0 my-face-u-2 append)
-     ("$B!!(B" 0 my-face-b-1 append)
+     ("　" 0 my-face-b-1 append)
      ("[ \t]+$" 0 my-face-u-1 append)
      )))
 (ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
 ;;(ad-activate 'font-lock-mode)
 
 
-; $B%$%s%/%j%a%s%?%k$K%P%C%U%!$-$j$+$($i$l$k$d$D!#I,?\$9$.(B
+; インクリメンタルにバッファきりかえられるやつ。必須すぎ
 (iswitchb-mode 1)
 
-; $BF1$8L>A0$N%P%C%U%!$,$"$C$?>l9g>e$N3,AX$N%G%#%l%/%H%j$H$+$b0l=o$K=P$7$F6hJL$G$-$k$h$&$K%f%K!<%/$J%P%C%U%!L>$K$7$F$/$l$k$d$D(B
-; $B%3%l$bI,?\(B
+; 同じ名前のバッファがあった場合上の階層のディレクトリとかも一緒に出して区別できるようにユニークなバッファ名にしてくれるやつ
+; コレも必須
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
-;; shell-mode $B$G%(%9%1!<%W$re:No$KI=<((B
+;; shell-mode でエスケープを綺麗に表示
 (autoload 'ansi-color-for-comint-mode-on "ansi-color"
    "Set `ansi-color-for-comint-mode' to t." t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
-;; shell-mode$B$G>e2<$G%R%9%H%jJd40(B
+;; shell-modeで上下でヒストリ補完
 (add-hook 'shell-mode-hook
    (function (lambda ()
       (define-key shell-mode-map [up] 'comint-previous-input)
@@ -165,7 +165,7 @@
   (define-key elscreen-map "\C-z" 'suspend-emacs))
 
 ;; dmacro
-(defconst *dmacro-key* "\C-t" "$B7+$jJV;XDj%-!<(B")
+(defconst *dmacro-key* "\C-t" "繰り返指定キー")
 (global-set-key *dmacro-key* 'dmacro-exec)
 (autoload 'dmacro-exec "dmacro" nil t)
 
@@ -181,7 +181,7 @@
   (font-lock-add-keywords
    major-mode
    '(("\t" 0 my-face-tab append)
-     ("$B!!(B" 0 my-face-zenkaku-spc append)
+     ("　" 0 my-face-zenkaku-spc append)
      ("[ \t]+$" 0 my-face-spc-at-eol append)
      )))
 (ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
@@ -207,7 +207,7 @@
 (require 'install-elisp)
 (setq install-elisp-repository-directory "~/lisp/")
 
-;; $B3F<o@_Dj%U%!%$%k(B
+;; 各種設定ファイル
 (load "init-c")
 (load "init-moccur")
 (load "init-anything")
