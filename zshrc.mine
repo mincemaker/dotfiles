@@ -15,7 +15,7 @@ alias getmixi='plagger -c /home/spooky/plagger/config-mixi.yaml'
 alias ldr='./feature-server/bin/plaggerldr_server.pl --port=3000 > /dev/null 2>&1 &'
 alias pylibdir='python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"'
 export PERL5LIB="/home/spooky/plagger/lib"
-export LANG=ja_JP.eucJP
+export LANG=ja_JP.UTF-8
 export EDITOR="/usr/bin/jvim"
 export PATH=/opt/local/bin:/opt/local/sbin/:$PATH
 export MANPATH=/opt/local/man:$MANPATH
