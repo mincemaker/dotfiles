@@ -60,6 +60,7 @@ imap <C-n> <Down>
 cmap <C-f> <Right>
 cmap <C-b> <Left>
 cmap <C-n> <Down>
+cmap <C-p> <Up>
 map  <M-c> <C-v><M-c>
 imap <M-a> <C-v><M-a>
 imap <M-z> <C-v><M-z>
