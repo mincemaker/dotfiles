@@ -8,6 +8,7 @@ set complete=sl
 set visualbell
 set history=1000
 set hlsearch
+set focuscontent
 
 set hintmatching=custom
 
