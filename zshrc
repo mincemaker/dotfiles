@@ -1,75 +1,39 @@
-## Environment variable configuration
-#
-# LANG
-#
-export LANG=ja_JP.UTF-8
-export LC_ALL=ja_JP.UTF-8
-
-## Default shell configuration
-#
-# set prompt
-#
+##
+# Set shell options
+###
+setopt auto_menu auto_cd correct auto_name_dirs auto_remove_slash
+setopt extended_history hist_ignore_dups hist_ignore_space prompt_subst
+setopt pushd_ignore_dups rm_star_silent sun_keyboard_hack
+setopt extended_glob list_types no_beep always_last_prompt
+setopt cdable_vars sh_word_split auto_param_keys
+setopt hist_reduce_blanks share_history auto_pushd
+setopt nolistbeep
+autoload -U compinit; compinit -u
 PROMPT="%U$USER@%m%%%u "
 RPROMPT="[%~]"
-
-# auto change directory
-#
-setopt auto_cd
-
-# auto directory pushd that you can get dirs list by cd -[tab]
-#
-setopt auto_pushd
-
-# command correct edition before each completion attempt
-#
-setopt correct
-
-# compacked complete list display
-#
-setopt list_packed
-
-# no remove postfix slash of command line
-#
-setopt noautoremoveslash
-
-# no beep sound when complete list displayed
-#
-setopt nolistbeep
-
-## Keybind configuration
-#
-# emacs like keybind (e.x. Ctrl-a goes to head of a line and Ctrl-e goes
-# to end of it)
-#
-bindkey -e
-
-# historical backward/forward search with linehead string binded to ^P/^N
-#
-autoload history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^p" history-beginning-search-backward-end
-bindkey "^n" history-beginning-search-forward-end
-bindkey "\\ep" history-beginning-search-backward-end
-bindkey "\\en" history-beginning-search-forward-end
+export PERL5LIB="/home/spooky/plagger/lib"
 
 ## Command history configuration
 #
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt hist_ignore_dups # ignore duplication command history list
-setopt share_history # share command history data
+HISTSIZE=100000
+SAVEHIST=100000
 
-## Completion configuration
-#
-autoload -U compinit
-compinit
+# ENV
+export LANG=ja_JP.UTF-8
+export EDITOR=vim
+export PATH=/opt/local/bin:/opt/local/sbin/:$PATH
+export MANPATH=/opt/local/man:$MANPATH
 
-## Alias configuration
-#
-# expand aliases before completing
-#
+# bindkey
+bindkey -e
+bindkey "^?"    backward-delete-char
+bindkey "^H"    backward-delete-char
+bindkey "^[[3~" delete-char
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
+
+# alias
 setopt complete_aliases # aliased ls needs if file/dir completions work
 
 alias where="command -v"
@@ -87,7 +51,7 @@ esac
 alias la="ls -a"
 alias lf="ls -F"
 alias ll="ls -trAlF"
-alias l="ls --color=auto -lh"
+alias l="ls -lh"
 
 alias du="du -h"
 alias df="df -h"
@@ -133,4 +97,3 @@ esac
 #
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
 
-export EDITOR=vim
