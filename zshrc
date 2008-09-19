@@ -33,7 +33,16 @@ bindkey "^[[3~" delete-char
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
 
-# alias
+historical backward/forward search with linehead string binded to ^P/^N
+#
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^p" history-beginning-search-backward-end
+bindkey "^n" history-beginning-search-forward-end
+bindkey "\\ep" history-beginning-search-backward-end
+bindkey "\\en" history-beginning-search-forward-end
+alias
 setopt complete_aliases # aliased ls needs if file/dir completions work
 
 alias where="command -v"
@@ -92,6 +101,8 @@ kterm*|xterm*)
     'di=32' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
   ;;
 esac
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' menu select=1
 
 ## load user .zshrc configuration file
 #
