@@ -33,7 +33,7 @@ bindkey "^[[3~" delete-char
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
 
-historical backward/forward search with linehead string binded to ^P/^N
+# historical backward/forward search with linehead string binded to ^P/^N
 #
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
@@ -42,7 +42,7 @@ bindkey "^p" history-beginning-search-backward-end
 bindkey "^n" history-beginning-search-forward-end
 bindkey "\\ep" history-beginning-search-backward-end
 bindkey "\\en" history-beginning-search-forward-end
-alias
+
 setopt complete_aliases # aliased ls needs if file/dir completions work
 
 alias where="command -v"
