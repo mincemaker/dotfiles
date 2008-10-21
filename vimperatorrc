@@ -135,6 +135,12 @@ autocommands.add('LocationChange',/reader\.livedoor\.com\/reader\//,
 EOF
 autocmd LocationChange http://reader\.livedoor\.com/reader/ :fmap o vj
 
+js <<EOF
+autocommands.add('LocationChange',/localhost:3000\/reader\//,
+  'js plugins.feedKey.setup("j J k g s ? r a p v c <Space> <S-Space> z Z < > q w b i".split(/ +/));');
+EOF
+autocmd LocationChange http://localhost:3000/reader/ :fmap o vj
+
 " direct_bookmark
 let g:direct_sbm_use_services_by_tag = 'd'
 let g:direct_sbm_use_services_by_post = "hdl"

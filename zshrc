@@ -7,7 +7,7 @@ setopt pushd_ignore_dups rm_star_silent sun_keyboard_hack
 setopt extended_glob list_types no_beep always_last_prompt
 setopt cdable_vars sh_word_split auto_param_keys
 setopt hist_reduce_blanks share_history auto_pushd
-setopt nolistbeep
+setopt nolistbeep hist_ignore_all_dups
 autoload -U compinit; compinit -u
 PROMPT="%U$USER@%m%%%u "
 RPROMPT="[%~]"
