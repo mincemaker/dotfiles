@@ -85,7 +85,6 @@ let g:ldrc_skip = "0.5"
 
 " sbmcommentsviewer
 map ,b :viewSBMComments<CR>
-map ,c :hbinfo<CR>
 let g:def_sbm_format = "id,timestamp,tagsAndComment"
 
 let g:ldrc_captureMappings = "['?','j','k','p','o']"
@@ -105,25 +104,13 @@ let g:styles = "niconico,ldr,mixi"
  })();
 EOM
 
-:javascript <<EOM
-liberator.commands.addUserCommand(['tb'],'Toggle Tablist',
-    function(arg){
-        with(gBrowser.mTabContainer){
-            collapsed ? collapsed = false : collapsed = true;
-        }
-    },{
-    }
-);
-EOM
-
 " direct_bookmark
 let g:direct_sbm_use_services_by_tag = 'd'
 let g:direct_sbm_use_services_by_post = "hdl"
 map a :sbm<space>
 
-let g:asdfghjkl_default = "true"
 autocmd LocationChange .* :fmapc
-autocmd LocationChange reader\\.livedoor\\.com/reader :fmap! j J k s a p o v c <Space> <S-Space> z b < >
-autocmd LocationChange 10\.0\.1\.252:3000/reader :fmap! j J k s a p o v c <Space> <S-Space> z b < >
+autocmd LocationChange reader\\.livedoor\\.com/reader :fmap! j J g k s a p o v c r <Space> <S-Space> z b < >
+autocmd LocationChange 10\.0\.1\.252:3000/reader :fmap! j J k s g a p o v c r <Space> <S-Space> z b < >
 autocmd LocationChange mail\\.google\\.com/mail :fmap! -depth 4 c / j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gc
 
