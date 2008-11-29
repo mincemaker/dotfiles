@@ -1,0 +1,25 @@
+#liberator-commandline{
+  background-color: #dddddd !important;
+  color: #000000 !important;
+}
+
+#liberator-statusline {
+  font-family: "M+1P+IPAG circle", monospace !important;
+  font-weight: normal !important;
+  padding: 2px !important;
+}
+
+.hl-StatusLine {
+  background-color: #333333 !important;
+  color: #ffffff !important;
+}
+
+.hl-StatusLineSecure {
+  background-color: #66dd60 !important;
+  color: #000000 !important;
+}
+
+#liberator-completion-content, .completion, .description, .compitem,
+#liberator-multiline-output, #liberator-multiline-output-content {
+  font-size: 9pt !important;
+}

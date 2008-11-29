@@ -85,7 +85,6 @@ let g:ldrc_skip = "0.5"
 
 " sbmcommentsviewer
 map ,b :viewSBMComments<CR>
-map ,c :hbinfo<CR>
 let g:def_sbm_format = "id,timestamp,tagsAndComment"
 
 let g:ldrc_captureMappings = "['?','j','k','p','o']"
@@ -105,43 +104,15 @@ let g:styles = "niconico,ldr,mixi"
  })();
 EOM
 
-:javascript <<EOM
-liberator.commands.addUserCommand(['tb'],'Toggle Tablist',
-    function(arg){
-        with(gBrowser.mTabContainer){
-            collapsed ? collapsed = false : collapsed = true;
-        }
-    },{
-    }
-);
-EOM
-
-autocmd LocationChange .* :fmapc
-
-" Gmail
-js <<EOF
-autocommands.add('LocationChange',/mail\.google\.com\/(mail|a)\//,[
-  'js plugins.feedKey.setup(',
-  '"c / y j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gc".split(/ +/).map(function(i) [i, "4" + i])',
-  ');'
-].join(''));
-EOF
-
-" livedoorReader
-" ldrのレートを++/--できるようにするgreasemonkeyスクリプト(http://d.hatena.ne.jp/kusigahama/20071107#1194447701)用に q,w もスルー対象に指定している
-js <<EOF
-autocommands.add('LocationChange',/reader\.livedoor\.com\/reader\//,
-  'js plugins.feedKey.setup("j J k g s ? r a p v c <Space> <S-Space> z Z < > q w b i".split(/ +/));');
-EOF
-autocmd LocationChange http://reader\.livedoor\.com/reader/ :fmap o vj
-
-js <<EOF
-autocommands.add('LocationChange',/localhost:3000\/reader\//,
-  'js plugins.feedKey.setup("j J k g s ? r a p v c <Space> <S-Space> z Z < > q w b i".split(/ +/));');
-EOF
-autocmd LocationChange http://localhost:3000/reader/ :fmap o vj
-
 " direct_bookmark
 let g:direct_sbm_use_services_by_tag = 'd'
 let g:direct_sbm_use_services_by_post = "hdl"
 map a :sbm<space>
+
+autocmd LocationChange .* :fmapc
+autocmd LocationChange reader\\.livedoor\\.com/reader :fmap! j J g k s a p o v c r <Space> <S-Space> z b < >
+autocmd LocationChange 10\.0\.1\.252:3000/reader :fmap! j J k s g a p o v c r <Space> <S-Space> z b < >
+autocmd LocationChange mail\\.google\\.com/mail :fmap! -depth 4 c / j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gc
+
+source ~/.vimperatorrc.css 
+echo "vimperatorrc loaded."
