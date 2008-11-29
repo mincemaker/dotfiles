@@ -111,7 +111,7 @@ map a :sbm<space>
 
 autocmd LocationChange .* :fmapc
 autocmd LocationChange reader\\.livedoor\\.com/reader :fmap! j J g k s a p o v c r <Space> <S-Space> z b < >
-autocmd LocationChange 10\.0\.1\.252:3000/reader :fmap! j J k s g a p o v c r <Space> <S-Space> z b < >
+autocmd LocationChange localhost:3000/reader :fmap! j J k s g a p o v c r <Space> <S-Space> z b < >
 autocmd LocationChange mail\\.google\\.com/mail :fmap! -depth 4 c / j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gc
 
 source ~/.vimperatorrc.css 
