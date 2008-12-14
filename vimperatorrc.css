@@ -4,7 +4,7 @@
 }
 
 #liberator-statusline {
-  font-family: "M+1P+IPAG circle", monospace !important;
+  font-family: monospace !important;
   font-weight: normal !important;
   padding: 2px !important;
 }
@@ -23,3 +23,4 @@
 #liberator-multiline-output, #liberator-multiline-output-content {
   font-size: 9pt !important;
 }
+

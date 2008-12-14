@@ -1,17 +1,25 @@
-set verbose=9
+echo "loading..."
+"" init
+set verbose=1
 set wildmode=list:full
 set wildoptions=auto
-set guioptions=
+set guioptions=rbn
 set preload
-set noinsertmode
+set insertmode
 set complete=sl
 set visualbell
 set history=1000
 set hlsearch
 set focuscontent
-
 set hintmatching=custom
+"]]
+set nextpattern+=次(の)?ページ,→\b,下一頁,Следующая,다음
+"[[
+set previouspattern+=prev,\b←,前(の)?ページ
 
+"" mapping
+noremap _ ma
+noremap } 'a
 noremap <C-c> :echo Yank!<CR>Y
 
 noremap j 3<C-e>
@@ -23,15 +31,13 @@ noremap I <C-z>
 
 map s <esc>:google<space>
 map ! :set invum<CR>
-
-" ime_controller.js
-let g:ex_ime_mode = "inactive"
-let g:textarea_ime_mode = "inactive"
-
-"]]
-set nextpattern+=next, 次(の)?ページ,\b次.*,→\b,下一頁,Следующая,다음
-"[[
-set previouspattern+=prev, 前(の)?ページ,\b前.*,\b←
+map ,t :twitter<Space>
+map ,T :twitter!<Space>
+map ,@ :twitter!@<CR>
+map ,mt :mr<Space>twitter-search-pcod-no-jp<Space>
+map ,mT :mr<Space>twitter-search-pcod-no-jp<Space>mincemaker<CR>
+map ,mf :mr<Space>favotter-new<Space>
+map ,mF :mr<Space>favotter-new<Space>mincemaker<CR>
 
 noremap <BS> <A-Left>
                       
@@ -74,6 +80,11 @@ cmap <M-x> <C-v><M-x>
 cmap <M-c> <C-v><M-c>
 cmap <M-v> <C-v><M-v>
 
+"" Plugins
+" ime_controller.js
+let g:ex_ime_mode = "inactive"
+let g:textarea_ime_mode = "inactive"
+
 " pukka plugin variable
 let g:pukka_normalizelink = "true"
 
@@ -90,6 +101,15 @@ let g:def_sbm_format = "id,timestamp,tagsAndComment"
 let g:ldrc_captureMappings = "['?','j','k','p','o']"
 let g:styles = "niconico,ldr,mixi"
 
+" direct_bookmark
+let g:direct_sbm_use_services_by_tag = 'd'
+let g:direct_sbm_use_services_by_post = "hdl"
+map a :sbm<space>
+
+autocmd LocationChange .* :fmapc
+autocmd LocationChange reader\\.livedoor\\.com/reader :fmap! j J g k s a p o v c r <Space> <S-Space> z b < >
+autocmd LocationChange localhost:3000/reader :fmap! j J k s g a p o v c r <Space> <S-Space> z b < >
+autocmd LocationChange mail\\.google\\.com/mail :fmap! -depth 4 c / j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gc
 ":javascript FirebugCommandLineAPI.prototype.vimperator = liberator
 
 " Show feed-button to statusbar
@@ -104,15 +124,10 @@ let g:styles = "niconico,ldr,mixi"
  })();
 EOM
 
-" direct_bookmark
-let g:direct_sbm_use_services_by_tag = 'd'
-let g:direct_sbm_use_services_by_post = "hdl"
-map a :sbm<space>
-
-autocmd LocationChange .* :fmapc
-autocmd LocationChange reader\\.livedoor\\.com/reader :fmap! j J g k s a p o v c r <Space> <S-Space> z b < >
-autocmd LocationChange localhost:3000/reader :fmap! j J k s g a p o v c r <Space> <S-Space> z b < >
-autocmd LocationChange mail\\.google\\.com/mail :fmap! -depth 4 c / j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gc
+" disable accesskey
+set! ui.key.generalAccessKey=0
+" open bookmarks in background
+set! browser.tabs.loadBookmarksInBackground=true
 
 source ~/.vimperatorrc.css 
 echo "vimperatorrc loaded."
