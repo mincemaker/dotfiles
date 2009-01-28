@@ -208,6 +208,13 @@
 (require 'install-elisp)
 (setq install-elisp-repository-directory "~/lisp/")
 
+;; one-key
+(require 'one-key)
+(require 'one-key-config)
+
+;; egg
+(require 'egg)
+
 ;; 各種設定ファイル
 (load "init-c")
 (load "init-moccur")
@@ -215,3 +222,4 @@
 (load "init-yasnippet")
 (load "init-perl.el")
 (load "init-python.el")
+(load "init-ac.el")
