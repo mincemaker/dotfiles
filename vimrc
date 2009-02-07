@@ -485,4 +485,4 @@ map ,fmf  :FuzzyFinderMruFile<CR>
 :let g:miniBufExplMapCTabSwitchBuffs = 1
 
 " qbuf
-:let g:qb_hotkey = "z"
+:let g:qb_hotkey = "_"
