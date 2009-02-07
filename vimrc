@@ -479,8 +479,10 @@ let Tlist_Ctags_Cmd = "/opt/local/bin/jexctags"
 " fuzzyfinder
 map ,fmf  :FuzzyFinderMruFile<CR>
 
-"minibufexpl
+" minibufexpl
 :let g:miniBufExplMapWindowNavVim = 1
 :let g:miniBufExplMapWindowNavArrows = 1
 :let g:miniBufExplMapCTabSwitchBuffs = 1
 
+" qbuf
+:let g:qb_hotkey = "z"
