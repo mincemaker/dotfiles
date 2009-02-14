@@ -30,6 +30,8 @@ syntax on
 if &term =~ "xterm-256color"
 "  colorscheme desert256
   colorscheme inkpot
+else
+  colorscheme darkblue
 endif
 
 " Debian uses compressed helpfiles. We must inform vim that the main
