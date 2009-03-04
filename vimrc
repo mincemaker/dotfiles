@@ -212,14 +212,6 @@ nmap <C-]> g<C-]>
 " yeでそのカーソル位置にある単語をレジスタに追加
 nmap ye :let @"=expand("<cword>")<CR>
 
-"set minibfexp
-let g:miniBufExplMapWindowNavVim=1 "hjklで移動
-let g:miniBufExplSplitBelow=0  " Put new window above
-let g:miniBufExplMapWindowNavArrows=1
-let g:miniBufExplMapCTabSwitchBufs=1
-let g:miniBufExplModSelTarget=1 
-let g:miniBufExplSplitToEdge=1
-
 " CD.vim example:// は適用しない
 autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
@@ -289,14 +281,7 @@ let g:foo_DefineAutoCommands = 1
 " MiniBufExplorer で GNU screen likeなキーバインド
 "nnoremap <Leader>f :last<CR>
 "nnoremap <Leader><C-f> :last<CR>
-nmap <Space> :MBEbn<CR>
-nmap <F3> :MBEbp<CR>
-nmap <F4> :MBEbn<CR>
-nnoremap <Leader><Space> :MBEbn<CR>
-nnoremap <Leader>n       :MBEbn<CR>
-nnoremap <Leader><C-n>   :MBEbn<CR>
-nnoremap <Leader>p       :MBEbp<CR>
-nnoremap <Leader><C-p>   :MBEbp<CR>
+nmap <Space> :bn<CR>
 nnoremap <Leader>c       :new<CR>
 nnoremap <Leader><C-c>   :new<CR>
 nnoremap <Leader>k       :bd<CR>
@@ -320,11 +305,6 @@ nnoremap <Leader>7   :e #7<CR>
 nnoremap <Leader>8   :e #8<CR>
 nnoremap <Leader>9   :e #9<CR>
 
-nnoremap ,<Space> :MBEbn<CR>
-nnoremap ,n       :MBEbn<CR>
-nnoremap ,<C-n>   :MBEbn<CR>
-"nnoremap ,p       :MBEbp<CR>
-"nnoremap ,<C-p>   :MBEbp<CR>
 nnoremap ,c       :new<CR>
 nnoremap ,<C-c>   :new<CR>
 nnoremap ,k       :bd<CR>

@@ -11,7 +11,6 @@ setopt nolistbeep hist_ignore_all_dups
 autoload -U compinit; compinit -u
 PROMPT="%U$USER@%m%%%u "
 RPROMPT="[%~]"
-export PERL5LIB="/Users/mincemaker/plagger/lib"
 
 ## Command history configuration
 #

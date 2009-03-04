@@ -1,5 +1,6 @@
 ;; PATH
 (setq load-path (append '("~/lisp/"
+              "~/lisp/apel"
               "~/.emacs.d/conf")
             load-path))
 (setq exec-path (cons "/usr/local/bin" exec-path))
@@ -19,7 +20,7 @@
 ;(setq mac-pass-control-to-system nil) 
 
 ;; Control + すべてのキー を無視する
-(mac-add-ignore-shortcut '(control))
+(when (fboundp 'mac-add-ignore-shortcut) (mac-add-ignore-shortcut '(control)))
 
 ;; フォント設定
 ;(if (eq window-system 'mac)
