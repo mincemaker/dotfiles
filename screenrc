@@ -1,4 +1,4 @@
-escape ^z^z
+escape ^Zz
 defencoding utf-8
 encoding utf-8 utf-8
 defhstatus "^En:^Et"
