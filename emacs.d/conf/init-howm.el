@@ -1,3 +1,4 @@
+(add-to-list 'load-path "~/lisp/howm/")
 (setq howm-menu-lang 'ja)
 (require 'elscreen-howm)
 (require 'howm)
