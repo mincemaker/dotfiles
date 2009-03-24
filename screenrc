@@ -31,3 +31,6 @@ bind -c resize j eval 'resize +1' 'command -c resize'
 bind -c resize k eval 'resize -1' 'command -c resize'
 # 別のウィンドウに移動
 bind o focus
+
+shelltitle "$ |zsh"
+hardstatus alwayslastline "%`%-w%{=b bw}%n %t%{-}%+w"
