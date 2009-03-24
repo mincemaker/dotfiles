@@ -9,8 +9,31 @@ setopt cdable_vars sh_word_split auto_param_keys
 setopt hist_reduce_blanks share_history auto_pushd
 setopt nolistbeep hist_ignore_all_dups
 autoload -U compinit; compinit -u
+
 PROMPT="%U$USER@%m%%%u "
-RPROMPT="[%~]"
+_set_env_git_current_branch() {
+  GIT_CURRENT_BRANCH=$( git branch &> /dev/null | grep '^\*' | cut -b 3- )
+}
+
+_update_rprompt () {
+  if [ "`git ls-files 2>/dev/null`" ]; then
+    RPROMPT="[%~:$GIT_CURRENT_BRANCH]"
+  else
+    RPROMPT="[%~]"
+  fi
+} 
+  
+precmd() 
+{ 
+  _set_env_git_current_branch
+  _update_rprompt
+}
+
+chpwd()
+{
+  _set_env_git_current_branch
+  _update_rprompt
+}
 
 ## Command history configuration
 #
