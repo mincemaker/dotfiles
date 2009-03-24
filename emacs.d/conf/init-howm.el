@@ -7,3 +7,7 @@
 (setq howm-file-name-format "%Y/%m/%Y_%m_%d.howm") ; 1日1ファイル
 (setq howm-keyword-case-fold-search t) ; <<< で大文字小文字を区別しない
 (setq howm-menu-expiry-hours 2) ; メニューを2時間キャッシュ
+;; メニューの色
+(custom-set-faces
+  '(howm-mode-title-face ((((class color)) (:foreground "red"))))
+  '(howm-reminder-normal-face ((((class color)) (:foreground "red")))))
