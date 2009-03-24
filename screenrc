@@ -33,4 +33,3 @@ bind -c resize k eval 'resize -1' 'command -c resize'
 bind o focus
 
 shelltitle "$ |zsh"
-hardstatus alwayslastline "%`%-w%{=b bw}%n %t%{-}%+w"
