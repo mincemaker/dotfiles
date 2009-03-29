@@ -6,7 +6,8 @@
 (setq exec-path (cons "/usr/local/bin" exec-path))
 (setenv "PATH"
         (concat '"/usr/local/bin:" (getenv "PATH")))
-
+;; インデントはスペースで
+(setq-default tab-width 4 indent-tabs-mode nil)
 ;; 行数表示
 (line-number-mode t)
 ;; 指定行へジャンプ
@@ -215,6 +216,9 @@
 
 ;; egg
 (require 'egg)
+
+;; emacs-nav
+(require 'nav)
 
 ;; 各種設定ファイル
 (load "init-c")
