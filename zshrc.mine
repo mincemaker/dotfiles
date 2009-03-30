@@ -1,5 +1,6 @@
 alias pylibdir='python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"'
 export PERL5LIB="/Users/mincemaker/plagger/lib"
-export PATH=~/bin:/opt/local/bin:/opt/local/sbin/:/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin:~/django-trunk/django/bin:$PATH
+#export PATH=~/bin:/opt/local/bin:/opt/local/sbin/:/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin:~/django-trunk/django/bin:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin/:/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin:~/django-trunk/django/bin:$PATH
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
