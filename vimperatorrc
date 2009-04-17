@@ -95,15 +95,15 @@ let g:ldrc_intelligence_bind = "true"
 let g:ldrc_skip = "0.5"
 
 " sbmcommentsviewer
-map ,b :viewSBMComments<CR>
+map c :viewSBMComments<CR>
 let g:def_sbm_format = "id,timestamp,tagsAndComment"
 
 let g:ldrc_captureMappings = "['?','j','k','p','o']"
 let g:styles = "niconico,ldr,mixi"
 
 " direct_bookmark
-let g:direct_sbm_use_services_by_tag = 'hd'
-let g:direct_sbm_use_services_by_post = "hdl"
+let g:direct_sbm_use_services_by_tag = 'd'
+let g:direct_sbm_use_services_by_post = "hd"
 let g:direct_sbm_is_normalize = "true"
 let g:direct_sbm_is_use_migemo = "true"
 map a :sbm<space>
@@ -134,17 +134,6 @@ set! browser.tabs.loadBookmarksInBackground=true
 
 " char-hits-mod2.js
 let g:hintsio="io"
-
-" hatenabookmark.js
-javascript <<EOF
-liberator.globalVariables.hBookmark_shortcuts = {
-    hintsAdd     : 'C',
-    hintsComment : 'c',
-    add          : ['C'],
-    comment      : ['c'],
-};
-EOF
-javascript if (typeof hBookmark != 'undefined') liberator.loadScript('chrome://hatenabookmark/content/vimperator/plugin/hatenabookmark.js', {__proto__: this});
 
 source ~/.vimperatorrc.css 
 echo "vimperatorrc loaded."

@@ -229,4 +229,4 @@
 (load "init-python.el")
 (load "init-ac.el")
 (load "init-howm.el")
-
+(load "init-key-chord.el")
