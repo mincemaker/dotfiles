@@ -103,7 +103,7 @@ let g:styles = "niconico,ldr,mixi"
 
 " direct_bookmark
 let g:direct_sbm_use_services_by_tag = 'd'
-let g:direct_sbm_use_services_by_post = "hd"
+let g:direct_sbm_use_services_by_post = "d"
 let g:direct_sbm_is_normalize = "true"
 let g:direct_sbm_is_use_migemo = "true"
 map a :sbm<space>
