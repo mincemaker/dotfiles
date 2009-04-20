@@ -31,6 +31,7 @@ noremap I <C-z>
 map s <esc>:google<space>
 map ! :set invum<CR>
 map ,s :so ~/.vimperatorrc<CR>
+map ,c :subscldr -rate 3
 map ,t :twitter<Space>
 map ,T :twitter!<Space>
 map ,@ :twitter!@<CR>
@@ -95,23 +96,23 @@ let g:ldrc_intelligence_bind = "true"
 let g:ldrc_skip = "0.5"
 
 " sbmcommentsviewer
-map ,b :viewSBMComments<CR>
+map c :viewSBMComments<CR>
 let g:def_sbm_format = "id,timestamp,tagsAndComment"
 
 let g:ldrc_captureMappings = "['?','j','k','p','o']"
 let g:styles = "niconico,ldr,mixi"
 
 " direct_bookmark
-let g:direct_sbm_use_services_by_tag = 'hd'
-let g:direct_sbm_use_services_by_post = "hdl"
+let g:direct_sbm_use_services_by_tag = 'd'
+let g:direct_sbm_use_services_by_post = "d"
 let g:direct_sbm_is_normalize = "true"
 let g:direct_sbm_is_use_migemo = "true"
 map a :sbm<space>
 
 autocmd LocationChange .* :fmapc
 autocmd LocationChange reader\\.livedoor\\.com/reader :fmap! j J g k s a p o v c r <Space> <S-Space> z b < >
-autocmd LocationChange localhost:3000/reader :fmap! j J k s g a p o v c r <Space> <S-Space> z b < >
-autocmd LocationChange 10\.0\.1\.252:3000/reader :fmap! j J k s g a p o v c r <Space> <S-Space> z b < >
+autocmd LocationChange localhost:3000/reader :fmap! j J k s g a p o v c r w <Space> <S-Space> z b < >
+autocmd LocationChange 10\.0\.1\.[0-9]{1,3}:3000/reader :fmap! j J k s g a p o v c r w <Space> <S-Space> z b < >
 autocmd LocationChange mail\\.google\\.com/mail :fmap! -depth 4 c / j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gc
 ":javascript FirebugCommandLineAPI.prototype.vimperator = liberator
 

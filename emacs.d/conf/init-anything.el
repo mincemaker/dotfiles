@@ -38,3 +38,7 @@
 (add-hook 'dired-mode-hook ;dired
           '(lambda ()
              (local-set-key (kbd "O") 'anything-c-moccur-dired-do-moccur-by-moccur)))
+
+;; descbinds-anything)
+(require 'descbinds-anything)
+(descbinds-anything-install)

@@ -4,6 +4,7 @@
 (autoload 'pymacs-eval "pymacs" nil t)
 (autoload 'pymacs-exec "pymacs" nil t)
 (autoload 'pymacs-load "pymacs" nil t)
+
 ;; python-mode, pycomplete 
 (setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
 (setq interpreter-mode-alist (cons '("python" . python-mode)
@@ -12,4 +13,3 @@
 (add-hook 'python-mode-hook '(lambda ()
                                (require 'pycomplete)
                                ))
-

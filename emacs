@@ -3,9 +3,9 @@
               "~/lisp/apel"
               "~/.emacs.d/conf")
             load-path))
-(setq exec-path (cons "/usr/local/bin" exec-path))
+(setq exec-path (cons "/opt/local/bin" exec-path))
 (setenv "PATH"
-        (concat '"/usr/local/bin:" (getenv "PATH")))
+        (concat '"/opt/local/bin:" (getenv "PATH")))
 ;; インデントはスペースで
 (setq-default tab-width 4 indent-tabs-mode nil)
 ;; 行数表示
@@ -229,4 +229,4 @@
 (load "init-python.el")
 (load "init-ac.el")
 (load "init-howm.el")
-
+(load "init-key-chord.el")
