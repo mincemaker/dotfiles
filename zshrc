@@ -93,7 +93,7 @@ alias du="du -h"
 alias df="df -h"
 
 alias su="su -l"
-alias screen="screen -D -RR"
+alias screen="env LC_TIME=C screen -D -RR"
 
 ## terminal configuration
 #
