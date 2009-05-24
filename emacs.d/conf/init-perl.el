@@ -59,3 +59,7 @@
   (flymake-mode t))
 
 (add-hook 'cperl-mode-hook 'flymake-perl-load)
+(add-hook 'cperl-mode-hook
+          (lambda()
+            (require 'perl-completion)
+            (perl-completion-mode t)))

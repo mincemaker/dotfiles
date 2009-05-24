@@ -108,6 +108,9 @@ let g:direct_sbm_is_normalize = "true"
 let g:direct_sbm_is_use_migemo = "true"
 map a :sbm<space>
 
+" pino
+let g:pinoBaseURL = "localhost:3000"
+
 autocmd LocationChange .* :fmapc
 autocmd LocationChange reader\\.livedoor\\.com/reader :fmap! j J g k s a p o v c r <Space> <S-Space> z b < >
 autocmd LocationChange localhost:3000/reader :fmap! j J k s g a p o v c r w <Space> <S-Space> z b < >
