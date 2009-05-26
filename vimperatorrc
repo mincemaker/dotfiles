@@ -4,7 +4,7 @@ set wildmode=list:full
 set wildoptions=auto
 set guioptions=rbn
 set insertmode
-set complete=l
+set complete=sl
 set visualbell
 set history=1000
 set hlsearch
@@ -27,7 +27,7 @@ noremap K <PageUp>
 noremap <Tab> <C-v><Tab>
 noremap I <C-z>
 
-map s <esc>:google<space>
+map s <esc>:tabopen<space>google<space>
 map ! :set invum<CR>
 map ,s :so ~/.vimperatorrc<CR>
 map ,c :subscldr -rate 3
