@@ -27,17 +27,17 @@ noremap K <PageUp>
 noremap <Tab> <C-v><Tab>
 noremap I <C-z>
 
-map s <esc>:tabopen<space>google<space>
+map s <esc>:tabopen google 
 map ! :set invum<CR>
 map ,s :so ~/.vimperatorrc<CR>
 map ,c :subscldr -rate 3
-map ,t :twitter<Space>
-map ,T :twitter!<Space>
+map ,t :twitter 
+map ,T :twitter! 
 map ,@ :twitter!@<CR>
-map ,mt :mr<Space>twitter-search-pcod-no-jp<Space>
-map ,mT :mr<Space>twitter-search-pcod-no-jp<Space>mincemaker<CR>
-map ,mf :mr<Space>favotter-new<Space>
-map ,mF :mr<Space>favotter-new<Space>mincemaker<CR>
+map ,mt :mr twitter-search-pcod-no-jp 
+map ,mT :mr twitter-search-pcod-no-jp mincemaker<CR>
+map ,mf :mr favotter-new 
+map ,mF :mr favotter-new mincemaker<CR>
 
 noremap <BS> <A-Left>
                       
@@ -103,7 +103,7 @@ let g:direct_sbm_use_services_by_tag = 'd'
 let g:direct_sbm_use_services_by_post = "d"
 let g:direct_sbm_is_normalize = "true"
 let g:direct_sbm_is_use_migemo = "true"
-map a :sbm<space>
+map a :sbm 
 
 " pino
 let g:pinoBaseURL = "localhost:3000"
