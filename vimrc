@@ -121,14 +121,12 @@ func! String2Hex(str)
 endfunc
 
 "ステータスラインに文字コードと改行文字を表示する
-" set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']['.&ft.']'}\ %F%=%l,%c%V%8P
-if winwidth(0) >= 120
-  set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%y\ %F%=[%{GetB()}]\ %l,%c%V%8P
-else
-  set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%y\ %f%=[%{GetB()}]\ %l,%c%V%8P
-endif
-
-"set statusline=%{GetB()}
+"if winwidth(0) >= 120
+"  set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%y\ %F%=[%{GetB()}]\ %l,%c%V%8P
+"else
+"  set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%y\ %f%=[%{GetB()}]\ %l,%c%V%8P
+"endif
+set statusline=[%n]%t\ %=%1*%m%*%r%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}[%<%{fnamemodify(getcwd(),':~')}]\ %-6(%l,%c%V%)\ %4P
 
 " コマンドライン補完するときに強化されたものを使う(参照 :help wildmenu)
 " set wildmenu
@@ -468,3 +466,4 @@ map ,fmf  :FuzzyFinderMruFile<CR>
 
 " qbuf
 :let g:qb_hotkey = "_"
+
