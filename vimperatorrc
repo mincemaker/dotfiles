@@ -138,5 +138,10 @@ set! browser.tabs.loadBookmarksInBackground=true
 " char-hits-mod2.js
 let g:hintsio="io"
 
+" verttabbar
+set! browser.tabs.closeButton=2
+set! verttabbar.width=200
+set showtabline=1
+
 source ~/.vimperatorrc.css 
 echo "vimperatorrc loaded."
