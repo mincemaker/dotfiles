@@ -230,3 +230,5 @@
 (load "init-ac.el")
 (load "init-howm.el")
 (load "init-key-chord.el")
+(load "init-org.el")
+
