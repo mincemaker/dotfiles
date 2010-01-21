@@ -4,7 +4,7 @@ set wildmode=list:full
 set wildoptions=auto
 set guioptions=rbn
 set insertmode
-set complete=sl
+set complete=tsl
 set visualbell
 set history=1000
 set hlsearch
