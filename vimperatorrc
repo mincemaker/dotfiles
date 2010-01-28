@@ -3,6 +3,7 @@ echo "loading..."
 set wildmode=list:full
 set wildoptions=auto
 set guioptions=rbn
+set showstatuslinks=2
 set insertmode
 set complete=tsl
 set visualbell
