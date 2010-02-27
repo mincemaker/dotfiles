@@ -156,5 +156,21 @@ liberator.globalVariables.copy_templates = [
 ];
 EOM
 
+" no-reading.js
+let g:no_reading_on_statusline=1
+let g:no_reading_statusline_limit=1000
+
+javascript <<EOM
+commands.addUserCommand(
+  ['removeCookieOfYourfile'],
+  'removeCookieOfYourfile',
+  function() {
+    liberator.execute('cookiemanager remove yourfilehostdatabase.com/');
+    liberator.execute('cookiemanager remove yourfilehost.com/');
+    liberator.execute('cookiemanager remove yourlifehost.jp/');
+        }
+);
+EOM
+
 source ~/.vimperatorrc.css 
 echo "vimperatorrc loaded."
