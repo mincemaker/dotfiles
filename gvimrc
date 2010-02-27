@@ -11,4 +11,5 @@ if has('gui_macvim')
   map <silent> gw :macaction selectNextWindow:
   map <silent> gW :macaction selectPreviousWindow:
   let Tlist_Ctags_Cmd = "/opt/local/bin/jexctags"
+  colorscheme wombat
 endif
