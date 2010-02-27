@@ -255,17 +255,7 @@
 (load "init-howm.el")
 (load "init-key-chord.el")
 (load "init-org.el")
+(load "init-undo-tree.el")
 
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/memo/agenda.org_archive" "~/memo/agenda.org"))))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(howm-mode-title-face ((((class color)) (:foreground "red"))))
- '(howm-reminder-normal-face ((((class color)) (:foreground "red")))))
+
+
