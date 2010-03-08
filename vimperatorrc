@@ -172,5 +172,8 @@ commands.addUserCommand(
 );
 EOM
 
+" tombloo.js
+map A :tombloo!Link<CR>
+
 source ~/.vimperatorrc.css 
 echo "vimperatorrc loaded."
