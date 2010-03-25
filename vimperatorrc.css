@@ -24,3 +24,6 @@
   font-size: 9pt !important;
 }
 
+.tabs-newtab-button {display: none !important;}
+.tabs-container> stack {display: none;}
+
