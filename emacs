@@ -186,10 +186,10 @@
       (define-key shell-mode-map [down] 'comint-next-input))))
 
 ;; ElScreen
-(require 'elscreen)
-(if window-system
-    (define-key elscreen-map "\C-z" 'iconify-or-deiconify-frame)
-  (define-key elscreen-map "\C-z" 'suspend-emacs))
+;(require 'elscreen)
+;(if window-system
+;    (define-key elscreen-map "\C-z" 'iconify-or-deiconify-frame)
+;  (define-key elscreen-map "\C-z" 'suspend-emacs))
 
 ;; dmacro
 (defconst *dmacro-key* "\C-t" "繰り返指定キー")
@@ -252,7 +252,7 @@
 (load "init-perl.el")
 (load "init-python.el")
 (load "init-ac.el")
-(load "init-howm.el")
+;(load "init-howm.el")
 (load "init-key-chord.el")
 (load "init-org.el")
 (load "init-undo-tree.el")
