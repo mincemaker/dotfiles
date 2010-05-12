@@ -2,9 +2,14 @@ alias pylibdir='python -c "from distutils.sysconfig import get_python_lib; print
 export SHELL="/opt/local/bin/zsh"
 export PATH=/opt/local/bin:/opt/local/sbin/:/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin:~/django-trunk/django/bin:$PATH
 export LSCOLORS=gxfxcxdxbxegedabagacad
+# local::lib
 alias cpan-uninstall='sudo perl -MConfig -MExtUtils::Install -e '"'"'($FULLEXT=shift)=~s{-}{/}g;uninstall "$Config{sitearchexp}/auto/$FULLEXT/.packlist",1'"'"
 export MODULEBUILDRC="/Users/mincemaker/perl5/.modulebuildrc"
 export PERL_MM_OPT="INSTALL_BASE=/Users/mincemaker/perl5"
 export PERL5LIB="/Users/mincemaker/perl5/lib/perl5:/Users/mincemaker/perl5/lib/perl5/darwin-thread-multi-2level:$PERL5LIB:/Users/mincemaker/plagger/assets"
 export PATH="/Users/mincemaker/perl5/bin:$PATH"
+export WORKON_HOME=$HOME/.virtualenvs
+source /opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin/virtualenvwrapper.sh
+# perlbrew
+source /Users/mincemaker/perl5/perlbrew/etc/bashrC
 
