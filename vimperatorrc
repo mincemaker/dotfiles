@@ -15,6 +15,7 @@ set hintmatching=custom
 set nextpattern+=次(の)?ページ,→\b,下一頁,Следующая,다음
 "[[
 set previouspattern+=prev,\b←,前(の)?ページ
+set hintchars=hjklasdf
 
 "" mapping
 noremap _ ma
@@ -135,9 +136,6 @@ EOM
 set! ui.key.generalAccessKey=0
 " open bookmarks in background
 set! browser.tabs.loadBookmarksInBackground=true
-
-" char-hits-mod2.js
-let g:hintsio="io"
 
 " verttabbar
 set! browser.tabs.closeButton=2
