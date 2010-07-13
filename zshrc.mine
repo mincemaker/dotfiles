@@ -5,9 +5,11 @@ export LSCOLORS=gxfxcxdxbxegedabagacad
 alias cpan-uninstall='sudo perl -MConfig -MExtUtils::Install -e '"'"'($FULLEXT=shift)=~s{-}{/}g;uninstall "$Config{sitearchexp}/auto/$FULLEXT/.packlist",1'"'"
 
 # perlbrew
-source /Users/mincemaker/perl5/perlbrew/etc/bashrc
+#source /Users/mincemaker/perl5/perlbrew/etc/bashrc
 
 # virtualenv
-export WORKON_HOME=$HOME/.virtualenvs
-source /opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin/virtualenvwrapper.sh
+#export WORKON_HOME=$HOME/.virtualenvs
+#source /opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin/virtualenvwrapper.sh
 
+# RVM
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
