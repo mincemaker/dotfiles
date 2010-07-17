@@ -12,4 +12,12 @@ if has('gui_macvim')
   map <silent> gW :macaction selectPreviousWindow:
   let Tlist_Ctags_Cmd = "/opt/local/bin/jexctags"
   colorscheme wombat
+  set iminsert=0 imsearch=0
+  set antialias
+  set macatsui
+  set guifont=Osaka-Mono:h14
+  set transparency=240
+  hi IMLine guibg=DarkGreen guifg=Black
+  noremap \ \ " (円マークでバックスラッシュ入力)
+  noremap <C-]> <Esc> " (CTRL-[でESC入力)
 endif

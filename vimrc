@@ -477,3 +477,6 @@ nnoremap <silent> <C-]> :FufTag! <C-r>=expand('<cword>')<CR><CR>
 " qbuf
 :let g:qb_hotkey = ";;"
 
+" GetLatestVimScript
+let g:GetLatestVimScripts_allowautoinstall= 1
+
