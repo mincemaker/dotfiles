@@ -82,6 +82,7 @@
         ("\\.ya?ml\\'" . yaml-mode))
         auto-mode-alist))
 (set-language-environment "Japanese")
+(prefer-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (set-buffer-file-coding-system 'utf-8)
@@ -256,6 +257,7 @@
 (load "init-key-chord.el")
 (load "init-org.el")
 (load "init-undo-tree.el")
-
+(load "init-autocomplete.el")
+(load "init-autoinstall.el")
 
 

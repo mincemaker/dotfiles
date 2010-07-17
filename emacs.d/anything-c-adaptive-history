@@ -1,0 +1,3 @@
+;; -*- mode: emacs-lisp -*-
+;; History entries used for anything adaptive display.
+(setq anything-c-adaptive-history (quote ((buffer ("*scratch*" ("" . 1)) ("*Egg:Select Action*" ("" . 1)) ("myapp.rb" ("" . 1))) (file ("~/development/ruby/siatra_test/myapp.rb" ("" . 5)) ("~/.emacs.d/conf/init-anything.el" ("" . 4)) ("~/lisp/anything-rcodetools.el" ("" . 1))))))

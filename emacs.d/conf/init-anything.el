@@ -42,3 +42,13 @@
 ;; descbinds-anything)
 (require 'descbinds-anything)
 (descbinds-anything-install)
+
+;; rcodetools
+(require 'rcodetools)
+(require 'anything-rcodetools)
+;; Command to get all RI entries.
+(setq rct-get-all-methods-command "PAGER=cat fri -l")
+;; See docs
+(define-key anything-map "\C-e" 'anything-execute-persistent-action)
+
+
