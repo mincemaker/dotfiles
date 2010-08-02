@@ -251,6 +251,7 @@
 (load "init-anything")
 (load "init-yasnippet")
 (load "init-perl.el")
+(load "init-ruby.el")
 (load "init-python.el")
 (load "init-ac.el")
 ;(load "init-howm.el")

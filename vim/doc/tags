@@ -2,6 +2,7 @@
 :AcpEnable	acp.txt	/*:AcpEnable*
 :AcpLock	acp.txt	/*:AcpLock*
 :AcpUnlock	acp.txt	/*:AcpUnlock*
+:ErrorAtCursor	errormarker.txt	/*:ErrorAtCursor*
 :FufAddBookmark	fuf.txt	/*:FufAddBookmark*
 :FufAddBookmarkAsSelectedText	fuf.txt	/*:FufAddBookmarkAsSelectedText*
 :FufBookmark	fuf.txt	/*:FufBookmark*
@@ -47,6 +48,7 @@ YRToggle	yankring.txt	/*YRToggle*
 YRYankCount	yankring.txt	/*YRYankCount*
 YRYankRange	yankring.txt	/*YRYankRange*
 YRYankRange-example	yankring.txt	/*YRYankRange-example*
+\cc	errormarker.txt	/*\\cc*
 abc	fuf.txt	/*abc*
 acp	acp.txt	/*acp*
 acp-about	acp.txt	/*acp-about*
