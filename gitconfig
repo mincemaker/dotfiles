@@ -17,6 +17,7 @@
   d4 = diff HEAD^^^^
   d5 = diff HEAD^^^^^
   d10 = diff HEAD^^^^^^^^^^
+  log-graph = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s'
 
 [color]
   diff = auto
@@ -25,7 +26,4 @@
   interactive = auto
 [core]
   excludesfile = /Users/mincemaker/.gitignore
-[github]
-	user = mincemaker
-	token = 4e99c4561e61656aa0cf098a3fdc0b68
 
