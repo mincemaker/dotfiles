@@ -1,8 +1,9 @@
 set number
+set visualbell t_vb=
 set nocompatible  " Use Vim defaults instead of 100% vi compatibility
 set backspace=indent,eol,start  " more powerful backspacing
 
-" Now we set some defaults for the editor 
+" Now we set some defaults for the editor
 set textwidth=0   " Don't wrap words by default
 set nobackup    " Don't keep a backup file
 set viminfo='50,<1000,s100,\"50 " read/write a .viminfo file, don't store more than
@@ -34,7 +35,7 @@ colorscheme desert
 " set helpfile=$VIMRUNTIME/doc/help.txt.gz
 set helpfile=$VIMRUNTIME/doc/help.txt
 
-let mapleader = '\' 
+let mapleader = '\'
 
 if has("autocmd")
   " Enabled file type detection
@@ -45,7 +46,7 @@ if has("autocmd")
   filetype indent on
   " これらのftではインデントを無効に
   "autocmd FileType php filetype indent off
-  
+ 
   " autocmd FileType php :set indentexpr=
   autocmd FileType html :set indentexpr=
   autocmd FileType xhtml :set indentexpr=
@@ -76,7 +77,7 @@ set wrapscan
 "検索文字列入力時に順次対象文字列にヒットさせない
 "set noincsearch
 "タブの左側にカーソル表示
-"set listchars=tab:\\ 
+"set listchars=tab:\\
 set nolist
 "入力中のコマンドをステータスに表示する
 set showcmd
@@ -234,7 +235,7 @@ imap <C-j> <esc>
 
 " savevers.vim(backup)
 "set backup
-"set patchmode=.clean 
+"set patchmode=.clean
 "set backupdir=~/.backup_vim
 "let savevers_types = "*"
 "let savevers_dirs = &backupdir
@@ -262,12 +263,12 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "norm
 
 " closetab C-_でタブをとじる
 "let g:closetag_html_style=1
-"source ~/.vim/scripts/closetag.vim 
+"source ~/.vim/scripts/closetag.vim
 
 ",e でそのコマンドを実行
 nmap ,e :execute '!' &ft ' %'<CR>
 "nmap ,e :execute 'set makeprg=' . expand(&ft) . '\ ' . expand('%')<CR>:make<CR>
- 
+
 " phpdoc
 let g:foo_DefineAutoCommands = 1
 
@@ -328,7 +329,7 @@ nnoremap <Leader><C-o>       :TlistClose<CR>
 
 " buf移動
 "nmap <c-n>  :MBEbn<CR>
-"nmap <c-p>  :MBEbp<CR> 
+"nmap <c-p>  :MBEbp<CR>
 
 " いろいろ囲むよ
 "fun! Quote(quote)
@@ -348,14 +349,14 @@ nnoremap <silent> ,q" :call Quote('"')<CR>
 nnoremap <silent> ,q' :call Quote("'")<CR>
 nnoremap <silent> ,qd :call UnQuote()<CR>
 
-"" 'quote' a word 
-"nnoremap ,q' :silent! normal mpea'<esc>bi'<esc>`pl 
-"" double "quote" a word 
-"nnoremap ,q" :silent! normal mpea"<esc>bi"<esc>`pl 
-"nnoremap ,q( :silent! normal mpea)<esc>bi(<esc>`pl 
-"nnoremap ,q[ :silent! normal mpea]<esc>bi[<esc>`pl 
-"nnoremap ,q{ :silent! normal mpea}<esc>bi{<esc>`pl 
-"" remove quotes from a word 
+"" 'quote' a word
+"nnoremap ,q' :silent! normal mpea'<esc>bi'<esc>`pl
+"" double "quote" a word
+"nnoremap ,q" :silent! normal mpea"<esc>bi"<esc>`pl
+"nnoremap ,q( :silent! normal mpea)<esc>bi(<esc>`pl
+"nnoremap ,q[ :silent! normal mpea]<esc>bi[<esc>`pl
+"nnoremap ,q{ :silent! normal mpea}<esc>bi{<esc>`pl
+"" remove quotes from a word
 "nnoremap ,qd :silent! normal mpeld bhd `ph<CR>
 
 
@@ -371,7 +372,7 @@ let html_use_css = 1
 
 " SeeTab
 let g:SeeTabCtermFG="black"
-let g:SeeTabCtermBG="red" 
+let g:SeeTabCtermBG="red"
 
 " netrw-ftp
 let g:netrw_ftp_cmd="netkit-ftp"
@@ -389,17 +390,17 @@ let g:netrw_http_cmd="wget -q -O"
 nmap ,y :YRShow<CR>
 
 " html escape function
-:function HtmlEscape() 
-silent s/&/\&amp;/eg 
-silent s/</\&lt;/eg 
-silent s/>/\&gt;/eg 
-:endfunction 
+:function HtmlEscape()
+silent s/&/\&amp;/eg
+silent s/</\&lt;/eg
+silent s/>/\&gt;/eg
+:endfunction
 
-:function HtmlUnEscape() 
-silent s/&lt;/</eg 
-silent s/&gt;/>/eg 
-silent s/&amp;/\&/eg 
-:endfunction 
+:function HtmlUnEscape()
+silent s/&lt;/</eg
+silent s/&gt;/>/eg
+silent s/&amp;/\&/eg
+:endfunction
 
 " 16色
 set t_Co=16
@@ -412,11 +413,11 @@ hi PmenuSel ctermbg=12
 hi PmenuSbar ctermbg=0
 
 " 検索後、真ん中にフォーカスをあわせる
-"nmap n nzz 
-"nmap N Nzz 
-"nmap * *zz 
-"nmap # #zz 
-"nmap g* g*zz 
+"nmap n nzz
+"nmap N Nzz
+"nmap * *zz
+"nmap # #zz
+"nmap g* g*zz
 "nmap g# g#zz
 
 " changelog mode
@@ -467,7 +468,7 @@ nmap gb :FufFile **/<CR>
 nmap br :FufMruFile<CR>
 nmap bq :FufQuickfix<CR>
 nmap bl :FufLine<CR>
-nnoremap <silent> <C-]> :FufTag! <C-r>=expand('<cword>')<CR><CR> 
+nnoremap <silent> <C-]> :FufTag! <C-r>=expand('<cword>')<CR><CR>
 
 " minibufexpl
 :let g:miniBufExplMapWindowNavVim = 1
@@ -479,4 +480,25 @@ nnoremap <silent> <C-]> :FufTag! <C-r>=expand('<cword>')<CR><CR>
 
 " GetLatestVimScript
 let g:GetLatestVimScripts_allowautoinstall= 1
+
+" ハイライト設定
+function! WhitespaceHilight()
+    syntax match Whitespace "\s\+$" display containedin=ALL
+    highlight Whitespace ctermbg=red guibg=red
+endf
+"全角スペースをハイライトさせる。
+function! JISX0208SpaceHilight()
+    syntax match JISX0208Space "　" display containedin=ALL
+    highlight JISX0208Space term=underline ctermbg=LightCyan
+endf
+"syntaxの有無をチェックし、新規バッファと新規読み込み時にハイライトさせる
+if has("syntax")
+    syntax on
+        augroup invisible
+        autocmd! invisible
+        autocmd BufNew,BufRead * call WhitespaceHilight()
+        autocmd BufNew,BufRead * call JISX0208SpaceHilight()
+    augroup END
+endif
+set listchars=tab:>-,trail:-,nbsp:%,extends:>,precedes:<
 
