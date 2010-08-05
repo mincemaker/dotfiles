@@ -2,6 +2,7 @@
 ;; PATH
 (setq load-path (append '("~/lisp/"
               "~/lisp/apel"
+              "~/lisp/auto-install"
               "~/.emacs.d/conf")
             load-path))
 (setq exec-path (cons "/opt/local/bin" exec-path))
@@ -231,10 +232,6 @@
 ;; (setq migemo-user-dictionary nil)
 ;; (setq migemo-regex-dictionary nil)
 
-;; installer
-(require 'install-elisp)
-(setq install-elisp-repository-directory "~/lisp/")
-
 ;; one-key
 (require 'one-key)
 (require 'one-key-config)
@@ -246,10 +243,10 @@
 (require 'nav)
 
 ;; 各種設定ファイル
+(require 'anything-startup)
 (load "init-c")
-(load "init-moccur")
-(load "init-anything")
-(load "init-yasnippet")
+;(load "init-anything")
+;(load "init-yasnippet")
 (load "init-perl.el")
 (load "init-ruby.el")
 (load "init-python.el")
