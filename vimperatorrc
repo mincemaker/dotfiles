@@ -29,20 +29,20 @@ noremap K <PageUp>
 noremap <Tab> <C-v><Tab>
 noremap I <C-z>
 
-map s <esc>:tabopen google 
+map s <esc>:tabopen google
 map ! :set invum<CR>
 map ,s :so ~/.vimperatorrc<CR>
 map ,c :subscldr -rate 3
-map ,t :twitter 
-map ,T :twitter! 
+map ,t :twitter
+map ,T :twitter!
 map ,@ :twitter!@<CR>
-map ,mt :mr twitter-search-pcod-no-jp 
+map ,mt :mr twitter-search-pcod-no-jp
 map ,mT :mr twitter-search-pcod-no-jp mincemaker<CR>
-map ,mf :mr favotter-new 
+map ,mf :mr favotter-new
 map ,mF :mr favotter-new mincemaker<CR>
 
 noremap <BS> <A-Left>
-                      
+
 noremap h <A-Left>
 noremap l <A-Right>
 
@@ -173,5 +173,9 @@ EOM
 " tombloo.js
 map A :tombloo!Link<CR>
 
-source ~/.vimperatorrc.css 
+" twittperator
+let g:twittperator_use_chirp = 1
+let g:twittperator_plugin_echo_tweet = 1
+
+source ~/.vimperatorrc.css
 echo "vimperatorrc loaded."
