@@ -200,7 +200,7 @@ if has("autochdir")
   set autochdir
   set tags=tags;
 else
-  set tags=./tags,./../tags,./*/tags,./../../tags,./../../../tags,./../../../../tags,./../../../../../tags
+  set tags+=tags
 endif
 
 
@@ -468,8 +468,6 @@ au BufNewFile,BufRead app/**/*.rb set fenc=utf-8
 
 " cofs's fsync
 au BufNewFile,BufRead /mnt/c/* set nofsync
-
-let Tlist_Ctags_Cmd = "/opt/local/bin/jexctags"
 
 " fuzzyfinder
 map ,fmf  :FuzzyFinderMruFile<CR>
