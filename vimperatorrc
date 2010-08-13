@@ -29,7 +29,7 @@ noremap K <PageUp>
 noremap <Tab> <C-v><Tab>
 noremap I <C-z>
 
-map s <esc>:tabopen google
+map s <esc>:tabopen google 
 map ! :set invum<CR>
 map ,s :so ~/.vimperatorrc<CR>
 map ,c :subscldr -rate 3
