@@ -33,9 +33,9 @@ map s <esc>:tabopen google
 map ! :set invum<CR>
 map ,s :so ~/.vimperatorrc<CR>
 map ,c :subscldr -rate 3
-map ,t :twitter
-map ,T :twitter!
-map ,@ :twitter!@<CR>
+map ,t :tw<CR>
+map ,T :tw!<CR>
+map ,@ :tw!@
 map ,mt :mr twitter-search-pcod-no-jp
 map ,mT :mr twitter-search-pcod-no-jp mincemaker<CR>
 map ,mf :mr favotter-new
