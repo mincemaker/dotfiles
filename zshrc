@@ -124,7 +124,7 @@ if [ "$TERM" = "screen" ]; then
           cmd=(builtin jobs -l $cmd[2])
         fi
         ;;
-      %*) 
+      %*)
         cmd=(builtin jobs -l $cmd[1])
         ;;
       cd)
@@ -159,26 +159,25 @@ else
   _set_env_git_current_branch() {
     GIT_CURRENT_BRANCH=$( git branch &> /dev/null | grep '^\*' | cut -b 3- )
   }
-  
+
   _update_rprompt () {
     if [ "`git ls-files 2>/dev/null`" ]; then
       RPROMPT="[%~:$GIT_CURRENT_BRANCH]"
     else
       RPROMPT="[%~]"
     fi
-  } 
-    
-  precmd() 
-  { 
+  }
+
+  precmd()
+  {
     _set_env_git_current_branch
     _update_rprompt
   }
-  
+
   chpwd()
   {
     _set_env_git_current_branch
     _update_rprompt
   }
 fi
-
 
