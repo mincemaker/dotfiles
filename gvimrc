@@ -20,4 +20,5 @@ if has('gui_running')
   set linespace=1
   set guifontwide=セプテンバー:h16
   set guifont=Inconsolata:h16
+  set cmdheight=1
 endif
