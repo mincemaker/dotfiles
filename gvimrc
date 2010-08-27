@@ -11,7 +11,7 @@ if has('gui_running')
   map <silent> gw :macaction selectNextWindow:
   map <silent> gW :macaction selectPreviousWindow:
   let Tlist_Ctags_Cmd = "/opt/local/bin/jexctags"
-  colorscheme wombat
+  colorscheme wombat256mod
   set iminsert=0 imsearch=0
   set antialias
   hi IMLine guibg=DarkGreen guifg=Black
