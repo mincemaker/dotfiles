@@ -3,6 +3,10 @@ zombie ^]
 defencoding utf-8
 encoding utf-8 utf-8
 defhstatus "^En:^Et"
+defbce "on"
+term xterm-256color
+termcapinfo xterm-256color 'is=rmJH?7h?1;4;6l'
+
 # コピーモードで Emacs のような移動を可能にする
 # (man にも載っている定番)
 markkeys h=^b:l=^f:$=^e
