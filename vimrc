@@ -16,18 +16,12 @@ set incsearch
 " These are files we are not likely to want to edit or read.
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
-" We know xterm-debian is a color terminal
-if &term =~ "xterm-debian" || &term =~ "xterm-xfree86" || &term =~ "xterm-256color"
- set t_Co=16
- set t_Sf=[3%dm
- set t_Sb=[4%dm
-endif
-
 " Make p in Visual mode replace the selected text with the "" register.
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
 syntax on
 
+set t_Co=256
 colorscheme desert256
 
 " Debian uses compressed helpfiles. We must inform vim that the main
@@ -46,7 +40,7 @@ if has("autocmd")
   filetype indent on
   " これらのftではインデントを無効に
   "autocmd FileType php filetype indent off
- 
+
   " autocmd FileType php :set indentexpr=
   autocmd FileType html :set indentexpr=
   autocmd FileType xhtml :set indentexpr=
@@ -389,6 +383,9 @@ let html_use_css = 1
 " ペースト時にautoindentを無効に
 "set paste
 
+" Gitのコミット時の文字化け対策
+au BufRead COMMIT_EDITMSG set fenc=utf8
+
 " SeeTab
 let g:SeeTabCtermFG="black"
 let g:SeeTabCtermBG="red"
@@ -421,10 +418,6 @@ silent s/&gt;/>/eg
 silent s/&amp;/\&/eg
 :endfunction
 
-" 16色
-set t_Co=16
-set t_Sf=[3%dm
-set t_Sb=[4%dm
 
 " 補完候補の色づけ for vim7
 hi Pmenu ctermbg=8
