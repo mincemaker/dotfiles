@@ -3,6 +3,7 @@ export SHELL="/opt/local/bin/zsh"
 export PATH=/opt/local/bin:/opt/local/sbin/:/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin:~/django-trunk/django/bin:$PATH
 export LSCOLORS=gxfxcxdxbxegedabagacad
 alias cpan-uninstall='sudo perl -MConfig -MExtUtils::Install -e '"'"'($FULLEXT=shift)=~s{-}{/}g;uninstall "$Config{sitearchexp}/auto/$FULLEXT/.packlist",1'"'"
+alias emacs='/opt/local/bin/emacs'
 
 # perlbrew
 #source /Users/mincemaker/perl5/perlbrew/etc/bashrc

@@ -9,7 +9,7 @@
 ;; URL: http://www.emacswiki.org/cgi-bin/wiki/download/anything.el
 ;; Site: http://www.emacswiki.org/cgi-bin/emacs/Anything
 (defvar anything-version nil)
-(setq anything-version "1.285")
+(setq anything-version "1.286")
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -82,6 +82,8 @@
 ;;
 ;; Below are complete command list:
 ;;
+;;  `anything-open-last-log'
+;;    Open anything log file of last anything session.
 ;;  `anything'
 ;;    Select anything. In Lisp program, some optional arguments can be used.
 ;;  `anything-resume'
@@ -978,6 +980,27 @@ The original idea is from `tramp-debug-message'."
     (unless (member msg anything-issued-errors)
       (add-to-list 'anything-issued-errors msg))))
 
+(defvar anything-last-log-file nil)
+(defun anything-log-save-maybe ()
+  (when (stringp anything-debug)
+    (let ((logdir (expand-file-name (format-time-string "%Y%m%d")
+                                    anything-debug)))
+      (make-directory logdir t)
+      (with-current-buffer (get-buffer-create "*Anything Log*")
+        (write-region (point-min) (point-max)
+                      (setq anything-last-log-file
+                            (expand-file-name (format-time-string "%Y%m%d-%H%M%S")
+                                              logdir))
+                      nil 'silent)
+        (erase-buffer)))))
+
+(defun anything-open-last-log ()
+  "Open anything log file of last anything session."
+  (interactive)
+  (if anything-last-log-file
+      (view-file anything-last-log-file)
+    (switch-to-buffer "*Anything Log*")))
+
 (defun anything-print-error-messages ()
   "Print error messages in `anything-issued-errors'."
   (message "%s" (mapconcat 'identity (reverse anything-issued-errors) "\n")))
@@ -1526,30 +1549,32 @@ source in *buffers* buffer and set
   "Older interface of `anything'. It is called by `anything'."
   (anything-log "++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
   (anything-log-eval any-prompt any-preselect any-buffer any-keymap)
-  (condition-case v
-      (let ( ;; It is needed because `anything-source-name' is non-nil
-            ;; when `anything' is invoked by action. Awful global scope.
-            anything-source-name
-            anything-in-persistent-action
-            anything-quit
-            (case-fold-search t)
-            (anything-buffer (or any-buffer anything-buffer))
-            ;; cua-mode ; avoid error when region is selected
-            )
-        (with-anything-restore-variables
-          (anything-initialize-1 any-resume any-input any-sources)
-          (anything-display-buffer anything-buffer)
-          (anything-log "show prompt")
-          (unwind-protect
-              (anything-read-pattern-maybe
-               any-prompt any-input any-preselect any-resume any-keymap)
-            (anything-cleanup)))
-        (prog1 (unless anything-quit (anything-execute-selection-action-1))
-          (anything-log "end session --------------------------------------------")))
-    (quit
-     (anything-on-quit)
-     (anything-log "end session (quit) -------------------------------------")
-     nil)))
+  (unwind-protect
+      (condition-case v
+          (let ( ;; It is needed because `anything-source-name' is non-nil
+                ;; when `anything' is invoked by action. Awful global scope.
+                anything-source-name
+                anything-in-persistent-action
+                anything-quit
+                (case-fold-search t)
+                (anything-buffer (or any-buffer anything-buffer))
+                ;; cua-mode ; avoid error when region is selected
+                )
+            (with-anything-restore-variables
+              (anything-initialize-1 any-resume any-input any-sources)
+              (anything-display-buffer anything-buffer)
+              (anything-log "show prompt")
+              (unwind-protect
+                  (anything-read-pattern-maybe
+                   any-prompt any-input any-preselect any-resume any-keymap)
+                (anything-cleanup)))
+            (prog1 (unless anything-quit (anything-execute-selection-action-1))
+              (anything-log "end session --------------------------------------------")))
+        (quit
+         (anything-on-quit)
+         (anything-log "end session (quit) -------------------------------------")
+         nil))
+    (anything-log-save-maybe)))
 
 
 
@@ -1769,12 +1794,12 @@ If TEST-MODE is non-nil, clear `anything-candidate-cache'."
 (defun anything-check-minibuffer-input ()
   "Extract input string from the minibuffer and check if it needs
 to be handled."
-  (if (or (not anything-input-idle-delay) (anything-action-window))
-      (anything-check-minibuffer-input-1)
-    (anything-new-timer
-     'anything-check-minibuffer-input-timer
-     (run-with-idle-timer anything-input-idle-delay nil
-                          'anything-check-minibuffer-input-1))))
+  (let ((delay (with-current-buffer anything-buffer anything-input-idle-delay)))
+    (if (or (not delay) (anything-action-window))
+       (anything-check-minibuffer-input-1)
+     (anything-new-timer
+      'anything-check-minibuffer-input-timer
+      (run-with-idle-timer delay nil 'anything-check-minibuffer-input-1)))))
 
 (defun anything-check-minibuffer-input-1 ()
   (with-anything-quittable
@@ -2046,26 +2071,24 @@ if ITEM-COUNT reaches LIMIT, exit from inner loop."
 `anything-idle-delay' seconds."
   (with-anything-quittable
     (anything-log-eval (mapcar (lambda (s) (assoc-default 'name s)) delayed-sources))
-    (when (sit-for (if anything-input-idle-delay
-                       (max 0 (- anything-idle-delay anything-input-idle-delay))
-                     anything-idle-delay))
-      (with-current-buffer anything-buffer        
-        (save-excursion
-          (goto-char (point-max))
-          (mapc 'anything-process-source delayed-sources)
-          (when (and (not (anything-empty-buffer-p))
-                     ;; no selection yet
-                     (= (overlay-start anything-selection-overlay)
-                        (overlay-end anything-selection-overlay)))
-            (goto-char (point-min))
-            (anything-next-line)))
-        (save-excursion
+    (with-current-buffer anything-buffer        
+      (save-excursion
+        (goto-char (point-max))
+        (mapc 'anything-process-source delayed-sources)
+        (when (and (not (anything-empty-buffer-p))
+                   ;; no selection yet
+                   (= (overlay-start anything-selection-overlay)
+                      (overlay-end anything-selection-overlay)))
           (goto-char (point-min))
-          (anything-log-run-hook 'anything-update-hook))
-        (anything-maybe-fit-frame)))))
+          (anything-next-line)))
+      (save-excursion
+        (goto-char (point-min))
+        (anything-log-run-hook 'anything-update-hook))
+      (anything-maybe-fit-frame))))
 
 ;; (@* "Core: *anything* buffer contents")
 (defvar anything-input-local nil)
+(defvar anything-process-delayed-sources-timer nil)
 (defun anything-update ()
   "Update the list of matches in the anything buffer according to
 the current pattern."
@@ -2092,10 +2115,11 @@ the current pattern."
             (mapc 'anything-process-source delayed-sources)
           (anything-maybe-fit-frame)
           (when delayed-sources
-            (run-with-idle-timer (if (featurep 'xemacs) 0.1 0)
-                                 nil
-                                 'anything-process-delayed-sources
-                                 delayed-sources))
+            (anything-new-timer
+             'anything-process-delayed-sources-timer
+             (run-with-idle-timer
+              anything-idle-delay nil
+              'anything-process-delayed-sources delayed-sources)))
           ;; FIXME I want to execute anything-after-update-hook
           ;; AFTER processing delayed sources
           (anything-log-run-hook 'anything-after-update-hook))
@@ -2251,11 +2275,10 @@ the real value in a text property."
 (defun anything-output-filter--post-process ()
   (anything-maybe-fit-frame)
   (anything-log-run-hook 'anything-update-hook)
-  (if (bobp)
-      (anything-next-line)
-    (save-selected-window
-      (select-window (get-buffer-window anything-buffer 'visible))
-      (anything-mark-current-line))))
+  (save-selected-window
+    (select-window (get-buffer-window anything-buffer 'visible))
+    (anything-skip-noncandidate-line 'next)
+    (anything-mark-current-line)))
 
 
 (defun anything-kill-async-processes ()
@@ -2304,7 +2327,7 @@ If action buffer is selected, back to the anything buffer."
          (set-window-buffer (get-buffer-window anything-action-buffer)
                             anything-buffer)
          (kill-buffer anything-action-buffer)
-         (anything-set-pattern anything-input))
+         (anything-set-pattern anything-input 'noupdate))
         (t
          (setq anything-saved-selection (anything-get-selection))
          (unless anything-saved-selection
@@ -2708,11 +2731,16 @@ You can edit the line."
     (lambda () ,@forms)))
 (put 'anything-edit-current-selection 'lisp-indent-function 0)
 
-(defun anything-set-pattern (pattern)
-  "Set minibuffer contents to PATTERN."
+(defun anything-set-pattern (pattern &optional noupdate)
+  "Set minibuffer contents to PATTERN.
+if optional NOUPDATE is non-nil, anything buffer is not changed."
   (with-selected-window (minibuffer-window)
     (delete-minibuffer-contents)
-    (insert pattern)))
+    (insert pattern))
+  (when noupdate
+    (setq anything-pattern pattern)
+    (anything-hooks 'cleanup)
+    (run-with-idle-timer 0 nil 'anything-hooks 'setup)))
 
 (defun anything-delete-minibuffer-contents ()
   "Same as `delete-minibuffer-contents' but this is a command."
@@ -2870,7 +2898,13 @@ get-line and search-from-end attributes. See also `anything-sources' docstring.
            pattern get-line-fn search-fns limit search-from-end
            start-point endp))))))
 
-(defun anything-search-from-candidate-buffer (pattern get-line-fn search-fns limit search-from-end start-point endp)
+(defun anything-point-is-moved (proc)
+  "If point is moved after executing PROC, return t, otherwise nil."
+  (/= (point) (progn (funcall proc) (point))))
+
+(defun anything-search-from-candidate-buffer (pattern get-line-fn search-fns
+                                                      limit search-from-end
+                                                      start-point endp)
   (let (buffer-read-only
         matches exit newmatches)
     (anything-search-from-candidate-buffer-internal
@@ -2880,16 +2914,16 @@ get-line and search-from-end attributes. See also `anything-sources' docstring.
          (goto-char start-point)
          (setq newmatches nil)
          (loop with item-count = 0
-               with next-line-fn =
-               (if search-from-end
-                   (lambda (x) (goto-char (max (point-at-bol) 1)))
-                 #'forward-line)
                while (funcall searcher pattern nil t)
                for cand = (funcall get-line-fn (point-at-bol) (point-at-eol))
-               do
-               (anything-accumulate-candidates-internal
-                cand newmatches anything-cib-hash item-count limit)
-               (funcall next-line-fn 1))
+               do (anything-accumulate-candidates-internal
+                   cand newmatches anything-cib-hash item-count limit)
+               unless (anything-point-is-moved
+                       (lambda ()
+                         (if search-from-end
+                             (goto-char (1- (point-at-bol)))
+                           (forward-line 1))))
+               return nil)
          (setq matches (append matches (nreverse newmatches)))
          (if exit (return)))
        (delq nil matches)))))
@@ -3196,19 +3230,34 @@ It is analogous to `dired-get-marked-files'."
         (move-overlay o (point-at-bol 0) (1+ (point-at-eol 0)))))))
 (add-hook 'anything-update-hook 'anything-revive-visible-mark)
 
+(defun anything-next-point-in-list (curpos points &optional prev)
+  (cond
+   ;; rule out special cases
+   ((null points)                        curpos)
+   ((and prev (< curpos (car points)))   curpos)
+   ((< (car (last points)) curpos)
+    (if prev (car (last points)) curpos))
+   (t
+    (nth (if prev
+             (loop for pt in points
+                   for i from 0
+                   if (<= curpos pt)
+                   do (return (1- i)))
+           (loop for pt in points
+                 for i from 0
+                 if (< curpos pt)
+                 do (return i)))
+         points))))
+
 (defun anything-next-visible-mark (&optional prev)
   "Move next anything visible mark."
   (interactive)
   (with-anything-window
-    (let ((points (sort (mapcar 'overlay-start anything-visible-mark-overlays) '<)))
-      (ignore-errors
-        (goto-char (nth (+ (loop for pt in points
-                                 for i from 0
-                                 if (or (< (point) pt) (and prev (= (point) pt)))
-                                 do (return i))
-                           (if prev -1 0))
-                        points)))
-      (anything-mark-current-line))))
+    (goto-char (anything-next-point-in-list
+                (point)
+                (sort (mapcar 'overlay-start anything-visible-mark-overlays) '<)
+                prev))
+    (anything-mark-current-line)))
 
 (defun anything-prev-visible-mark ()
   "Move previous anything visible mark."
@@ -4455,6 +4504,15 @@ Given pseudo `anything-sources' and `anything-pattern', returns list like
             (match identity)
             (volatile)))
          "oo\\+"))
+      ;; BUG remain empty string, but the pattern is rare case.
+      (expect '(("a" ("" "a" "b")))
+        (anything-test-candidates
+         '(((name . "a")
+            (init . (lambda ()
+                      (with-current-buffer (anything-candidate-buffer 'global)
+                        (insert "a\nb\n"))))
+            (candidates-in-buffer)))
+         "a*"))
       (desc "search attribute")
       (expect '(("TEST" ("foo+")))
         (anything-test-candidates
@@ -5065,22 +5123,6 @@ Given pseudo `anything-sources' and `anything-pattern', returns list like
       (expect (not-called anything-process-source)
         (anything-test-update '(((name . "1") (requires-pattern . 3))) "xx"))
 
-      (desc "delay")
-      (expect (mock (sit-for 0.25))
-        (stub with-current-buffer)
-        (let ((anything-idle-delay 1.0)
-              (anything-input-idle-delay 0.75))
-          (anything-process-delayed-sources t)))
-      (expect (mock (sit-for 0.0))
-        (stub with-current-buffer)
-        (let ((anything-idle-delay 0.2)
-              (anything-input-idle-delay 0.5))
-          (anything-process-delayed-sources t)))    
-      (expect (mock (sit-for 0.5))
-        (stub with-current-buffer)
-        (let ((anything-idle-delay 0.5)
-              (anything-input-idle-delay nil))
-          (anything-process-delayed-sources t)))
       (desc "anything-normalize-sources")
       (expect '(anything-c-source-test)
         (anything-normalize-sources 'anything-c-source-test))
@@ -5355,7 +5397,24 @@ Given pseudo `anything-sources' and `anything-pattern', returns list like
             (search-from-end)
             (candidate-number-limit . 2)))
          "\\+"))
-
+      (expect '(("a" ("c2" "c1")))
+        (anything-test-candidates
+         '(((name . "a")
+            (init . (lambda ()
+                      (with-current-buffer (anything-candidate-buffer 'global)
+                        (insert "c1\nc2\n"))))
+            (search-from-end)
+            (candidates-in-buffer)))))
+      ;; BUG remain empty string, but the pattern is rare case.
+      (expect '(("a" ("c" "b" "a" "")))
+        (anything-test-candidates
+         '(((name . "a")
+            (init . (lambda ()
+                      (with-current-buffer (anything-candidate-buffer 'global)
+                        (insert "a\nb\nc\n"))))
+            (search-from-end)
+            (candidates-in-buffer)))
+         "a*"))
       (desc "header-name attribute")
       (expect "original is transformed"
         (anything-test-update '(((name . "original")
@@ -5871,6 +5930,33 @@ Given pseudo `anything-sources' and `anything-pattern', returns list like
            '("a" "b") incomplete-line-info)
           (anything-output-filter--collect-candidates
            '("" "c" "") incomplete-line-info)))
+      (desc "anything-next-point-in-list")
+      (expect 10
+        (anything-next-point-in-list 5 '(10 20) nil))
+      (expect 20
+        (anything-next-point-in-list 15 '(10 20) nil))
+      (expect 25
+        (anything-next-point-in-list 25 '(10 20) nil))
+      (expect 5
+        (anything-next-point-in-list 5 '(10 20) t))
+      (expect 10
+        (anything-next-point-in-list 15 '(10 20) t))
+      (expect 20
+        (anything-next-point-in-list 25 '(10 20) t))
+      (expect 5
+        (anything-next-point-in-list 5 '() nil))
+      (expect 5
+        (anything-next-point-in-list 5 '() t))
+      (expect 10
+        (anything-next-point-in-list 5 '(10) nil))
+      (expect 10
+        (anything-next-point-in-list 15 '(10) t))
+      (expect 20
+        (anything-next-point-in-list 10 '(10 20) nil))
+      (expect 10
+        (anything-next-point-in-list 20 '(10 20) t))
+      (expect 20
+        (anything-next-point-in-list 30 '(10 20 30) t))
       )))
 
 
