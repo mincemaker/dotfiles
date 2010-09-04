@@ -51,18 +51,6 @@
 (setq tab-width 4)
 ;(setq indent-line-function 'indent-relative-maybe)
 
-;; ウィンドウを透明化
-(add-to-list 'default-frame-alist '(alpha . (0.85 0.85)))
-;; メニューバーを隠す
-(tool-bar-mode -1)
-
-;(add-hook 'text-mode-hook 'ruler-mode)
-;(add-hook 'cperl-mode-hook 'ruler-mode)
-
-;(global-font-lock-mode t)
-;(setq font-lock-support-mode 'jit-lock-mode)
-;(setq-default transient-mark-mode t)
-
 (setq auto-save-default nil)
 (setq auto-save-list-file-prefix "~/.autosave/")
 
@@ -73,33 +61,6 @@
 
 (setq cssm-indent-function #'cssm-c-style-indenter)
 (setq javascript-indent-level 8)
-
-(defalias 'perl-mode 'cperl-mode) ; cperlモード
-(setq cperl-indent-level 4)
-(setq cperl-continued-statement-offset 4)
-(setq cperl-brace-offset -4)
-(setq cperl-label-offset -4)
-(setq cperl-indent-parens-as-block t)
-(setq cperl-close-paren-offset -4)
-(setq cperl-tab-always-indent t)
-;(setq cperl-invalid-face nil)
-(setq cperl-highlight-variables-indiscriminately t)
-
-(defun perltidy-region ()
-  "Run perltidy on the current region."
-  (interactive)
-  (save-excursion
-    (shell-command-on-region (point) (mark) "perltidy -q" nil t)))
-(defun perltidy-defun ()
-  "Run perltidy on the current defun."
-  (interactive)
-  (save-excursion (mark-defun)
-  (perltidy-region)))
-(defun my-insert-date () ; 日付入れる関数。perlモジュールのChanges書くときに主に使用
-  (interactive)
-  (insert (format-time-string "%Y-%m-%dT%R:%S+09:00" (current-time))))
-
-(global-set-key "\C-ct" 'perltidy-region)
 
 ; colors ; こっからカラーの設定だけどこれはMeadow使ってたときの設定。コンソールでは意味ない(256色モード使ってないので)
 ;;(require 'font-lock)
@@ -150,28 +111,4 @@
 ;(if window-system
 ;    (define-key elscreen-map "\C-z" 'iconify-or-deiconify-frame)
 ;  (define-key elscreen-map "\C-z" 'suspend-emacs))
-
-;; Show tab, zenkaku-space, white spaces at end of line
-;; http://www.bookshelf.jp/soft/meadow_26.html#SEC317
-(defface my-face-tab         '((t (:background "Yellow"))) nil :group 'my-faces)
-(defface my-face-zenkaku-spc '((t (:background "LightBlue"))) nil :group 'my-faces)
-(defface my-face-spc-at-eol  '((t (:foreground "Red" :underline t))) nil :group 'my-faces)
-(defvar my-face-tab         'my-face-tab)
-(defvar my-face-zenkaku-spc 'my-face-zenkaku-spc)
-(defvar my-face-spc-at-eol  'my-face-spc-at-eol)
-(defadvice font-lock-mode (before my-font-lock-mode ())
-  (font-lock-add-keywords
-   major-mode
-   '(("\t" 0 my-face-tab append)
-     ("　" 0 my-face-zenkaku-spc append)
-     ("[ \t]+$" 0 my-face-spc-at-eol append)
-     )))
-(ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
-(ad-activate 'font-lock-mode)
-;; settings for text file
-(add-hook 'text-mode-hook
-          '(lambda ()
-             (progn
-               (font-lock-mode t)
-               (font-lock-fontify-buffer))))
 
