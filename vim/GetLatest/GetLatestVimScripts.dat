@@ -1,6 +1,5 @@
 ScriptID SourceID Filename
 --------------------------
-1879 11894 :AutoInstall: vim-autocomplpop.zip
 1861 13041 :AutoInstall: errormarker.vim
 1984 11852 :AutoInstall: FuzzyFinder.zip
 1697 12566 :AutoInstall: surround.vim
@@ -10,3 +9,6 @@ ScriptID SourceID Filename
 1658 11834 :AutoInstall: NERD_tree.zip
 294 10110 :AutoInstall: Align.vba.gz
 1567 12622 :AutoInstall: rails.vim
+2620 13456 :AutoInstall: neocomplicache-5.1.vba
+294 10110 :AutoInstall: Align.vim
+1066 7618 :AutoInstall: cecutil.vim
