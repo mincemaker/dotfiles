@@ -526,3 +526,15 @@ let g:neocomplcache_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 3
 
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns = {
+      \ 'css'  :  '\v^\s+\w+|\w+[):;]?\s+|[@!]',
+      \ 'javascript' : '[^. \t]\.\%(\h\w*\)\?',
+      \ 'php'  :  '[^. \t]->\h\w*\|\$\h\w*\|\%(=\s*new\|extends\)\s\+\|\h\w*::',
+      \ 'perl' :  '\%(\h\w*\|)\)->\h\w*\|\h\w*::',
+      \ 'c'    :  '\h\w\+\|\%(\h\w*\|)\)\%(\.\|->\)\h\w*',
+      \ 'cpp'  :  '\%(\h\w*\|)\)\%(\.\|->\)\h\w*\|\h\w*::',
+      \ }
+
