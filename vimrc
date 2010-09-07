@@ -525,16 +525,11 @@ let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 3
-
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns = {
-      \ 'css'  :  '\v^\s+\w+|\w+[):;]?\s+|[@!]',
-      \ 'javascript' : '[^. \t]\.\%(\h\w*\)\?',
-      \ 'php'  :  '[^. \t]->\h\w*\|\$\h\w*\|\%(=\s*new\|extends\)\s\+\|\h\w*::',
-      \ 'perl' :  '\%(\h\w*\|)\)->\h\w*\|\h\w*::',
-      \ 'c'    :  '\h\w\+\|\%(\h\w*\|)\)\%(\.\|->\)\h\w*',
-      \ 'cpp'  :  '\%(\h\w*\|)\)\%(\.\|->\)\h\w*\|\h\w*::',
-      \ }
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
