@@ -7,6 +7,7 @@ if has('gui_running')
   set incsearch
   set transparency=5
   set guioptions-=T
+  set guicursor=a:blinkon0
   set migemo
   map <silent> gw :macaction selectNextWindow:
   map <silent> gW :macaction selectPreviousWindow:
