@@ -92,7 +92,7 @@ let g:ldrc_intelligence_bind = "true"
 let g:ldrc_skip = "0.5"
 
 " sbmcommentsviewer
-map c :viewSBMComments<CR>
+map c :viewSBMComments -t hdl<CR>
 let g:def_sbm_format = "id,timestamp,tagsAndComment"
 
 let g:ldrc_captureMappings = "['?','j','k','p','o']"
