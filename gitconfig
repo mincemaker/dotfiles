@@ -27,4 +27,5 @@
   interactive = auto
 [core]
   excludesfile = /Users/mincemaker/.gitignore
+  autocrlf = input
 

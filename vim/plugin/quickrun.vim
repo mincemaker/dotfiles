@@ -1,1 +1,0 @@
-/Users/mincemaker/development/vim/quickrun/plugin/quickrun.vim

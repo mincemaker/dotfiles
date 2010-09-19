@@ -6,7 +6,7 @@ alias cpan-uninstall='sudo perl -MConfig -MExtUtils::Install -e '"'"'($FULLEXT=s
 alias emacs='/opt/local/bin/emacs'
 
 # perlbrew
-#source /Users/mincemaker/perl5/perlbrew/etc/bashrc
+source /Users/mincemaker/perl5/perlbrew/etc/bashrc
 
 # virtualenv
 #export WORKON_HOME=$HOME/.virtualenvs

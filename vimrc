@@ -1,3 +1,14 @@
+" Let Pathogen bring in all the plugins
+" http://github.com/paulnicholson/vim-pathogen.git
+filetype off
+call pathogen#runtime_append_all_bundles()
+filetype indent plugin on
+" ------------------------------------------------------------------------------
+syntax on
+
+set nocompatible " tends to make things work better
+set incsearch " find the next match as we type the search
+set hlsearch " hilight searches by default
 set number
 set visualbell t_vb=
 set nocompatible  " Use Vim defaults instead of 100% vi compatibility
@@ -10,7 +21,6 @@ set viminfo='50,<1000,s100,\"50 " read/write a .viminfo file, don't store more t
 "set viminfo='50,<1000,s100,:0,n~/.vim/viminfo
 set history=100   " keep 50 lines of command line history
 set ruler   " show the cursor position all the time
-set incsearch
 
 " Suffixes that get lower priority when doing tab completion for filenames.
 " These are files we are not likely to want to edit or read.
@@ -19,10 +29,7 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 " Make p in Visual mode replace the selected text with the "" register.
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
-syntax on
-
 set t_Co=256
-colorscheme desert
 
 " Debian uses compressed helpfiles. We must inform vim that the main
 " helpfiles is compressed. Other helpfiles are stated in the tags-file.
@@ -197,18 +204,8 @@ else
   set tags+=tags
 endif
 
-
 " tags key map (C-z を C-tに,C-tはGNU/screenとかぶる)
 map <C-z> <C-t>
-
-" phpでKでhelpをひく
-"autocmd BufNewFile,Bufread *.php,*.php3,*.php4 set keywordprg="help"
-
-" phpならindentファイルは使わない
-"autocmd FileType php :filetype indent off
-
-" %マッチでrubyのクラスやメソッドが対応するようにする
-" autocmd FileType ruby :source ~/.vim/ftplugin/ruby-matchit.vim
 
 " 辞書ファイルからの単語補間
 :set complete+=k
@@ -219,47 +216,6 @@ nmap <C-]> g<C-]>
 " yeでそのカーソル位置にある単語をレジスタに追加
 nmap ye :let @"=expand("<cword>")<CR>
 
-" CD.vim example:// は適用しない
-autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-
-" howm
-"set runtimepath+=~/.vim/howm_vim
-
-"im_custom
-"if has('im_custom/canna')
-" set imoptions=canna
-" set noimcmdline
-" set iminsert=0
-" set imsearch=0
-" inoremap :set iminsert=0
-" inoremap :set imsearch=0
-"" <C-i>でのインサートモードに入ったときは日本語入力On
-"  nmap <C-i> :set iminsert=2<CR>i
-"" imap <ESC> <ESC>:set iminsert=0<CR>
-"endif
-
-" insert mode時にc-jで抜ける
-imap <C-j> <esc>
-
-" Taglist
-" nnoremap <silent> <C-,> :Tlist<CR>
-"nnoremap <C-q> :Tlist<CR>
-"nnoremap <silent> <C-.> :TlistClose<CR>
-
-" savevers.vim(backup)
-"set backup
-"set patchmode=.clean
-"set backupdir=~/.backup_vim
-"let savevers_types = "*"
-"let savevers_dirs = &backupdir
-
-" command mode 時 tcsh風のキーバインドに
-"cmap <C-A> <Home>
-"cmap <C-F> <Right>
-"cmap <C-B> <Left>
-"cmap <C-D> <Delete>
-"cmap <Esc>b <S-Left>
-"cmap <Esc>f <S-Right>
 
 "表示行単位で行移動する
 nmap j gj
@@ -274,136 +230,14 @@ map <kMinus> <C-W>-
 " 前回終了したカーソル行に移動
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
-" closetab C-_でタブをとじる
-"let g:closetag_html_style=1
-"source ~/.vim/scripts/closetag.vim
-
 ",e でそのコマンドを実行
 nmap ,e :execute '!' &ft ' %'<CR>
-"nmap ,e :execute 'set makeprg=' . expand(&ft) . '\ ' . expand('%')<CR>:make<CR>
-
-" phpdoc
-let g:foo_DefineAutoCommands = 1
-
-" MiniBufExplorer で GNU screen likeなキーバインド
-"nnoremap <Leader>f :last<CR>
-"nnoremap <Leader><C-f> :last<CR>
-nmap <Space> :bn<CR>
-nnoremap <Leader>c       :new<CR>
-nnoremap <Leader><C-c>   :new<CR>
-nnoremap <Leader>k       :bd<CR>
-nnoremap <Leader><C-k>   :bd<CR>
-nnoremap <Leader>s       :IncBufSwitch<CR>
-nnoremap <Leader><C-s>   :IncBufSwitch<CR>
-nnoremap <Leader><Tab>   :wincmd w<CR>
-nnoremap <Leader>Q       :only<CR>
-nnoremap <Leader>w       :ls<CR>
-nnoremap <Leader><C-w>   :ls<CR>
-nnoremap <Leader>a       :e #<CR>
-nnoremap <Leader><C-a>   :e #<CR>
-nnoremap <Leader>"       :BufExp<CR>
-nnoremap <Leader>1   :e #1<CR>
-nnoremap <Leader>2   :e #2<CR>
-nnoremap <Leader>3   :e #3<CR>
-nnoremap <Leader>4   :e #4<CR>
-nnoremap <Leader>5   :e #5<CR>
-nnoremap <Leader>6   :e #6<CR>
-nnoremap <Leader>7   :e #7<CR>
-nnoremap <Leader>8   :e #8<CR>
-nnoremap <Leader>9   :e #9<CR>
-
-nnoremap ,c       :new<CR>
-nnoremap ,<C-c>   :new<CR>
-nnoremap ,k       :bd<CR>
-nnoremap ,<C-k>   :bd<CR>
-nnoremap ,s       :IncBufSwitch<CR>
-nnoremap ,<C-s>   :IncBufSwitch<CR>
-nnoremap ,<Tab>   :wincmd w<CR>
-nnoremap ,Q       :only<CR>
-nnoremap ,w       :ls<CR>
-nnoremap ,<C-w>   :ls<CR>
-nnoremap ,a       :e #<CR>
-nnoremap ,<C-a>   :e #<CR>
-nnoremap ,"       :BufExp<CR>
-nnoremap ,1   :e #1<CR>
-nnoremap ,2   :e #2<CR>
-nnoremap ,3   :e #3<CR>
-nnoremap ,4   :e #4<CR>
-nnoremap ,5   :e #5<CR>
-nnoremap ,6   :e #6<CR>
-nnoremap ,7   :e #7<CR>
-nnoremap ,8   :e #8<CR>
-nnoremap ,9   :e #9<CR>
-" Taglist用
-nnoremap <Leader>l       :Tlist<CR>
-nnoremap <Leader><C-l>       :Tlist<CR>
-nnoremap <Leader>o       :TlistClose<CR>
-nnoremap <Leader><C-o>       :TlistClose<CR>
-
-" buf移動
-"nmap <c-n>  :MBEbn<CR>
-"nmap <c-p>  :MBEbp<CR>
-
-" いろいろ囲むよ
-"fun! Quote(quote)
-"  normal mz
-"  exe 's/\(\k*\%#\k*\)/' . a:quote . '\1' . a:quote . '/'
-"  normal `zl
-"endfun
-"
-"fun! UnQuote()
-"  normal mz
-""  exe 's/["' . "'" . ']\(\k*\%#\k*\)[' . "'" . '"]/\1/'
-"  exe 's/\(["' . "'" . ']\)\(\k*\%#\k*\)\1/\2/'
-"  normal `z
-"endfun
-
-nnoremap <silent> ,q" :call Quote('"')<CR>
-nnoremap <silent> ,q' :call Quote("'")<CR>
-nnoremap <silent> ,qd :call UnQuote()<CR>
-
-"" 'quote' a word
-"nnoremap ,q' :silent! normal mpea'<esc>bi'<esc>`pl
-"" double "quote" a word
-"nnoremap ,q" :silent! normal mpea"<esc>bi"<esc>`pl
-"nnoremap ,q( :silent! normal mpea)<esc>bi(<esc>`pl
-"nnoremap ,q[ :silent! normal mpea]<esc>bi[<esc>`pl
-"nnoremap ,q{ :silent! normal mpea}<esc>bi{<esc>`pl
-"" remove quotes from a word
-"nnoremap ,qd :silent! normal mpeld bhd `ph<CR>
-
-
-" 現在行をhighlight
-" set updatetime=1
-" autocmd CursorHold * :match Search /^.*\%#.*$
-
-" code2html
-let html_use_css = 1
-
-" ペースト時にautoindentを無効に
-"set paste
-
-" Gitのコミット時の文字化け対策
-au BufRead COMMIT_EDITMSG set fenc=utf8
-
-" SeeTab
-let g:SeeTabCtermFG="black"
-let g:SeeTabCtermBG="red"
 
 " netrw-ftp
 let g:netrw_ftp_cmd="netkit-ftp"
 
 " netrw-http
 let g:netrw_http_cmd="wget -q -O"
-
-" mru.vim
-" MRU は MiniBufExplorer と相性がわるいためつかわない
-"let MRU_Max_Entries = 100
-"let MRU_Use_Current_Window = 2
-"let MRU_Window_Height=15
-
-" YankRing.vim
-nmap ,y :YRShow<CR>
 
 " html escape function
 :function HtmlEscape()
@@ -418,19 +252,31 @@ silent s/&gt;/>/eg
 silent s/&amp;/\&/eg
 :endfunction
 
-
 " 補完候補の色づけ for vim7
 hi Pmenu ctermbg=8
 hi PmenuSel ctermbg=12
 hi PmenuSbar ctermbg=0
 
-" 検索後、真ん中にフォーカスをあわせる
-"nmap n nzz
-"nmap N Nzz
-"nmap * *zz
-"nmap # #zz
-"nmap g* g*zz
-"nmap g# g#zz
+" ハイライト設定
+function! WhitespaceHilight()
+    syntax match Whitespace "\s\+$" display containedin=ALL
+    highlight Whitespace ctermbg=red guibg=red
+endf
+"全角スペースをハイライトさせる。
+function! JISX0208SpaceHilight()
+    syntax match JISX0208Space "　" display containedin=ALL
+    highlight JISX0208Space term=underline ctermbg=LightCyan
+endf
+"syntaxの有無をチェックし、新規バッファと新規読み込み時にハイライトさせる
+if has("syntax")
+    syntax on
+        augroup invisible
+        autocmd! invisible
+        autocmd BufNew,BufRead * call WhitespaceHilight()
+        autocmd BufNew,BufRead * call JISX0208SpaceHilight()
+    augroup END
+endif
+set listchars=tab:>-,trail:-,nbsp:%,extends:>,precedes:<
 
 " changelog mode
 if has("autocmd")
@@ -455,14 +301,39 @@ nmap ,U :set encoding=utf-8<CR>
 nmap ,E :set encoding=euc-jp<CR>
 nmap ,S :set encoding=cp932<CR>
 
-" rails
-au BufNewFile,BufRead app/**/*.rhtml set fenc=utf-8
-au BufNewFile,BufRead app/**/*.rb set fenc=utf-8
+" バッファ関連のショートカット色々
+nmap <Space> :bn<CR>
+nnoremap ,c       :new<CR>
+nnoremap ,<C-c>   :new<CR>
+nnoremap ,k       :bd<CR>
+nnoremap ,<C-k>   :bd<CR>
+nnoremap ,<Tab>   :wincmd w<CR>
+nnoremap ,Q       :only<CR>
+nnoremap ,w       :ls<CR>
+nnoremap ,<C-w>   :ls<CR>
+nnoremap ,a       :e #<CR>
+nnoremap ,<C-a>   :e #<CR>
 
-" cofs's fsync
-au BufNewFile,BufRead /mnt/c/* set nofsync
+" ------------------------------------------------------------------------------
+" plugins
+" ------------------------------------------------------------------------------
+
+" load the code2html plugin:
+" --- BUNDLE: git://github.com/vim-scripts/code2html.git
+let html_use_css = 1
+
+" load the SeeTab plugin:
+" --- BUNDLE: git://github.com/vim-scripts/SeeTab.git
+let g:SeeTabCtermFG="black"
+let g:SeeTabCtermBG="red"
+
+
+" YankRing.vim
+" --- BUNDLE: git://github.com/chrismetcalf/vim-yankring.git
+nmap ,y :YRShow<CR>
 
 " fuzzyfinder
+" --- BUNDLE: git://github.com/vim-bundles/fuzzyfinder.git
 map ,fmf  :FuzzyFinderMruFile<CR>
 let g:fuf_modesDisable = ['mrucmd']
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|bak|swp|gif|jpg|png)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
@@ -480,39 +351,12 @@ nmap bq :FufQuickfix<CR>
 nmap bl :FufLine<CR>
 nnoremap <silent> <C-]> :FufTag! <C-r>=expand('<cword>')<CR><CR>
 
-" minibufexpl
-:let g:miniBufExplMapWindowNavVim = 1
-:let g:miniBufExplMapWindowNavArrows = 1
-:let g:miniBufExplMapCTabSwitchBuffs = 1
-
 " qbuf
-:let g:qb_hotkey = ";;"
+" --- BUNDLE: git://github.com/vim-scripts/QuickBuf.git
+let g:qb_hotkey = ";;"
 
-" GetLatestVimScript
-let g:GetLatestVimScripts_allowautoinstall= 1
-
-" ハイライト設定
-function! WhitespaceHilight()
-    syntax match Whitespace "\s\+$" display containedin=ALL
-    highlight Whitespace ctermbg=red guibg=red
-endf
-"全角スペースをハイライトさせる。
-function! JISX0208SpaceHilight()
-    syntax match JISX0208Space "　" display containedin=ALL
-    highlight JISX0208Space term=underline ctermbg=LightCyan
-endf
-"syntaxの有無をチェックし、新規バッファと新規読み込み時にハイライトさせる
-if has("syntax")
-    syntax on
-        augroup invisible
-        autocmd! invisible
-        autocmd BufNew,BufRead * call WhitespaceHilight()
-        autocmd BufNew,BufRead * call JISX0208SpaceHilight()
-    augroup END
-endif
-set listchars=tab:>-,trail:-,nbsp:%,extends:>,precedes:<
-
-"" neocomplcache
+" neocomplcache
+" --- BUNDLE: git://github.com/Shougo/neocomplcache.git
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
@@ -532,4 +376,49 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" eskk
+" --- BUNDLE: git://github.com/tyru/eskk.vim.git
+" eskk settings via. http://d.hatena.ne.jp/hamaco/20100708/1278598112
+if has('vim_starting')
+	let g:eskk_dictionary = '~/.skk-jisyo'
+
+	if has('mac')
+		let g:eskk_large_dictionary = "~/Library/Application\ Support/AquaSKK/SKK-JISYO.L"
+	elseif has('win32') || has('win64')
+		let g:eskk_large_dictionary = "~/SKK_JISYO.L"
+	else
+	endif
+endif
+let g:eskk_debug = 0
+let g:eskk_egg_like_newline = 1
+let g:eskk_revert_henkan_style = "okuri"
+let g:eskk_enable_completion = 0
+
+" load the rails plugin:
+" --- BUNDLE: git://github.com/tpope/vim-rails.git
+au BufNewFile,BufRead app/**/*.rhtml set fenc=utf-8
+au BufNewFile,BufRead app/**/*.rb set fenc=utf-8
+
+" load the nerdtree plugin:
+" --- BUNDLE: git://github.com/scrooloose/nerdtree.git
+" and configure it to open using \d and \D
+nmap <leader>d :NERDTreeToggle<cr>
+nmap <leader>D :NERDTreeFind<cr>
+
+" --- BUNDLE: git://github.com/scrooloose/nerdcommenter.git
+" add a space between the comment delimiter and text
+let NERDSpaceDelims=1
+
+" --- BUNDLE: git://github.com/tpope/vim-surround.git
+" tell surround not to break the visual s keystroke (:help vs)
+xmap S <Plug>Vsurround
+
+" --- BUNDLE: git://github.com/bronson/vim-taglist.git
+nmap <leader>l :TlistToggle<cr>
+
+" --- BUNDLE: git://git.wincent.com/command-t.git
+" --- BUNDLE: git://github.com/bronson/vim-closebuffer.git
+" --- BUNDLE: git://github.com/vim-ruby/vim-ruby.git
+" --- BUNDLE: git://github.com/mattn/zencoding-vim.git
 

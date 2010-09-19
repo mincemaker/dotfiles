@@ -1,5 +1,6 @@
 if has('gui_running')
   set nu
+  set cmdheight=1
   set columns=88
   set lines=40
   set showtabline=2
@@ -12,7 +13,6 @@ if has('gui_running')
   map <silent> gw :macaction selectNextWindow:
   map <silent> gW :macaction selectPreviousWindow:
   let Tlist_Ctags_Cmd = "/opt/local/bin/jexctags"
-  colorscheme wombat256mod
   set iminsert=0 imsearch=0
   set antialias
   hi IMLine guibg=DarkGreen guifg=Black
@@ -21,5 +21,5 @@ if has('gui_running')
   set linespace=1
   set guifontwide=セプテンバー:h16
   set guifont=Inconsolata:h16
-  set cmdheight=1
+  colorscheme wombat256mod
 endif
