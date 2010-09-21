@@ -319,21 +319,20 @@ nnoremap ,<C-a>   :e #<CR>
 " ------------------------------------------------------------------------------
 
 " load the code2html plugin:
-" --- BUNDLE: git://github.com/vim-scripts/code2html.git
+" BUNDLE: git://github.com/vim-scripts/code2html.git
 let html_use_css = 1
 
 " load the SeeTab plugin:
-" --- BUNDLE: git://github.com/vim-scripts/SeeTab.git
+" BUNDLE: git://github.com/vim-scripts/SeeTab.git
 let g:SeeTabCtermFG="black"
 let g:SeeTabCtermBG="red"
 
-
 " YankRing.vim
-" --- BUNDLE: git://github.com/chrismetcalf/vim-yankring.git
+" BUNDLE: git://github.com/chrismetcalf/vim-yankring.git
 nmap ,y :YRShow<CR>
 
 " fuzzyfinder
-" --- BUNDLE: git://github.com/vim-bundles/fuzzyfinder.git
+" BUNDLE: git://github.com/vim-bundles/fuzzyfinder.git
 map ,fmf  :FuzzyFinderMruFile<CR>
 let g:fuf_modesDisable = ['mrucmd']
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|bak|swp|gif|jpg|png)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
@@ -352,11 +351,11 @@ nmap bl :FufLine<CR>
 nnoremap <silent> <C-]> :FufTag! <C-r>=expand('<cword>')<CR><CR>
 
 " qbuf
-" --- BUNDLE: git://github.com/vim-scripts/QuickBuf.git
+" BUNDLE: git://github.com/vim-scripts/QuickBuf.git
 let g:qb_hotkey = ";;"
 
 " neocomplcache
-" --- BUNDLE: git://github.com/Shougo/neocomplcache.git
+" BUNDLE: git://github.com/Shougo/neocomplcache.git
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
@@ -378,7 +377,7 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " eskk
-" --- BUNDLE: git://github.com/tyru/eskk.vim.git
+" BUNDLE: git://github.com/tyru/eskk.vim.git
 " eskk settings via. http://d.hatena.ne.jp/hamaco/20100708/1278598112
 if has('vim_starting')
 	let g:eskk_dictionary = '~/.skk-jisyo'
@@ -396,29 +395,29 @@ let g:eskk_revert_henkan_style = "okuri"
 let g:eskk_enable_completion = 0
 
 " load the rails plugin:
-" --- BUNDLE: git://github.com/tpope/vim-rails.git
+" BUNDLE: git://github.com/tpope/vim-rails.git
 au BufNewFile,BufRead app/**/*.rhtml set fenc=utf-8
 au BufNewFile,BufRead app/**/*.rb set fenc=utf-8
 
 " load the nerdtree plugin:
-" --- BUNDLE: git://github.com/scrooloose/nerdtree.git
+" BUNDLE: git://github.com/scrooloose/nerdtree.git
 " and configure it to open using \d and \D
 nmap <leader>d :NERDTreeToggle<cr>
 nmap <leader>D :NERDTreeFind<cr>
 
-" --- BUNDLE: git://github.com/scrooloose/nerdcommenter.git
+" BUNDLE: git://github.com/scrooloose/nerdcommenter.git
 " add a space between the comment delimiter and text
 let NERDSpaceDelims=1
 
-" --- BUNDLE: git://github.com/tpope/vim-surround.git
+" BUNDLE: git://github.com/tpope/vim-surround.git
 " tell surround not to break the visual s keystroke (:help vs)
 xmap S <Plug>Vsurround
 
-" --- BUNDLE: git://github.com/bronson/vim-taglist.git
+" BUNDLE: git://github.com/bronson/vim-taglist.git
 nmap <leader>l :TlistToggle<cr>
 
-" --- BUNDLE: git://git.wincent.com/command-t.git
-" --- BUNDLE: git://github.com/bronson/vim-closebuffer.git
-" --- BUNDLE: git://github.com/vim-ruby/vim-ruby.git
-" --- BUNDLE: git://github.com/mattn/zencoding-vim.git
-
+" BUNDLE: git://git.wincent.com/command-t.git
+" BUNDLE: git://github.com/bronson/vim-closebuffer.git
+" BUNDLE: git://github.com/vim-ruby/vim-ruby.git
+" BUNDLE: git://github.com/mattn/zencoding-vim.git
+" BUNDLE: git://github.com/thinca/vim-quickrun.git

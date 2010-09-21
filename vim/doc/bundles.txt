@@ -1,7 +1,7 @@
 *bundles.txt*                    Bundles                      Version 0.1
 
 These are the bundles installed on your system, along with their
-versions and release dates.  Downloaded on Mon Sep 20 06:03:59 +0900 2010.
+versions and release dates.  Downloaded on Mon Sep 20 15:51:33 +0900 2010.
 
 A version number of 'n/a' means upstream hasn't tagged any releases.
   - |code2html|                    1.51                   2003-08-12
@@ -20,4 +20,5 @@ A version number of 'n/a' means upstream hasn't tagged any releases.
   - |closebuffer|                  0.2-1-g1baa81b         2010-08-12
   - |ruby|                         vim7.3-21-g5560a2f     2010-09-12
   - |zencoding-vim|                n/a                    2010-08-06
+  - |quickrun|                     v0.4.1-44-ge306463     2010-09-17
 
