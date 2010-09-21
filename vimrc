@@ -216,6 +216,8 @@ nmap <C-]> g<C-]>
 " yeでそのカーソル位置にある単語をレジスタに追加
 nmap ye :let @"=expand("<cword>")<CR>
 
+" CD.vim example:// は適用しない
+autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
 "表示行単位で行移動する
 nmap j gj
