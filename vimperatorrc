@@ -80,6 +80,11 @@ cmap <M-x> <C-v><M-x>
 cmap <M-c> <C-v><M-c>
 cmap <M-v> <C-v><M-v>
 
+" アマゾンのURLをきれいにする
+" via. http://vimperator.g.hatena.ne.jp/nokturnalmortum/20100918/1284806941
+cabbrev -j .amazon    let(asin=content.document.getElementById('ASIN').value,base='http://amazon.jp/',res)['dp/','o/ASIN/','gp/product/'].some(function(it)((content.document.location.pathname.indexOf(it)>1)&&(res=base+it+asin)))&&res;
+
+" ------------------------------------------------------------------------------
 "" Plugins
 " ime_controller.js
 let g:ex_ime_mode = "inactive"
