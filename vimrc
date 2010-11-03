@@ -216,9 +216,6 @@ nmap <C-]> g<C-]>
 " yeでそのカーソル位置にある単語をレジスタに追加
 nmap ye :let @"=expand("<cword>")<CR>
 
-" CD.vim example:// は適用しない
-autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-
 "表示行単位で行移動する
 nmap j gj
 nmap k gk
@@ -333,29 +330,6 @@ let g:SeeTabCtermBG="red"
 " BUNDLE: git://github.com/chrismetcalf/vim-yankring.git
 nmap ,y :YRShow<CR>
 
-" fuzzyfinder
-" BUNDLE: git://github.com/vim-bundles/fuzzyfinder.git
-map ,fmf  :FuzzyFinderMruFile<CR>
-let g:fuf_modesDisable = ['mrucmd']
-let g:fuf_file_exclude = '\v\~$|\.(o|exe|bak|swp|gif|jpg|png)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-let g:fuf_mrufile_exclude = '\v\~$|\.bak$|\.swp|\.howm$|\.(gif|jpg|png)$'
-let g:fuf_mrufile_maxItem = 10000
-let g:fuf_enumeratingLimit = 20
-let g:fuf_keyPreview = '<C-]>'
-let g:fuf_previewHeight = 0
-
-nmap bg :FufBuffer<CR>
-nmap bG :FufFile <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
-nmap gb :FufFile **/<CR>
-nmap br :FufMruFile<CR>
-nmap bq :FufQuickfix<CR>
-nmap bl :FufLine<CR>
-nnoremap <silent> <C-]> :FufTag! <C-r>=expand('<cword>')<CR><CR>
-
-" qbuf
-" BUNDLE: git://github.com/vim-scripts/QuickBuf.git
-let g:qb_hotkey = ";;"
-
 " neocomplcache
 " BUNDLE: git://github.com/Shougo/neocomplcache.git
 " Disable AutoComplPop.
@@ -377,6 +351,20 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" unite.vim
+" BUNDLE: git://github.com/Shougo/unite.vim.git
+nmap bg :Unite file_rec -buffer-name=files<CR>
+nmap bG :UniteWithBufferDir file_rec -buffer-name=files<CR>
+nmap br :Unite file_mru<CR>
+nmap bR :UniteWithCurrentDir file_mru<CR>
+nmap gf :UniteWithInput file_rec<CR>
+nmap ;; :Unite buffer<CR>
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()"{{{
+  imap <buffer> jj <Plug>(unite_insert_leave)
+endfunction"}}}
+let g:unite_source_file_mru_limit = 200
 
 " eskk
 " BUNDLE: git://github.com/tyru/eskk.vim.git
