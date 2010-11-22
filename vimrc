@@ -368,6 +368,8 @@ let g:unite_source_file_mru_limit = 200
 
 " eskk
 " Bundle: git://github.com/tyru/eskk.vim.git
+" Bundle: git://github.com/tyru/cul.vim.git
+" Bundle: git://github.com/tyru/savemap.vim.git
 " eskk settings via. http://d.hatena.ne.jp/hamaco/20100708/1278598112
 if has('vim_starting')
 	let g:eskk_dictionary = '~/.skk-jisyo'
@@ -410,5 +412,4 @@ nmap <leader>l :TlistToggle<cr>
 " Bundle: git://github.com/vim-ruby/vim-ruby.git
 " Bundle: git://github.com/mattn/zencoding-vim.git
 " Bundle: git://github.com/thinca/vim-quickrun.git
-" Bundle: git://github.com/tyru/cul.vim.git
-" Bundle: git://github.com/tyru/savemap.vim.git
+
