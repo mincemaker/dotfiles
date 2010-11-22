@@ -318,20 +318,20 @@ nnoremap ,<C-a>   :e #<CR>
 " ------------------------------------------------------------------------------
 
 " load the code2html plugin:
-" BUNDLE: git://github.com/vim-scripts/code2html.git
+" Bundle: git://github.com/vim-scripts/code2html.git
 let html_use_css = 1
 
 " load the SeeTab plugin:
-" BUNDLE: git://github.com/vim-scripts/SeeTab.git
+" Bundle: git://github.com/vim-scripts/SeeTab.git
 let g:SeeTabCtermFG="black"
 let g:SeeTabCtermBG="red"
 
 " YankRing.vim
-" BUNDLE: git://github.com/chrismetcalf/vim-yankring.git
+" Bundle: git://github.com/chrismetcalf/vim-yankring.git
 nmap ,y :YRShow<CR>
 
 " neocomplcache
-" BUNDLE: git://github.com/Shougo/neocomplcache.git
+" Bundle: git://github.com/Shougo/neocomplcache.git
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
@@ -353,7 +353,7 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " unite.vim
-" BUNDLE: git://github.com/Shougo/unite.vim.git
+" Bundle: git://github.com/Shougo/unite.vim.git
 nmap bg :Unite file_rec -buffer-name=files<CR>
 nmap bG :UniteWithBufferDir file_rec -buffer-name=files<CR>
 nmap br :Unite file_mru<CR>
@@ -367,7 +367,7 @@ endfunction"}}}
 let g:unite_source_file_mru_limit = 200
 
 " eskk
-" BUNDLE: git://github.com/tyru/eskk.vim.git
+" Bundle: git://github.com/tyru/eskk.vim.git
 " eskk settings via. http://d.hatena.ne.jp/hamaco/20100708/1278598112
 if has('vim_starting')
 	let g:eskk_dictionary = '~/.skk-jisyo'
@@ -385,29 +385,30 @@ let g:eskk_revert_henkan_style = "okuri"
 let g:eskk_enable_completion = 0
 
 " load the rails plugin:
-" BUNDLE: git://github.com/tpope/vim-rails.git
+" Bundle: git://github.com/tpope/vim-rails.git
 au BufNewFile,BufRead app/**/*.rhtml set fenc=utf-8
 au BufNewFile,BufRead app/**/*.rb set fenc=utf-8
 
 " load the nerdtree plugin:
-" BUNDLE: git://github.com/scrooloose/nerdtree.git
+" Bundle: git://github.com/scrooloose/nerdtree.git
 " and configure it to open using \d and \D
 nmap <leader>d :NERDTreeToggle<cr>
 nmap <leader>D :NERDTreeFind<cr>
 
-" BUNDLE: git://github.com/scrooloose/nerdcommenter.git
+" Bundle: git://github.com/scrooloose/nerdcommenter.git
 " add a space between the comment delimiter and text
 let NERDSpaceDelims=1
 
-" BUNDLE: git://github.com/tpope/vim-surround.git
+" Bundle: git://github.com/tpope/vim-surround.git
 " tell surround not to break the visual s keystroke (:help vs)
 xmap S <Plug>Vsurround
 
-" BUNDLE: git://github.com/bronson/vim-taglist.git
+" Bundle: git://github.com/mexpolk/vim-taglist.git
 nmap <leader>l :TlistToggle<cr>
 
-" BUNDLE: git://git.wincent.com/command-t.git
-" BUNDLE: git://github.com/bronson/vim-closebuffer.git
-" BUNDLE: git://github.com/vim-ruby/vim-ruby.git
-" BUNDLE: git://github.com/mattn/zencoding-vim.git
-" BUNDLE: git://github.com/thinca/vim-quickrun.git
+" Bundle: git://github.com/bronson/vim-closebuffer.git
+" Bundle: git://github.com/vim-ruby/vim-ruby.git
+" Bundle: git://github.com/mattn/zencoding-vim.git
+" Bundle: git://github.com/thinca/vim-quickrun.git
+" Bundle: git://github.com/tyru/cul.vim.git
+" Bundle: git://github.com/tyru/savemap.vim.git
