@@ -147,6 +147,17 @@ if [ "$TERM" = "screen" ]; then
   chpwd
 fi
 
+# cdgem
+# http://subtech.g.hatena.ne.jp/secondlife/20101224/1293179431
+function cdgem() {
+  cd `echo $GEM_HOME/**/gems/$1*|awk -F' ' '{print $1}'`
+}
+
+compctl -K _cdgem cdgem
+function _cdgem() {
+  reply=(`find $GEM_HOME -type d|grep -e '/gems/[^/]\+$'|xargs basename|sort -nr`)
+}
+
 ## load user .zshrc configuration file
 #
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
