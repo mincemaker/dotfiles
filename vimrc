@@ -30,6 +30,8 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
 set t_Co=256
+colorscheme wombat
+"autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
 " Debian uses compressed helpfiles. We must inform vim that the main
 " helpfiles is compressed. Other helpfiles are stated in the tags-file.
@@ -188,9 +190,7 @@ endif
 " 改行コードの自動認識
 set fileformats=unix,dos,mac
 " □とか○の文字があってもカーソル位置がずれないようにする
-if exists('&ambiwidth')
-  set ambiwidth=double
-endif
+set ambiwidth=double
 
 " cvs,svnの時は文字コードをeuc-jpに設定
 autocmd FileType cvs :set fileencoding=euc-jp
@@ -316,6 +316,7 @@ nnoremap ,<C-a>   :e #<CR>
 " ------------------------------------------------------------------------------
 " plugins
 " ------------------------------------------------------------------------------
+" Bundle: git://github.com/mattn/zencoding-vim.git
 
 " load the code2html plugin:
 " Bundle: git://github.com/vim-scripts/code2html.git
@@ -323,7 +324,7 @@ let html_use_css = 1
 
 " load the SeeTab plugin:
 " Bundle: git://github.com/vim-scripts/SeeTab.git
-let g:SeeTabCtermFG="black"
+let g:SeeTabCtermFG="yellow"
 let g:SeeTabCtermBG="red"
 
 " YankRing.vim
@@ -370,6 +371,7 @@ let g:unite_source_file_mru_limit = 200
 " Bundle: git://github.com/tyru/eskk.vim.git
 " Bundle: git://github.com/tyru/cul.vim.git
 " Bundle: git://github.com/tyru/savemap.vim.git
+" Bundle: git://github.com/tyru/vice.vim.git
 " eskk settings via. http://d.hatena.ne.jp/hamaco/20100708/1278598112
 if has('vim_starting')
 	let g:eskk_dictionary = '~/.skk-jisyo'
@@ -377,8 +379,9 @@ if has('vim_starting')
 	if has('mac')
 		let g:eskk_large_dictionary = "~/Library/Application\ Support/AquaSKK/SKK-JISYO.L"
 	elseif has('win32') || has('win64')
-		let g:eskk_large_dictionary = "~/SKK_JISYO.L"
+		let g:eskk_large_dictionary = "~/dic/SKK_JISYO.L"
 	else
+		let g:eskk_large_dictionary = "~/dic/SKK-JISYO.L"
 	endif
 endif
 let g:eskk_debug = 0
@@ -394,22 +397,55 @@ au BufNewFile,BufRead app/**/*.rb set fenc=utf-8
 " load the nerdtree plugin:
 " Bundle: git://github.com/scrooloose/nerdtree.git
 " and configure it to open using \d and \D
-nmap <leader>d :NERDTreeToggle<cr>
-nmap <leader>D :NERDTreeFind<cr>
+nmap <leader>d :NERDTreeToggle<CR>
+nmap <leader>D :NERDTreeFind<CR>
 
 " Bundle: git://github.com/scrooloose/nerdcommenter.git
 " add a space between the comment delimiter and text
 let NERDSpaceDelims=1
 
 " Bundle: git://github.com/tpope/vim-surround.git
+" Bundle: git://github.com/tpope/vim-repeat.git
 " tell surround not to break the visual s keystroke (:help vs)
 xmap S <Plug>Vsurround
 
-" Bundle: git://github.com/mexpolk/vim-taglist.git
-nmap <leader>l :TlistToggle<cr>
+" Bundle: git://github.com/chrismetcalf/vim-taglist.git
+nmap <leader>l :TlistToggle<CR>
 
+" Bundle: git://github.com/Shougo/unite.vim.git
+" Bundle: git://github.com/h1mesuke/unite-outline.git
+nmap br :Unite file_mru<CR>
+nmap bR :UniteWithCurrentDir file_mru<CR>
+nmap bg :Unite file_rec -buffer-name=files<CR>
+nmap bG :UniteWithBufferDir file -buffer-name=files<CR>
+nmap ;; :Unite buffer<CR>
+nmap uo :Unite outline<CR>
+nnoremap gf :UniteWithInput file_rec<CR>
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()
+  imap <buffer> jj <Plug>(unite_insert_leave)
+  imap <buffer> <ESC> <Plug>(unite_exit)
+  imap <buffer> <C-o> <Plug>(unite_insert_leave):<C-u>call unite#mappings#do_action('above')<CR>
+endfunction
+highlight Pmenu ctermbg=4
+highlight PmenuSel ctermbg=1
+highlight PMenuSbar ctermbg=4
+
+" Bundle: git://github.com/Shougo/vimshell.git
+" Bundle: git://github.com/Shougo/vimproc.git
+let g:vimshell_right_prompt = 'vimshell#vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
+
+" Bundle: git://github.com/tyru/operator-camelize.vim.git
+" Bundle: git://github.com/kana/vim-operator-user.git
+map <Leader>c <Plug>(operator-camelize)
+map <Leader>C <Plug>(operator-decamelize)
+
+" Bundle: git://github.com/tsaleh/vim-align.git
 " Bundle: git://github.com/bronson/vim-closebuffer.git
 " Bundle: git://github.com/vim-ruby/vim-ruby.git
-" Bundle: git://github.com/mattn/zencoding-vim.git
+" Bundle: git://github.com/motemen/git-vim.git
+" Bundle: git://github.com/mattn/googletranslate-vim.git
 " Bundle: git://github.com/thinca/vim-quickrun.git
+" Bundle: git://github.com/tpope/vim-cucumber.git
+" Bundle: git://github.com/sjl/gundo.vim
 

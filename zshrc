@@ -72,6 +72,18 @@ alias df="df -h"
 alias su="su -l"
 alias screen="env LC_TIME=C screen -D -RR"
 
+## cdgem
+# http://subtech.g.hatena.ne.jp/secondlife/20101224/1293179431
+function cdgem() {
+  cd `echo $GEM_HOME/**/gems/$1*|awk -F' ' '{print $1}'`
+}
+
+compctl -K _cdgem cdgem
+function _cdgem() {
+  reply=(`find $GEM_HOME -type d|grep -e '/gems/[^/]\+$'|xargs basename|sort -nr`)
+}
+
+
 ## terminal configuration
 #
 unset LSCOLORS
@@ -191,4 +203,5 @@ else
     _update_rprompt
   }
 fi
+source ~/git/dotfiles/zshrc.git
 
