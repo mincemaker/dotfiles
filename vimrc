@@ -118,6 +118,29 @@ func! String2Hex(str)
   return out
 endfunc
 
+" http://vim.1045645.n5.nabble.com/Recommend-simple-mappings-td1223622.html
+nmap <silent> ;: :call NumberToggle()<CR>
+
+function! NumberToggle()
+    if exists("&rnu")
+        if &number
+            setlocal relativenumber
+        else
+            if &relativenumber
+                setlocal norelativenumber
+            else
+                setlocal number
+            endif
+        endif
+    else
+        if &number
+            setlocal nonumber
+        else
+            setlocal number
+        endif
+    endif
+endfunction
+
 "ステータスラインに文字コードと改行文字を表示する
 "if winwidth(0) >= 120
 "  set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%y\ %F%=[%{GetB()}]\ %l,%c%V%8P
