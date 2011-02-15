@@ -439,6 +439,9 @@ let g:vimshell_right_prompt = 'vimshell#vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
 map <Leader>c <Plug>(operator-camelize)
 map <Leader>C <Plug>(operator-decamelize)
 
+" Bundle: git://github.com/sjl/gundo.vim
+nmap U :<C-u>GundoToggle<CR>
+
 " Bundle: git://github.com/tsaleh/vim-align.git
 " Bundle: git://github.com/bronson/vim-closebuffer.git
 " Bundle: git://github.com/vim-ruby/vim-ruby.git
@@ -446,5 +449,4 @@ map <Leader>C <Plug>(operator-decamelize)
 " Bundle: git://github.com/mattn/googletranslate-vim.git
 " Bundle: git://github.com/thinca/vim-quickrun.git
 " Bundle: git://github.com/tpope/vim-cucumber.git
-" Bundle: git://github.com/sjl/gundo.vim
 
