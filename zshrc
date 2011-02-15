@@ -38,7 +38,6 @@ bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
 
 # historical backward/forward search with linehead string binded to ^P/^N
-#
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end

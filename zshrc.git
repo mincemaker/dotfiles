@@ -1,7 +1,6 @@
 #!zsh
 # __git_branch_switches
 # _git-submodule
-
 (( $+functions[_git-submodule] )) ||
 _git-submodule () {
   local curcontext=$curcontext state line
