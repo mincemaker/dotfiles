@@ -13,6 +13,7 @@ set number
 set visualbell t_vb=
 set nocompatible  " Use Vim defaults instead of 100% vi compatibility
 set backspace=indent,eol,start  " more powerful backspacing
+set cmdheight=1
 
 " Now we set some defaults for the editor
 set textwidth=0   " Don't wrap words by default
@@ -30,7 +31,7 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
 set t_Co=256
-colorscheme wombat
+colorscheme wombat256mod
 "autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
 " Debian uses compressed helpfiles. We must inform vim that the main
