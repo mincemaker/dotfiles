@@ -468,7 +468,7 @@ nmap U :<C-u>GundoToggle<CR>
 " Bundle: git://github.com/tsaleh/vim-align.git
 " Bundle: git://github.com/bronson/vim-closebuffer.git
 " Bundle: git://github.com/vim-ruby/vim-ruby.git
-" Bundle: git://github.com/motemen/git-vim.git
+" Bundle: git://github.com/Shougo/git-vim.git
 " Bundle: git://github.com/mattn/googletranslate-vim.git
 " Bundle: git://github.com/thinca/vim-quickrun.git
 " Bundle: git://github.com/tpope/vim-cucumber.git
