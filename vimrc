@@ -13,6 +13,7 @@ set number
 set visualbell t_vb=
 set nocompatible  " Use Vim defaults instead of 100% vi compatibility
 set backspace=indent,eol,start  " more powerful backspacing
+hi StatusLine term=NONE cterm=NONE ctermfg=black ctermbg=gray
 
 " Now we set some defaults for the editor
 set textwidth=0   " Don't wrap words by default
