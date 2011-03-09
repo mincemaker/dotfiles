@@ -474,4 +474,5 @@ nmap U :<C-u>GundoToggle<CR>
 " Bundle: git://github.com/mattn/googletranslate-vim.git
 " Bundle: git://github.com/thinca/vim-quickrun.git
 " Bundle: git://github.com/tpope/vim-cucumber.git
+" Bundle: git://github.com/kana/vim-smartword.git
 
