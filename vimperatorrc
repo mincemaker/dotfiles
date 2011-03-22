@@ -1,8 +1,8 @@
 echo "loading..."
 "" init
 set wildmode=list:full
-set wildoptions=auto
-set guioptions=rbn
+set toolbars=none,addons
+set autocomplete
 set showstatuslinks=2
 set insertmode
 set complete=tsl
@@ -49,9 +49,9 @@ noremap L gt
 map <S-Right> :tabmove! +1<CR>
 map <S-Left>  :tabmove! -1<CR>
 
-noremap <C-1> :set guioptions=<cr>
-noremap <C-2> :set guioptions=rbn<cr>
-noremap <C-3> :set guioptions=rbnmT<cr>
+noremap <C-1> :set toolbars=all<cr>
+noremap <C-2> :set toolbars=addons,nobookmarks,nomenu,nonavigation,tabs<cr>
+noremap <C-3> :set toolbars=none,addons<cr>
 
 " ex modeでC-jを無効化
 cmap <C-j> <Nop>
@@ -131,16 +131,16 @@ lazyfmapstumblr i,tj
 ":javascript FirebugCommandLineAPI.prototype.vimperator = liberator
 
 " Show feed-button to statusbar
-:javascript <<EOM
-(function(){
- var feedPanel = document.createElement('statusbarpanel');
- var feedButton = document.getElementById('feed-button');
- feedPanel.setAttribute('id','feed-panel-clone');
- feedPanel.appendChild(feedButton.cloneNode(true));
- feedButton.parentNode.removeChild(feedButton);
- document.getElementById('status-bar').insertBefore(feedPanel,document.getElementById('security-button'));
- })();
-EOM
+":javascript <<EOM
+"(function(){
+" var feedPanel = document.createElement('statusbarpanel');
+" var feedButton = document.getElementById('feed-button');
+" feedPanel.setAttribute('id','feed-panel-clone');
+" feedPanel.appendChild(feedButton.cloneNode(true));
+" feedButton.parentNode.removeChild(feedButton);
+" document.getElementById('status-bar').insertBefore(feedPanel,document.getElementById('security-button'));
+" })();
+"EOM
 
 " disable accesskey
 set! ui.key.generalAccessKey=0
@@ -148,9 +148,9 @@ set! ui.key.generalAccessKey=0
 set! browser.tabs.loadBookmarksInBackground=true
 
 " verttabbar
-set! browser.tabs.closeButton=2
-set! verttabbar.width=200
-set showtabline=1
+"set! browser.tabs.closeButton=2
+"set! verttabbar.width=200
+"set showtabline=1
 
 " copy.js
 javascript <<EOM
