@@ -29,5 +29,4 @@
 [core]
   excludesfile = /Users/mincemaker/.gitignore
   autocrlf = input
-	editor = /Applications/MacVim.app/Contents/MacOS/Vim -c \"set fenc=utf-8\"
 
