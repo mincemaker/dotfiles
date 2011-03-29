@@ -1,7 +1,7 @@
 echo "loading..."
 "" init
+set gui=none,tabs
 set wildmode=list:full
-set toolbars=none,addons
 set autocomplete
 set showstatuslinks=2
 set insertmode
@@ -28,6 +28,7 @@ noremap J <PageDown>
 noremap K <PageUp>
 noremap <Tab> <C-v><Tab>
 noremap I <C-z>
+nnoremap U :undo<Space>
 
 map s <esc>:tabopen google 
 map ! :set invum<CR>
@@ -49,9 +50,9 @@ noremap L gt
 map <S-Right> :tabmove! +1<CR>
 map <S-Left>  :tabmove! -1<CR>
 
-noremap <C-1> :set toolbars=all<cr>
-noremap <C-2> :set toolbars=addons,nobookmarks,nomenu,nonavigation,tabs<cr>
-noremap <C-3> :set toolbars=none,addons<cr>
+noremap <C-1> :set gui=all<cr>
+noremap <C-2> :set gui=nobookmarks,nomenu,nonavigation,tabs,statuslinetoolbar<cr>
+noremap <C-3> :set gui=none,statuslinetoolbar<cr>
 
 " ex modeでC-jを無効化
 cmap <C-j> <Nop>
@@ -68,7 +69,7 @@ cmap <C-f> <Right>
 cmap <C-b> <Left>
 cmap <C-n> <Down>
 cmap <C-p> <Up>
-map  <M-c> <C-v><M-c>
+map <M-c> <C-v><M-c>
 imap <M-a> <C-v><M-a>
 imap <M-z> <C-v><M-z>
 imap <M-x> <C-v><M-x>
@@ -79,6 +80,9 @@ cmap <M-z> <C-v><M-z>
 cmap <M-x> <C-v><M-x>
 cmap <M-c> <C-v><M-c>
 cmap <M-v> <C-v><M-v>
+
+" toolbarbutton feed icon
+style -name toolbarbutton-feed-icon chrome://* #liberator-customize-toolbar > #feed-button { border: none !important; background: none !important; min-width: 0 !important; padding: 0 !important; }
 
 " アマゾンのURLをきれいにする
 " via. http://vimperator.g.hatena.ne.jp/nokturnalmortum/20100918/1284806941
@@ -93,11 +97,12 @@ let g:textarea_ime_mode = "inactive"
 " ldr_cooperation.js
 let g:ldrc_captureMappings = "['t', 'T', 'h', 'l', 'j', 'k', 'p', 'o', '?']"
 let g:ldrc_hints = "true"
-let g:ldrc_intelligence_bind = "true"
-let g:ldrc_skip = "0.5"
+"let g:ldrc_intelligence_bind = "true"
+"let g:ldrc_skip = "0.5"
+nnoremap Q :toggleldrc<CR>
 
 " sbmcommentsviewer
-map c :viewSBMComments -t hdl<CR>
+map . :viewSBMComments -t hdl<CR>
 let g:def_sbm_format = "id,timestamp,tagsAndComment"
 
 let g:ldrc_captureMappings = "['?','j','k','p','o']"
@@ -117,7 +122,7 @@ command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
 lazy fmaps -u='mail\.google\.com/mail' c / j k n p o u e x s r a # [ ] ? gi gs gt gd ga gc
 lazy fmaps -u='mail\.google\.com/mail/.*/[0-9a-f]+$' c / j,n k,p n,j p,k o u e x s r a # [ ] ? gi gs gt gd ga gc
 lazy fmaps -u='www\.google\.co\.jp/reader' -events=vkeypress j k n p m s v A r S N P X O gh ga gs gt gu u / ? J K
-lazy fmaps -u='(fastladder|livedoor)\.com/reader' j k s a p o v c i,p g <Space> <S-Space> z b < > q w e,g
+lazy fmaps -u='(fastladder|livedoor)\.com/reader' j k s a p o v c i,p g <Space> <S-Space> z b < > q w e,g r i,tj
 lazy fmaps -u='(fastladder|livedoor)\.com/reader' -events=vkeypress J
 lazy fmaps -u=':3000/reader' j k s a p o v c g <Space> <S-Space> z b < > q w e,g r i,tj
 lazy fmaps -u=':3000/reader' -events=vkeypress J
@@ -130,17 +135,27 @@ lazyfmapstumblr i,tj
 
 ":javascript FirebugCommandLineAPI.prototype.vimperator = liberator
 
-" Show feed-button to statusbar
-":javascript <<EOM
-"(function(){
-" var feedPanel = document.createElement('statusbarpanel');
-" var feedButton = document.getElementById('feed-button');
-" feedPanel.setAttribute('id','feed-panel-clone');
-" feedPanel.appendChild(feedButton.cloneNode(true));
-" feedButton.parentNode.removeChild(feedButton);
-" document.getElementById('status-bar').insertBefore(feedPanel,document.getElementById('security-button'));
-" })();
-"EOM
+" Greasemonkey 0.9.1 patch
+" cf.http://d.hatena.ne.jp/wlt/20110130/1296359063
+js <<EOM
+autocommands.add('VimperatorEnter', '.*',
+  function() {
+    let gm = Components.classes['@greasemonkey.mozdev.org/greasemonkey-service;1'];
+    if (gm) {
+      gm = gm.getService().wrappedJSObject;
+      if (gm.injectScripts.toSource().search('sharedWindow') == -1) {
+          gm.injectScripts = liberator.eval(
+              gm.injectScripts.toSource()
+                  .replace(/(?=var firebugConsole)/,
+                          'var sharedWindow = {};' +
+                          'sharedWindow.window = sharedWindow;' +
+                          'sharedWindow.__proto__ = new XPCNativeWrapper(unsafeContentWin);')
+                  .replace(/(?=sandbox\.__proto__)/, ' sandbox.window = sharedWindow;'),
+              gm.injectScripts);
+      }
+    }
+  });
+EOM
 
 " disable accesskey
 set! ui.key.generalAccessKey=0
@@ -189,6 +204,9 @@ let g:twittperator_plugin_echo_tweet = 1
 let g:twittperator_plugin_twlist_win = 1
 let g:twittperator_screen_name = "mincemaker"
 cabbrev -j .reply let (e=doc.querySelector('.hentry.status'))('@' + e.getAttribute('class').match(/u-(\S+)/)[1] + "#" + e.getAttribute('id').match(/\d+/))
+
+" RefControl
+set! refcontrol.actions="@DEFAULT=@NORMAL ameba.jp= dtiblog.com=@FORGE fc2.com= image.itmedia.co.jp=@FORGE img.itmedia.co.jp=@FORGE minkch.com=@NORMAL momi7.momi3.net=@FORGE www.b-idol.com=@FORGE xyzzz.blog.shinobi.jp=@FORGE"
 
 source ~/.vimperatorrc.css
 echo "vimperatorrc loaded."
