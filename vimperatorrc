@@ -50,6 +50,9 @@ noremap L gt
 map <S-Right> :tabmove! +1<CR>
 map <S-Left>  :tabmove! -1<CR>
 
+let g:plugin_loader_roots = "~/.vimperator/vimperator-plugins/ ~/.vimperator/load"
+let g:plugin_loader_plugins = "_libly, appendAnchor, migemo_hint, migemized_find, migemo_completion, direct_bookmark, feedSomeKeys_3, twittperator, hint-tombloo, multi_requester, pino, sbmcommentsviewer, tombloo, walk-input, opener, bitly, x-hint, auto_source, spatial-navigation, reload-image, statusline-toolbar, ldrize_cooperation"
+
 noremap <C-1> :set gui=all<cr>
 noremap <C-2> :set gui=nobookmarks,nomenu,nonavigation,tabs,statuslinetoolbar<cr>
 noremap <C-3> :set gui=none,statuslinetoolbar<cr>
@@ -88,6 +91,9 @@ style -name toolbarbutton-feed-icon chrome://* #liberator-customize-toolbar > #f
 " via. http://vimperator.g.hatena.ne.jp/nokturnalmortum/20100918/1284806941
 cabbrev -j .amazon    let(asin=content.document.getElementById('ASIN').value,base='http://amazon.jp/',res)['dp/','o/ASIN/','gp/product/'].some(function(it)((content.document.location.pathname.indexOf(it)>1)&&(res=base+it+asin)))&&res;
 
+" ime_controller.js の代わり
+style -name commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
+
 " ------------------------------------------------------------------------------
 "" Plugins
 " ime_controller.js
@@ -102,8 +108,8 @@ let g:ldrc_hints = "true"
 nnoremap Q :toggleldrc<CR>
 
 " sbmcommentsviewer
-map . :viewSBMComments -t hdl<CR>
-let g:def_sbm_format = "id,timestamp,tagsAndComment"
+map . :viewSBMComments -t hdtl<CR>
+let g:def_sbm_format = "id,timestamp,tags,comment"
 
 let g:ldrc_captureMappings = "['?','j','k','p','o']"
 let g:styles = "niconico,ldr,mixi"
@@ -209,4 +215,6 @@ cabbrev -j .reply let (e=doc.querySelector('.hentry.status'))('@' + e.getAttribu
 set! refcontrol.actions="@DEFAULT=@NORMAL ameba.jp= dtiblog.com=@FORGE fc2.com= image.itmedia.co.jp=@FORGE img.itmedia.co.jp=@FORGE minkch.com=@NORMAL momi7.momi3.net=@FORGE www.b-idol.com=@FORGE xyzzz.blog.shinobi.jp=@FORGE"
 
 source ~/.vimperatorrc.css
+
 echo "vimperatorrc loaded."
+
