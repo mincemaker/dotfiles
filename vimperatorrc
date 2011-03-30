@@ -108,7 +108,7 @@ let g:ldrc_hints = "true"
 nnoremap Q :toggleldrc<CR>
 
 " sbmcommentsviewer
-map . :viewSBMComments -t hdtl<CR>
+map . :viewSBMComments -t hdl<CR>
 let g:def_sbm_format = "id,timestamp,tags,comment"
 
 let g:ldrc_captureMappings = "['?','j','k','p','o']"
