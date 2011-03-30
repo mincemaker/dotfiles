@@ -51,7 +51,7 @@ map <S-Right> :tabmove! +1<CR>
 map <S-Left>  :tabmove! -1<CR>
 
 let g:plugin_loader_roots = "~/.vimperator/vimperator-plugins/ ~/.vimperator/load"
-let g:plugin_loader_plugins = "_libly, appendAnchor, migemo_hint, migemized_find, migemo_completion, direct_bookmark, feedSomeKeys_3, twittperator, hint-tombloo, multi_requester, pino, sbmcommentsviewer, tombloo, walk-input, opener, bitly, x-hint, auto_source, spatial-navigation, reload-image, statusline-toolbar, ldrize_cooperation"
+let g:plugin_loader_plugins = "_libly, appendAnchor, migemo_hint, migemized_find, migemo_completion, direct_bookmark, feedSomeKeys_3, twittperator, hint-tombloo, multi_requester, pino, sbmcommentsviewer, tombloo, walk-input, opener, bitly, x-hint, auto_source, spatial-navigation, reload-image, statusline-toolbar, ldrize_cooperation, heuristic-search"
 
 noremap <C-1> :set gui=all<cr>
 noremap <C-2> :set gui=nobookmarks,nomenu,nonavigation,tabs,statuslinetoolbar<cr>
@@ -213,6 +213,9 @@ cabbrev -j .reply let (e=doc.querySelector('.hentry.status'))('@' + e.getAttribu
 
 " RefControl
 set! refcontrol.actions="@DEFAULT=@NORMAL ameba.jp= dtiblog.com=@FORGE fc2.com= image.itmedia.co.jp=@FORGE img.itmedia.co.jp=@FORGE minkch.com=@NORMAL momi7.momi3.net=@FORGE www.b-idol.com=@FORGE xyzzz.blog.shinobi.jp=@FORGE"
+
+" heuristic-search.js
+nnoremap ` :heuristicsearch<Space>
 
 source ~/.vimperatorrc.css
 
