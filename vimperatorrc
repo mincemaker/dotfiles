@@ -82,7 +82,6 @@ cmap <M-a> <C-v><M-a>
 cmap <M-z> <C-v><M-z>
 cmap <M-x> <C-v><M-x>
 cmap <M-c> <C-v><M-c>
-cmap <M-v> <C-v><M-v>
 
 " toolbarbutton feed icon
 style -name toolbarbutton-feed-icon chrome://* #liberator-customize-toolbar > #feed-button { border: none !important; background: none !important; min-width: 0 !important; padding: 0 !important; }
