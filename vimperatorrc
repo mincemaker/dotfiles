@@ -22,8 +22,6 @@ noremap _ ma
 noremap } 'a
 noremap <C-c> :echo Yank!<CR>Y
 
-noremap j 3<C-e>
-noremap k 3<C-y>
 noremap J <PageDown>
 noremap K <PageUp>
 noremap <Tab> <C-v><Tab>
@@ -42,8 +40,8 @@ map ,mF :mr favotter-new mincemaker<CR>
 
 noremap <BS> <A-Left>
 
-noremap h <A-Left>
-noremap l <A-Right>
+nmap h <A-Left>
+nmap l <A-Right>
 
 noremap H gT
 noremap L gt
@@ -51,7 +49,7 @@ map <S-Right> :tabmove! +1<CR>
 map <S-Left>  :tabmove! -1<CR>
 
 let g:plugin_loader_roots = "~/.vimperator/vimperator-plugins/ ~/.vimperator/load"
-let g:plugin_loader_plugins = "_libly, appendAnchor, migemo_hint, migemized_find, migemo_completion, direct_bookmark, feedSomeKeys_3, twittperator, hint-tombloo, multi_requester, pino, sbmcommentsviewer, tombloo, walk-input, opener, bitly, x-hint, auto_source, spatial-navigation, reload-image, statusline-toolbar, ldrize_cooperation, copy"
+let g:plugin_loader_plugins = "_libly, appendAnchor, migemo_hint, migemized_find, migemo_completion, direct_bookmark, feedSomeKeys_3, twittperator, hint-tombloo, multi_requester, pino, sbmcommentsviewer, tombloo, walk-input, opener, bitly, x-hint, auto_source, spatial-navigation, reload-image, statusline-toolbar, ldrize_cooperation, copy, caret-hint"
 
 noremap <C-1> :set gui=all<cr>
 noremap <C-2> :set gui=nobookmarks,nomenu,nonavigation,tabs,statuslinetoolbar<cr>
