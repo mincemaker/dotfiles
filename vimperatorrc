@@ -27,7 +27,7 @@ noremap k 3<C-y>
 noremap J <PageDown>
 noremap K <PageUp>
 noremap <Tab> <C-v><Tab>
-noremap I <C-z>
+noremap I <C-esc>
 nnoremap U :undo<Space>
 
 map s <esc>:tabopen google 
