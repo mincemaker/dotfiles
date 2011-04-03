@@ -22,10 +22,12 @@ noremap _ ma
 noremap } 'a
 noremap <C-c> :echo Yank!<CR>Y
 
-noremap J <PageDown>
-noremap K <PageUp>
+nnoremap j 3j
+nnoremap k 3k
+nnoremap J <PageDown>
+nnoremap K <PageUp>
 noremap <Tab> <C-v><Tab>
-noremap I <C-esc>
+nnoremap I <C-esc>
 nnoremap U :undo<Space>
 
 map s <esc>:tabopen google 
