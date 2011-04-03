@@ -135,8 +135,8 @@ lazy fmaps -u='https?://www\.rememberthemilk\.com/home/' j k m i c t ? d F,f G,g
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/list' o j k
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/detail' u
 command! -nargs=+ lazyfmapstumblr lazy fmaps -u='http://\w+\.tumblr\.com' <args>
-lazyfmapstumblr j k
-lazyfmapstumblr i,tj
+lazyfmapstumblr j k r a
+lazyfmapstumblr i,rj
 
 ":javascript FirebugCommandLineAPI.prototype.vimperator = liberator
 
