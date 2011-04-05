@@ -29,8 +29,8 @@ nnoremap K <PageUp>
 noremap <Tab> <C-v><Tab>
 nnoremap I <C-esc>
 nnoremap U :undo<Space>
+nnoremap s <esc>:tabopen google 
 
-map s <esc>:tabopen google 
 map ! :set invum<CR>
 map ,s :so ~/.vimperatorrc<CR>
 map ,c :subscldr -rate 3
