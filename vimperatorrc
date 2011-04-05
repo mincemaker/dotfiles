@@ -50,9 +50,6 @@ noremap L gt
 map <S-Right> :tabmove! +1<CR>
 map <S-Left>  :tabmove! -1<CR>
 
-let g:plugin_loader_roots = "~/.vimperator/vimperator-plugins/ ~/.vimperator/load"
-let g:plugin_loader_plugins = "_libly, appendAnchor, migemo_hint, migemized_find, migemo_completion, direct_bookmark, feedSomeKeys_3, twittperator, hint-tombloo, multi_requester, pino, sbmcommentsviewer, tombloo, walk-input, opener, bitly, x-hint, auto_source, spatial-navigation, reload-image, statusline-toolbar, ldrize_cooperation,ldrize_cooperation_fetch_flv, copy, caret-hint, prevent-pseudo-domain"
-
 noremap <C-1> :set gui=all<cr>
 noremap <C-2> :set gui=nobookmarks,nomenu,nonavigation,tabs,statuslinetoolbar<cr>
 noremap <C-3> :set gui=none,statuslinetoolbar<cr>
@@ -95,6 +92,39 @@ style -name commandline-ime chrome://* #liberator-commandline-command input {ime
 
 " ------------------------------------------------------------------------------
 "" Plugins
+
+let g:plugin_loader_roots = "~/.vimperator/vimperator-plugins/ ~/.vimperator/load"
+js <<EOF
+liberator.globalVariables.plugin_loader_plugins = <>
+  _libly
+  appendAnchor
+  migemo_hint
+  migemized_find
+  migemo_completion
+  direct_bookmark
+  feedSomeKeys_3
+  twittperator
+  hint-tombloo
+  multi_requester
+  pino
+  sbmcommentsviewer
+  tombloo
+  walk-input
+  opener
+  bitly
+  x-hint
+  auto_source
+  spatial-navigation
+  reload-image
+  statusline-toolbar
+  ldrize_cooperation
+  drize_cooperation_fetch_flv
+  copy
+  caret-hint
+  pluginManager
+</>.toString().split(/\s+/).filter(function(n)n);
+EOF
+
 " ime_controller.js
 let g:ex_ime_mode = "inactive"
 let g:textarea_ime_mode = "inactive"
