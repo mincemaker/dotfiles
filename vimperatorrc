@@ -90,6 +90,36 @@ cabbrev -j .amazon    let(asin=content.document.getElementById('ASIN').value,bas
 " ime_controller.js の代わり
 style -name commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
 
+"タイトルバーのキャプション
+"javascript <<EOF
+"if(!document.getElementById("titlebar-caption")) {
+"  let mainWindow = document.getElementById("main-window");
+"
+"  let (broadcaster = document.createElement("broadcaster")) {
+"    with(broadcaster) {
+"      setAttribute("id", "windowTitle");
+"      setAttribute("value", mainWindow.getAttribute("title"));
+"    }
+"    mainWindow.addEventListener("DOMAttrModified", function(e) {
+"      if(e.attrName == "title")
+"         broadcaster.setAttribute("value", mainWindow.getAttribute("title"));
+"    }, true);
+"    document.getElementById("mainBroadcasterSet").appendChild(broadcaster);
+"  }
+"
+"  let xml = <label id="titlebar-caption" crop="end" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+"    <observes element="windowTitle" attribute="value" />
+"  </label>
+"
+"  let (titlebarSpacer = document.getElementById("titlebar-spacer"))
+"    titlebarSpacer.parentNode.insertBefore(document.adoptNode(new DOMParser().parseFromString(xml.toXMLString(), "application/xml").documentElement, true), titlebarSpacer);
+"}
+"EOF
+
+" toolbarbutton
+style -name liberator-customize-toolbar chrome://* #liberator-customize-toolbar { -moz-appearance: none !important; }
+style -name toolbarbutton-feed-icon chrome://* #liberator-customize-toolbar > #feed-button { border: none !important; background: none !important; min-width: 0 !important; padding: 0 !important; }
+
 " ------------------------------------------------------------------------------
 "" Plugins
 
@@ -242,9 +272,6 @@ cabbrev -j .reply let (e=doc.querySelector('.hentry.status'))('@' + e.getAttribu
 
 " RefControl
 set! refcontrol.actions="@DEFAULT=@NORMAL ameba.jp= dtiblog.com=@FORGE fc2.com= image.itmedia.co.jp=@FORGE img.itmedia.co.jp=@FORGE minkch.com=@NORMAL momi7.momi3.net=@FORGE www.b-idol.com=@FORGE xyzzz.blog.shinobi.jp=@FORGE"
-
-" heuristic-search.js
-nnoremap ` :heuristicsearch<Space>
 
 source ~/.vimperatorrc.css
 
