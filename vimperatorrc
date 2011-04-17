@@ -128,30 +128,30 @@ js <<EOF
 liberator.globalVariables.plugin_loader_plugins = <>
   _libly
   appendAnchor
-  migemo_hint
-  migemized_find
-  migemo_completion
+  auto_source
+  bitly
+  caret-hint
+  copy
   direct_bookmark
   feedSomeKeys_3
-  twittperator
   hint-tombloo
-  multi_requester
-  pino
-  sbmcommentsviewer
-  tombloo
-  walk-input
-  opener
-  bitly
-  x-hint
-  auto_source
-  spatial-navigation
-  reload-image
-  statusline-toolbar
   ldrize_cooperation
-  drize_cooperation_fetch_flv
-  copy
-  caret-hint
+  ldrize_cooperation_fetch_flv
+  migemized_find
+  migemo_completion
+  migemo_hint
+  multi_requester
+  opener
+  pino
   pluginManager
+  reload-image
+  sbmcommentsviewer
+  spatial-navigation
+  statusline-toolbar
+  tombloo
+  twittperator
+  walk-input
+  x-hint
 </>.toString().split(/\s+/).filter(function(n)n);
 EOF
 
