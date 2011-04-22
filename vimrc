@@ -1,8 +1,10 @@
 " Let Pathogen bring in all the plugins
 " http://github.com/paulnicholson/vim-pathogen.git
-filetype off
-call pathogen#runtime_append_all_bundles()
-filetype indent plugin on
+"filetype off
+"call pathogen#runtime_append_all_bundles()
+"filetype indent plugin on
+set rtp+=~/.vim/vundle.git/
+call vundle#rc()
 " ------------------------------------------------------------------------------
 syntax on
 
@@ -340,23 +342,23 @@ nnoremap ,<C-a>   :e #<CR>
 " ------------------------------------------------------------------------------
 " plugins
 " ------------------------------------------------------------------------------
-" Bundle: git://github.com/mattn/zencoding-vim.git
+Bundle 'mattn/zencoding-vim'
 
 " load the code2html plugin:
-" Bundle: git://github.com/vim-scripts/code2html.git
+Bundle 'code2html'
 let html_use_css = 1
 
 " load the SeeTab plugin:
-" Bundle: git://github.com/vim-scripts/SeeTab.git
+Bundle 'SeeTab'
 let g:SeeTabCtermFG="yellow"
 let g:SeeTabCtermBG="red"
 
 " YankRing.vim
-" Bundle: git://github.com/chrismetcalf/vim-yankring.git
+Bundle 'chrismetcalf/vim-yankring'
 nmap ,y :YRShow<CR>
 
 " neocomplcache
-" Bundle: git://github.com/Shougo/neocomplcache.git
+Bundle 'Shougo/neocomplcache'
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
@@ -378,7 +380,7 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " unite.vim
-" Bundle: git://github.com/Shougo/unite.vim.git
+Bundle 'Shougo/unite.vim'
 nmap bg :Unite file_rec -buffer-name=files<CR>
 nmap bG :UniteWithBufferDir file_rec -buffer-name=files<CR>
 nmap br :Unite file_mru<CR>
@@ -392,10 +394,10 @@ endfunction"}}}
 let g:unite_source_file_mru_limit = 200
 
 " eskk
-" Bundle: git://github.com/tyru/eskk.vim.git
-" Bundle: git://github.com/tyru/cul.vim.git
-" Bundle: git://github.com/tyru/savemap.vim.git
-" Bundle: git://github.com/tyru/vice.vim.git
+Bundle 'tyru/eskk.vim'
+Bundle 'tyru/cul.vim'
+Bundle 'tyru/savemap.vim'
+Bundle 'tyru/vice.vim'
 " eskk settings via. http://d.hatena.ne.jp/hamaco/20100708/1278598112
 if has('vim_starting')
 	let g:eskk_dictionary = '~/.skk-jisyo'
@@ -414,30 +416,30 @@ let g:eskk_revert_henkan_style = "okuri"
 let g:eskk_enable_completion = 0
 
 " load the rails plugin:
-" Bundle: git://github.com/tpope/vim-rails.git
+Bundle 'tpope/vim-rails'
 au BufNewFile,BufRead app/**/*.rhtml set fenc=utf-8
 au BufNewFile,BufRead app/**/*.rb set fenc=utf-8
 
 " load the nerdtree plugin:
-" Bundle: git://github.com/scrooloose/nerdtree.git
+Bundle 'scrooloose/nerdtree'
 " and configure it to open using \d and \D
 nmap <leader>d :NERDTreeToggle<CR>
 nmap <leader>D :NERDTreeFind<CR>
 
-" Bundle: git://github.com/scrooloose/nerdcommenter.git
+Bundle 'scrooloose/nerdcommenter'
 " add a space between the comment delimiter and text
 let NERDSpaceDelims=1
 
-" Bundle: git://github.com/tpope/vim-surround.git
-" Bundle: git://github.com/tpope/vim-repeat.git
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
 " tell surround not to break the visual s keystroke (:help vs)
 xmap S <Plug>Vsurround
 
-" Bundle: git://github.com/chrismetcalf/vim-taglist.git
+Bundle 'chrismetcalf/vim-taglist'
 nmap <leader>l :TlistToggle<CR>
 
-" Bundle: git://github.com/Shougo/unite.vim.git
-" Bundle: git://github.com/h1mesuke/unite-outline.git
+Bundle 'Shougo/unite.vim'
+Bundle 'h1mesuke/unite-outline'
 nmap br :Unite file_mru<CR>
 nmap bR :UniteWithCurrentDir file_mru<CR>
 nmap bg :Unite file_rec -buffer-name=files<CR>
@@ -455,25 +457,25 @@ highlight Pmenu ctermbg=4
 highlight PmenuSel ctermbg=1
 highlight PMenuSbar ctermbg=4
 
-" Bundle: git://github.com/Shougo/vimshell.git
-" Bundle: git://github.com/Shougo/vimproc.git
+Bundle 'Shougo/vimshell'
+Bundle 'Shougo/vimproc'
 let g:vimshell_right_prompt = 'vimshell#vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
 
-" Bundle: git://github.com/tyru/operator-camelize.vim.git
-" Bundle: git://github.com/kana/vim-operator-user.git
+Bundle 'tyru/operator-camelize.vim'
+Bundle 'kana/vim-operator-user'
 map <Leader>c <Plug>(operator-camelize)
 map <Leader>C <Plug>(operator-decamelize)
 
-" Bundle: git://github.com/sjl/gundo.vim
+Bundle 'sjl/gundo.vim'
 nmap U :<C-u>GundoToggle<CR>
 
-" Bundle: git://github.com/tsaleh/vim-align.git
-" Bundle: git://github.com/bronson/vim-closebuffer.git
-" Bundle: git://github.com/vim-ruby/vim-ruby.git
-" Bundle: git://github.com/Shougo/git-vim.git
-" Bundle: git://github.com/mattn/googletranslate-vim.git
-" Bundle: git://github.com/thinca/vim-quickrun.git
-" Bundle: git://github.com/tpope/vim-cucumber.git
-" Bundle: git://github.com/kana/vim-smartword.git
-" Bundle: git://github.com/ujihisa/neco-look.git
+Bundle 'tsaleh/vim-align'
+Bundle 'bronson/vim-closebuffer'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'Shougo/git-vim'
+Bundle 'mattn/googletranslate-vim'
+Bundle 'thinca/vim-quickrun'
+Bundle 'tpope/vim-cucumber'
+Bundle 'kana/vim-smartword'
+Bundle 'ujihisa/neco-look'
 
