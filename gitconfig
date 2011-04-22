@@ -29,4 +29,5 @@
 [core]
   excludesfile = /Users/mincemaker/.gitignore
   autocrlf = input
+  quotepath = false
 
