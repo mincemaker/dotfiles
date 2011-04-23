@@ -466,7 +466,7 @@ nmap U :<C-u>GundoToggle<CR>
 
 Bundle 'tsaleh/vim-align'
 Bundle 'bronson/vim-closebuffer'
-Bundle 'vim-ruby/vim-ruby'
+Bundle 'ruby.vim'
 Bundle 'Shougo/git-vim'
 Bundle 'mattn/googletranslate-vim'
 Bundle 'thinca/vim-quickrun'
