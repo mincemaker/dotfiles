@@ -1,8 +1,3 @@
-" Let Pathogen bring in all the plugins
-" http://github.com/paulnicholson/vim-pathogen.git
-"filetype off
-"call pathogen#runtime_append_all_bundles()
-"filetype indent plugin on
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 " ------------------------------------------------------------------------------
