@@ -1,3 +1,6 @@
+set nocompatible
+filetype off
+
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 " ------------------------------------------------------------------------------
@@ -28,7 +31,6 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
 set t_Co=256
-colorscheme wombat256mod
 "autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
 " Debian uses compressed helpfiles. We must inform vim that the main
@@ -411,7 +413,7 @@ let g:eskk_revert_henkan_style = "okuri"
 let g:eskk_enable_completion = 0
 
 " load the rails plugin:
-Bundle 'tpope/vim-rails'
+Bundle 'rails.vim'
 au BufNewFile,BufRead app/**/*.rhtml set fenc=utf-8
 au BufNewFile,BufRead app/**/*.rb set fenc=utf-8
 
@@ -473,4 +475,14 @@ Bundle 'thinca/vim-quickrun'
 Bundle 'tpope/vim-cucumber'
 Bundle 'kana/vim-smartword'
 Bundle 'ujihisa/neco-look'
+
+" colorscheme
+Bundle 'Railscasts-Theme-GUIand256color'
+Bundle 'Solarized'
+Bundle 'molokai'
+syntax enable
+set background=dark
+colorscheme solarized
+
+filetype plugin indent on
 
