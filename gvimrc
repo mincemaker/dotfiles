@@ -1,8 +1,8 @@
 if has('gui_running')
   set nu
   set cmdheight=1
-  set columns=88
-  set lines=40
+  set columns=100
+  set lines=50
   set showtabline=2
   set imdisable
   set incsearch
@@ -19,7 +19,10 @@ if has('gui_running')
   noremap ¥ \ " (円マークでバックスラッシュ入力)
   noremap <C-]> <Esc> " (CTRL-[でESC入力)
   set linespace=1
-  set guifontwide=セプテンバー:h16
-  set guifont=Inconsolata:h16
-  colorscheme wombat256mod
+  set guifontwide=Ricty:h16
+  set guifont=Ricty:h16
+
+  set background=dark
+  let g:solarized_termcolors=256
+  colorscheme solarized
 endif
