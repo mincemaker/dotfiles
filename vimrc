@@ -469,12 +469,12 @@ nmap U :<C-u>GundoToggle<CR>
 Bundle 'tsaleh/vim-align'
 Bundle 'bronson/vim-closebuffer'
 Bundle 'ruby.vim'
-Bundle 'Shougo/git-vim'
 Bundle 'mattn/googletranslate-vim'
 Bundle 'thinca/vim-quickrun'
 Bundle 'tpope/vim-cucumber'
 Bundle 'kana/vim-smartword'
 Bundle 'ujihisa/neco-look'
+Bundle 'tpope/vim-fugitive.git'
 
 " colorscheme
 Bundle 'Railscasts-Theme-GUIand256color'
