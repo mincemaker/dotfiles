@@ -1,4 +1,21 @@
 echo "loading..."
+
+" Firefoxのタブを開く位置をデフォで現在のタブの右隣にする（※ gBrowser.addTabの改造）"
+" http://d.hatena.ne.jp/wlt/20110112/1294859530
+js <<EOM
+gBrowser.addTab = liberator.eval(
+    '(' +
+    gBrowser.addTab.toSource()
+            .replace(/var aRelatedToCurrent;/, 'var aRelatedToCurrent = true;')
+            .replace(/aRelatedToCurrent = params\.relatedToCurrent;/, 'aRelatedToCurrent = params.relatedToCurrent === undefined ? true : params.relatedToCurrent;') +
+    ')',
+    gBrowser.addTab);
+EOM
+
+" Gmail/LDR/Fastladder/はてブでは新規タブをバックグラウンドで開く
+autocmd LocationChange '^(?!https?://(mail\.google\.com/(mail|a)/|(reader\.livedoor|fastladder)\.com/reader/|b\.hatena\.ne\.jp/(?!(entry|articles|guide))))' :set! browser.tabs.loadDivertedInBackground=false
+autocmd LocationChange '^https?://(mail\.google\.com/(mail|a)/|(reader\.livedoor|fastladder)\.com/reader/|b\.hatena\.ne\.jp/(?!(entry|articles|guide)))' :set! browser.tabs.loadDivertedInBackground=true
+
 "" init
 set gui=none,tabs
 set wildmode=list:full
