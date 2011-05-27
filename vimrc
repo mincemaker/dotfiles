@@ -261,17 +261,17 @@ let g:netrw_ftp_cmd="netkit-ftp"
 let g:netrw_http_cmd="wget -q -O"
 
 " html escape function
-:function HtmlEscape()
-silent s/&/\&amp;/eg
-silent s/</\&lt;/eg
-silent s/>/\&gt;/eg
-:endfunction
-
-:function HtmlUnEscape()
-silent s/&lt;/</eg
-silent s/&gt;/>/eg
-silent s/&amp;/\&/eg
-:endfunction
+":function HtmlEscape()
+"silent s/&/\&amp;/eg
+"silent s/</\&lt;/eg
+"silent s/>/\&gt;/eg
+":endfunction
+"
+":function HtmlUnEscape()
+"silent s/&lt;/</eg
+"silent s/&gt;/>/eg
+"silent s/&amp;/\&/eg
+":endfunction
 
 " 補完候補の色づけ for vim7
 hi Pmenu ctermbg=8
@@ -466,7 +466,7 @@ map <Leader>C <Plug>(operator-decamelize)
 Bundle 'sjl/gundo.vim'
 nmap U :<C-u>GundoToggle<CR>
 
-Bundle 'tsaleh/vim-align'
+Bundle 'Align'
 Bundle 'bronson/vim-closebuffer'
 Bundle 'ruby.vim'
 Bundle 'mattn/googletranslate-vim'
