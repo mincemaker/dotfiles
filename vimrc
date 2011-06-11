@@ -475,6 +475,7 @@ Bundle 'tpope/vim-cucumber'
 Bundle 'kana/vim-smartword'
 Bundle 'ujihisa/neco-look'
 Bundle 'tpope/vim-fugitive.git'
+Bundle 'git://github.com/motemen/git-vim.git'
 
 " colorscheme
 Bundle 'Railscasts-Theme-GUIand256color'
