@@ -6,6 +6,7 @@
 (setq-default tab-width 4 indent-tabs-mode nil)
 ;; 行数表示
 (line-number-mode t)
+(global-set-key "\M-n" 'linum-mode)
 ;; 指定行へジャンプ
 (global-set-key "\M-g" 'goto-line)
 ;; 対応する括弧をハイライト
