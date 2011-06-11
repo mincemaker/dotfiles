@@ -1,9 +1,10 @@
 (defvar is_emacs22 (equal emacs-major-version 22))
 (defvar is_emacs23 (equal emacs-major-version 23))
+(defvar is_emacs24 (equal emacs-major-version 24))
 (defvar is_window-sys (not (eq (symbol-value 'window-system) nil)))
 (defvar is_mac (or (eq window-system 'mac) (featurep 'ns)))
 (defvar is_carbon (and is_mac is_emacs22 is_window-sys))
-(defvar is_cocoa (and is_mac is_emacs23 is_window-sys))
+(defvar is_cocoa (and is_mac (or is_emacs23 is_emacs24) is_window-sys))
 (defvar is_inline-patch (eq (boundp 'mac-input-method-parameters) t))
 (defvar is_darwin (eq system-type 'darwin))
 
