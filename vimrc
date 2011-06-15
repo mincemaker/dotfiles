@@ -376,20 +376,6 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" unite.vim
-Bundle 'Shougo/unite.vim'
-nmap bg :Unite file_rec -buffer-name=files<CR>
-nmap bG :UniteWithBufferDir file_rec -buffer-name=files<CR>
-nmap br :Unite file_mru<CR>
-nmap bR :UniteWithCurrentDir file_mru<CR>
-nmap gf :UniteWithInput file_rec<CR>
-nmap ;; :Unite buffer<CR>
-autocmd FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()"{{{
-  imap <buffer> jj <Plug>(unite_insert_leave)
-endfunction"}}}
-let g:unite_source_file_mru_limit = 200
-
 " eskk
 Bundle 'tyru/eskk.vim'
 Bundle 'tyru/cul.vim'
@@ -435,6 +421,7 @@ xmap S <Plug>Vsurround
 Bundle 'chrismetcalf/vim-taglist'
 nmap <leader>l :TlistToggle<CR>
 
+" unite.vim
 Bundle 'Shougo/unite.vim'
 Bundle 'h1mesuke/unite-outline'
 nmap br :Unite file_mru<CR>
@@ -443,13 +430,15 @@ nmap bg :Unite file_rec -buffer-name=files<CR>
 nmap bG :UniteWithBufferDir file -buffer-name=files<CR>
 nmap ;; :Unite buffer<CR>
 nmap uo :Unite outline<CR>
-nnoremap gf :UniteWithInput file_rec<CR>
+nnoremap bf :UniteWithInput file_rec<CR>
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
   imap <buffer> jj <Plug>(unite_insert_leave)
   imap <buffer> <ESC> <Plug>(unite_exit)
   imap <buffer> <C-o> <Plug>(unite_insert_leave):<C-u>call unite#mappings#do_action('above')<CR>
 endfunction
+let g:unite_source_file_mru_limit = 200
+
 highlight Pmenu ctermbg=4
 highlight PmenuSel ctermbg=1
 highlight PMenuSbar ctermbg=4
