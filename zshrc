@@ -34,6 +34,8 @@ bindkey "^H"    backward-delete-char
 bindkey "^[[3~" delete-char
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
+bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^S' history-incremental-pattern-search-forward
 
 # historical backward/forward search with linehead string binded to ^P/^N
 autoload history-search-end
