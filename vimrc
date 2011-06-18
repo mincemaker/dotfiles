@@ -424,6 +424,7 @@ nmap <leader>l :TlistToggle<CR>
 " unite.vim
 Bundle 'Shougo/unite.vim'
 Bundle 'h1mesuke/unite-outline'
+Bundle 'thinca/vim-unite-history'
 nmap br :Unite file_mru<CR>
 nmap bR :UniteWithCurrentDir file_mru<CR>
 nmap bg :Unite file_rec -buffer-name=files<CR>
