@@ -184,7 +184,7 @@ let g:ldrc_hints = "true"
 nnoremap Q :toggleldrc<CR>
 
 " sbmcommentsviewer
-map . :viewSBMComments -t hdl<CR>
+map . :viewSBMComments -t h<CR>
 let g:def_sbm_format = "id,timestamp,tags,comment"
 
 let g:ldrc_captureMappings = "['?','j','k','p','o']"
@@ -212,8 +212,8 @@ lazy fmaps -u='https?://www\.rememberthemilk\.com/home/' j k m i c t ? d F,f G,g
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/list' o j k
 lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/detail' u
 command! -nargs=+ lazyfmapstumblr lazy fmaps -u='http://\w+\.tumblr\.com' <args>
-lazyfmapstumblr j k r a
-lazyfmapstumblr i,rj
+lazyfmapstumblr j k t a p
+lazyfmapstumblr i,tj
 
 ":javascript FirebugCommandLineAPI.prototype.vimperator = liberator
 
