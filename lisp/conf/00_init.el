@@ -13,6 +13,8 @@
 (show-paren-mode 1)
 ;; スタートアップページを表示しない
 (setq inhibit-startup-message t)
+;; メニューを表示
+(menu-bar-mode 1)
 
 ;; ASCIIモードでC-jがAquaSKKに伝わらないようにする
 ;(setq mac-pass-control-to-system nil)
