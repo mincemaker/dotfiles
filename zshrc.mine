@@ -8,6 +8,8 @@ source /Users/mincemaker/perl5/perlbrew/etc/bashrc
 
 # pythonbrew
 source /Users/mincemaker/.pythonbrew/etc/bashrc
+# virtualenv
+source /Users/mincemaker/.pythonbrew/bin/virtualenvwrapper.sh
 
 # RVM
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
