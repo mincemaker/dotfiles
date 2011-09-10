@@ -69,7 +69,7 @@ map <S-Left>  :tabmove! -1<CR>
 
 noremap <C-1> :set gui=all<cr>
 noremap <C-2> :set gui=nobookmarks,nomenu,nonavigation,tabs,statuslinetoolbar<cr>
-noremap <C-3> :set gui=none,statuslinetoolbar<cr>
+noremap <C-3> :set gui=none,notabs,statuslinetoolbar<cr>
 
 " ex modeでC-jを無効化
 cmap <C-j> <Nop>
@@ -204,7 +204,7 @@ command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
 lazy fmaps -u='mail\.google\.com/mail' c / j k n p o u e x s r a # [ ] ? gi gs gt gd ga gc
 lazy fmaps -u='mail\.google\.com/mail/.*/[0-9a-f]+$' c / j,n k,p n,j p,k o u e x s r a # [ ] ? gi gs gt gd ga gc
 lazy fmaps -u='www\.google\.co\.jp/reader' -events=vkeypress j k n p m s v A r S N P X O gh ga gs gt gu u / ? J K
-lazy fmaps -u='(fastladder|livedoor)\.com/reader' j k s a p o v c i,p g <Space> <S-Space> z b < > q w e,g r i,tj
+lazy fmaps -u='(fastladder|livedoor)\.com/reader' j k s a p o v c i,p g <Space> <S-Space> z b < > q w e,g r i,tj b
 lazy fmaps -u='(fastladder|livedoor)\.com/reader' -events=vkeypress J
 lazy fmaps -u=':3000/reader' j k s a p o v c g <Space> <S-Space> z b < > q w e,g r i,tj
 lazy fmaps -u=':3000/reader' -events=vkeypress J
@@ -278,7 +278,7 @@ commands.addUserCommand(
 EOM
 
 " tombloo.js
-map A :tombloo!Link<CR>
+map A :tombloo!Bookmark<CR>
 
 " twittperator
 let g:twittperator_use_chirp = 1
@@ -288,7 +288,7 @@ let g:twittperator_screen_name = "mincemaker"
 cabbrev -j .reply let (e=doc.querySelector('.hentry.status'))('@' + e.getAttribute('class').match(/u-(\S+)/)[1] + "#" + e.getAttribute('id').match(/\d+/))
 
 " RefControl
-set! refcontrol.actions="@DEFAULT=@NORMAL ameba.jp= dtiblog.com=@FORGE fc2.com= image.itmedia.co.jp=@FORGE img.itmedia.co.jp=@FORGE minkch.com=@NORMAL momi7.momi3.net=@FORGE www.b-idol.com=@FORGE xyzzz.blog.shinobi.jp=@FORGE"
+set! refcontrol.actions="@DEFAULT= ameba.jp= dtiblog.com=@FORGE fc2.com= image.itmedia.co.jp=@FORGE img.itmedia.co.jp=@FORGE minkch.com=@NORMAL momi7.momi3.net=@FORGE www.b-idol.com=@FORGE xyzzz.blog.shinobi.jp=@FORGE"
 
 source ~/.vimperatorrc.css
 
