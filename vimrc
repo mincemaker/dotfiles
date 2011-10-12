@@ -1,8 +1,10 @@
-set nocompatible
-filetype off
-
-set rtp+=~/.vim/vundle.git/
-call vundle#rc()
+if has('vim_starting')
+  set runtimepath+=~/.vim/neobundle.vim
+  filetype off
+  call neobundle#rc(expand('~/.vim/bundle'))
+  filetype plugin on
+  filetype indent on
+endif
 " ------------------------------------------------------------------------------
 syntax on
 
@@ -339,23 +341,23 @@ nnoremap ,<C-a>   :e #<CR>
 " ------------------------------------------------------------------------------
 " plugins
 " ------------------------------------------------------------------------------
-Bundle 'mattn/zencoding-vim'
+NeoBundle 'mattn/zencoding-vim'
 
 " load the code2html plugin:
-Bundle 'code2html'
+NeoBundle 'code2html'
 let html_use_css = 1
 
 " load the SeeTab plugin:
-Bundle 'SeeTab'
+NeoBundle 'SeeTab'
 let g:SeeTabCtermFG="yellow"
 let g:SeeTabCtermBG="red"
 
 " YankRing.vim
-Bundle 'chrismetcalf/vim-yankring'
+NeoBundle 'chrismetcalf/vim-yankring'
 nmap ,y :YRShow<CR>
 
 " neocomplcache
-Bundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplcache'
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
@@ -377,10 +379,10 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " eskk
-Bundle 'tyru/eskk.vim'
-Bundle 'tyru/cul.vim'
-Bundle 'tyru/savemap.vim'
-Bundle 'tyru/vice.vim'
+NeoBundle 'tyru/eskk.vim'
+NeoBundle 'tyru/cul.vim'
+NeoBundle 'tyru/savemap.vim'
+NeoBundle 'tyru/vice.vim'
 " eskk settings via. http://d.hatena.ne.jp/hamaco/20100708/1278598112
 if has('vim_starting')
 	let g:eskk_dictionary = '~/.skk-jisyo'
@@ -399,32 +401,32 @@ let g:eskk_revert_henkan_style = "okuri"
 let g:eskk_enable_completion = 0
 
 " load the rails plugin:
-Bundle 'rails.vim'
+NeoBundle 'rails.vim'
 au BufNewFile,BufRead app/**/*.rhtml set fenc=utf-8
 au BufNewFile,BufRead app/**/*.rb set fenc=utf-8
 
 " load the nerdtree plugin:
-Bundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdtree'
 " and configure it to open using \d and \D
 nmap <leader>d :NERDTreeToggle<CR>
 nmap <leader>D :NERDTreeFind<CR>
 
-Bundle 'scrooloose/nerdcommenter'
+NeoBundle 'scrooloose/nerdcommenter'
 " add a space between the comment delimiter and text
 let NERDSpaceDelims=1
 
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-repeat'
 " tell surround not to break the visual s keystroke (:help vs)
 xmap S <Plug>Vsurround
 
-Bundle 'chrismetcalf/vim-taglist'
+NeoBundle 'chrismetcalf/vim-taglist'
 nmap <leader>l :TlistToggle<CR>
 
 " unite.vim
-Bundle 'Shougo/unite.vim'
-Bundle 'h1mesuke/unite-outline'
-Bundle 'thinca/vim-unite-history'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'thinca/vim-unite-history'
 nmap br :Unite file_mru<CR>
 nmap bR :UniteWithCurrentDir file_mru<CR>
 nmap bg :Unite file_rec -buffer-name=files<CR>
@@ -444,34 +446,34 @@ highlight Pmenu ctermbg=4
 highlight PmenuSel ctermbg=1
 highlight PMenuSbar ctermbg=4
 
-Bundle 'Shougo/vimshell'
-Bundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vimproc'
 let g:vimshell_right_prompt = 'vimshell#vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
 
-Bundle 'tyru/operator-camelize.vim'
-Bundle 'kana/vim-operator-user'
+NeoBundle 'tyru/operator-camelize.vim'
+NeoBundle 'kana/vim-operator-user'
 map <Leader>c <Plug>(operator-camelize)
 map <Leader>C <Plug>(operator-decamelize)
 
-Bundle 'sjl/gundo.vim'
+NeoBundle 'sjl/gundo.vim'
 nmap U :<C-u>GundoToggle<CR>
 
-Bundle 'Align'
-Bundle 'bronson/vim-closebuffer'
-Bundle 'ruby.vim'
-Bundle 'mattn/googletranslate-vim'
-Bundle 'thinca/vim-quickrun'
-Bundle 'thinca/vim-qfreplace'
-Bundle 'tpope/vim-cucumber'
-Bundle 'kana/vim-smartword'
-Bundle 'ujihisa/neco-look'
-Bundle 'tpope/vim-fugitive'
-Bundle 'motemen/git-vim'
+NeoBundle 'Align'
+NeoBundle 'bronson/vim-closebuffer'
+NeoBundle 'ruby.vim'
+NeoBundle 'mattn/googletranslate-vim'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-qfreplace'
+NeoBundle 'tpope/vim-cucumber'
+NeoBundle 'kana/vim-smartword'
+NeoBundle 'ujihisa/neco-look'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'motemen/git-vim'
 
 " colorscheme
-Bundle 'Railscasts-Theme-GUIand256color'
-Bundle 'Solarized'
-Bundle 'molokai'
+NeoBundle 'Railscasts-Theme-GUIand256color'
+NeoBundle 'Solarized'
+NeoBundle 'molokai'
 syntax enable
 set background=dark
 let g:solarized_termcolors=256
