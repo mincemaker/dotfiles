@@ -396,7 +396,7 @@ inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
@@ -492,7 +492,7 @@ nmap bR :UniteWithCurrentDir file_mru<CR>
 nmap bg :Unite file_rec -buffer-name=files<CR>
 nmap bG :UniteWithBufferDir file -buffer-name=files<CR>
 nmap ;; :Unite buffer<CR>
-nmap uo :Unite outline<CR>
+nmap bo :Unite outline<CR>
 nnoremap bf :UniteWithInput file_rec<CR>
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
