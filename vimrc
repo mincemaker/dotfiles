@@ -564,6 +564,9 @@ augroup END
 let g:quickrun_config = {}
 let g:quickrun_config['ruby.rspec'] = {'command': "spec", 'cmdopt': "-l {line('.')}"}
 
+NeoBundle 'mileszs/ack.vim'
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'bronson/vim-closebuffer'
 NeoBundle 'kana/vim-smartword'
