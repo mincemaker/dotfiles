@@ -30,4 +30,8 @@
   excludesfile = /Users/mincemaker/.gitignore
   autocrlf = input
   quotepath = false
+  pager = "lv -c -Ou8"
+
+[push]
+  default = tracking
 
