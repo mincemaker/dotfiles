@@ -493,6 +493,7 @@ nmap bg :Unite file_rec -buffer-name=files<CR>
 nmap bG :UniteWithBufferDir file -buffer-name=files<CR>
 nmap ;; :Unite buffer<CR>
 nmap bo :Unite outline<CR>
+nmap bh :Unite history/command<CR>
 nnoremap bf :UniteWithInput file_rec<CR>
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
