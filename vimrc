@@ -568,6 +568,10 @@ let g:quickrun_config['ruby.rspec'] = {'command': "spec", 'cmdopt': "-l {line('.
 NeoBundle 'mileszs/ack.vim'
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
+NeoBundle 'thinca/vim-ambicmd'
+cnoremap <expr> <Space> ambicmd#expand("\<Space>")
+cnoremap <expr> <CR>    ambicmd#expand("\<CR>")
+
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'bronson/vim-closebuffer'
 NeoBundle 'kana/vim-smartword'
