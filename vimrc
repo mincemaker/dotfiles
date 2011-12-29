@@ -593,6 +593,7 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'ujihisa/neco-look'
 NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'sudo.vim'
 
 " colorscheme
 NeoBundle 'Railscasts-Theme-GUIand256color'
