@@ -22,3 +22,6 @@ export EDITOR='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim 
 # bundler
 [ -f ~/.bundler-exec.sh ] && source ~/.bundler-exec.sh
 
+# homebrew
+export PATH=/usr/local/sbin:$PATH
+
