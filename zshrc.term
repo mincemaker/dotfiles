@@ -11,14 +11,13 @@ zstyle ':vcs_info:bzr:*' use-simple true
 #zstyle ':vcs_info:*' formats '%R' '%S' '%s:%b' '%s'
 #zstyle ':vcs_info:*' actionformats '%R' '%S' '%s:%b|%a' '%s'
 function precmd_vcs_info () {
-  #RPROMPT="%1(v|%F{green}%1v%f|[%~])%F{red}[${rvm_ruby_string:-system}]%f"
   if [ -d ~/.rvm ]; then
-    ruby_version=`rvm_ruby_string:-system`
+    RPROMPT="%1(v|%F{green}%1v%f|[%~])%F{red}[${rvm_ruby_string:-system}]%f"
   fi
   if [ -d ~/.rbenv ]; then
     ruby_version=`rbenv version | sed -e 's/ .*//'`
+    RPROMPT="%1(v|%F{green}%1v%f|[%~])%F{red}[${ruby_version}]%f"
   fi
-  RPROMPT="%1(v|%F{green}%1v%f|[%~])%F{red}[${ruby_version}]%f"
   psvar=()
   STY= LANG=en_US.UTF-8 vcs_info
   [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
