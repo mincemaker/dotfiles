@@ -17,7 +17,7 @@ if [ -d ~/.rvm ]; then
 fi
 
 # rbenv
-if [ -f ~/.rbenv ]; then
+if [ -d ~/.rbenv ]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
   source /usr/local/Cellar/rbenv/0.3.0/completions/rbenv.zsh
