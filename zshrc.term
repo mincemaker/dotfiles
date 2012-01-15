@@ -11,6 +11,7 @@ zstyle ':vcs_info:bzr:*' use-simple true
 #zstyle ':vcs_info:*' formats '%R' '%S' '%s:%b' '%s'
 #zstyle ':vcs_info:*' actionformats '%R' '%S' '%s:%b|%a' '%s'
 function precmd_vcs_info () {
+  RPROMPT="[%~]"
   if [ -d ~/.rvm ]; then
     RPROMPT="%1(v|%F{green}%1v%f|[%~])%F{red}[${rvm_ruby_string:-system}]%f"
   fi
