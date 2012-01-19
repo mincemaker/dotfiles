@@ -1,14 +1,12 @@
+set nocompatible
+filetype plugin indent off
+
 if has('vim_starting')
   set runtimepath+=~/.vim/neobundle.vim
   filetype off
   call neobundle#rc(expand('~/.vim/bundle'))
-  filetype plugin on
-  filetype indent on
 endif
 " ------------------------------------------------------------------------------
-syntax on
-
-set nocompatible " tends to make things work better
 set incsearch " find the next match as we type the search
 set hlsearch " hilight searches by default
 set number
@@ -41,21 +39,6 @@ set t_Co=256
 set helpfile=$VIMRUNTIME/doc/help.txt
 
 let mapleader = '\'
-
-if has("autocmd")
-  " Enabled file type detection
-  " Use the default filetype settings. If you also want to load indent files
-  " to automatically do language-dependent indenting add 'indent' as well.
-  filetype plugin on
-  "そのファイルタイプにあわせたインデントを利用する
-  filetype indent on
-  " これらのftではインデントを無効に
-  "autocmd FileType php filetype indent off
-
-  " autocmd FileType php :set indentexpr=
-  autocmd FileType html :set indentexpr=
-  autocmd FileType xhtml :set indentexpr=
-endif
 
 " Some Debian-specific things
 augroup filetype
@@ -262,45 +245,11 @@ let g:netrw_ftp_cmd="netkit-ftp"
 " netrw-http
 let g:netrw_http_cmd="wget -q -O"
 
-" html escape function
-":function HtmlEscape()
-"silent s/&/\&amp;/eg
-"silent s/</\&lt;/eg
-"silent s/>/\&gt;/eg
-":endfunction
-"
-":function HtmlUnEscape()
-"silent s/&lt;/</eg
-"silent s/&gt;/>/eg
-"silent s/&amp;/\&/eg
-":endfunction
-
 " 補完候補の色づけ for vim7
 hi Pmenu ctermbg=8
 hi PmenuSel ctermbg=12
 hi PmenuSbar ctermbg=0
 
-" ハイライト設定
-function! WhitespaceHilight()
-    syntax match Whitespace "\s\+$" display containedin=ALL
-    highlight Whitespace ctermbg=red guibg=red
-endf
-"全角スペースをハイライトさせる。
-function! JISX0208SpaceHilight()
-    syntax match JISX0208Space "　" display containedin=ALL
-    highlight JISX0208Space term=underline ctermbg=LightCyan
-endf
-"syntaxの有無をチェックし、新規バッファと新規読み込み時にハイライトさせる
-if has("syntax")
-    syntax on
-        augroup invisible
-        autocmd! invisible
-        autocmd BufNew,BufRead * call WhitespaceHilight()
-        autocmd BufNew,BufRead * call JISX0208SpaceHilight()
-    augroup END
-endif
-set listchars=tab:>-,trail:-,nbsp:%,extends:>,precedes:<
-hi StatusLine term=NONE cterm=NONE ctermfg=black ctermbg=gray
 
 " changelog mode
 if has("autocmd")
@@ -342,6 +291,12 @@ nnoremap ,<C-a>   :e #<CR>
 " plugins
 " ------------------------------------------------------------------------------
 NeoBundle 'mattn/zencoding-vim'
+
+"coffee
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
+setlocal splitright
 
 " load the code2html plugin:
 NeoBundle 'code2html'
@@ -578,10 +533,6 @@ autocmd BufReadPost *_spec.rb call RSpecQuickrun()
 NeoBundle 'mileszs/ack.vim'
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
-NeoBundle 'thinca/vim-ambicmd'
-cnoremap <expr> <Space> ambicmd#expand("\<Space>")
-cnoremap <expr> <CR>    ambicmd#expand("\<CR>")
-
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'bronson/vim-closebuffer'
 NeoBundle 'kana/vim-smartword'
@@ -605,6 +556,44 @@ syntax enable
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
+
+"" 後から入れないと困る設定
+if has("autocmd")
+  " Enabled file type detection
+  " Use the default filetype settings. If you also want to load indent files
+  " to automatically do language-dependent indenting add 'indent' as well.
+  filetype plugin on
+  "そのファイルタイプにあわせたインデントを利用する
+  filetype indent on
+  " これらのftではインデントを無効に
+  "autocmd FileType php filetype indent off
+
+  " autocmd FileType php :set indentexpr=
+  autocmd FileType html :set indentexpr=
+  autocmd FileType xhtml :set indentexpr=
+endif
+
+" ハイライト設定
+function! WhitespaceHilight()
+    syntax match Whitespace "\s\+$" display containedin=ALL
+    highlight Whitespace ctermbg=red guibg=red
+endf
+"全角スペースをハイライトさせる。
+function! JISX0208SpaceHilight()
+    syntax match JISX0208Space "　" display containedin=ALL
+    highlight JISX0208Space term=underline ctermbg=LightCyan
+endf
+"syntaxの有無をチェックし、新規バッファと新規読み込み時にハイライトさせる
+if has("syntax")
+    syntax on
+        augroup invisible
+        autocmd! invisible
+        autocmd BufNew,BufRead * call WhitespaceHilight()
+        autocmd BufNew,BufRead * call JISX0208SpaceHilight()
+    augroup END
+endif
+set listchars=tab:>-,trail:-,nbsp:%,extends:>,precedes:<
+hi StatusLine term=NONE cterm=NONE ctermfg=black ctermbg=gray
 
 filetype plugin indent on
 
