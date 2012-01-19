@@ -600,6 +600,7 @@ NeoBundle 'Railscasts-Theme-GUIand256color'
 NeoBundle 'Solarized'
 NeoBundle 'molokai'
 NeoBundle 'vim-scripts/Lucius'
+NeoBundle 'scrooloose/syntastic'
 syntax enable
 set background=dark
 let g:solarized_termcolors=256
