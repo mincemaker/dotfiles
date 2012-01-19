@@ -4,12 +4,23 @@ alias cpan-uninstall='sudo perl -MConfig -MExtUtils::Install -e '"'"'($FULLEXT=s
 alias emacs='/usr/local/bin/emacs -nw'
 
 # perlbrew
-source /Users/mincemaker/perl5/perlbrew/etc/bashrc
+if [ -d ~/perl5 ]; then 
+  source /Users/mincemaker/perl5/perlbrew/etc/bashrc
+fi
 
 # pythonbrew
-source /Users/mincemaker/.pythonbrew/etc/bashrc
-# virtualenv
-source /Users/mincemaker/.pythonbrew/bin/virtualenvwrapper.sh
+if [ -d ~/.pythonbrew ]; then
+  source $HOME/mincemaker/.pythonbrew/etc/bashrc
+  # virtualenv
+  if [ -f .pythonbrew/bin/virtualenvwrapper.sh ]; then
+    source $HOME/mincemaker/.pythonbrew/bin/virtualenvwrapper.sh
+  fi
+fi
+
+# nave
+if [ -d ~/.nave ]; then
+  $HOME/git/dotfiles/nave/nave.sh use latest
+fi
 
 # RVM
 if [ -d ~/.rvm ]; then
