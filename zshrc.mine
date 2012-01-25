@@ -19,7 +19,7 @@ fi
 
 # nave
 if [ -d ~/.nave ]; then
-  $HOME/git/dotfiles/nave/nave.sh use latest
+  $HOME/git/dotfiles/nave/nave.sh use stable
 fi
 
 # RVM
