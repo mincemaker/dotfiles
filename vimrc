@@ -6,6 +6,281 @@ if has('vim_starting')
   filetype off
   call neobundle#rc(expand('~/.vim/bundle'))
 endif
+
+" ------------------------------------------------------------------------------
+" plugins
+" ------------------------------------------------------------------------------
+NeoBundle 'Shougo/neobundle.vim'
+
+"coffee
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
+setlocal splitright
+
+" load the code2html plugin:
+NeoBundle 'code2html'
+let html_use_css = 1
+
+" load the SeeTab plugin:
+NeoBundle 'SeeTab'
+let g:SeeTabCtermFG="yellow"
+let g:SeeTabCtermBG="red"
+
+" YankRing.vim
+NeoBundle 'chrismetcalf/vim-yankring'
+nmap ,y :YRShow<CR>
+
+" neocomplcache
+NeoBundle 'Shougo/neocomplcache'
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Use camel case completion.
+let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+let g:neocomplcache_enable_underbar_completion = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+      \ 'default' : '',
+      \ 'vimshell' : $HOME.'/.vimshell_hist',
+      \ 'scheme' : $HOME.'/.gosh_completions'
+      \ }
+
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+  let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+" SuperTab like snippets behavior.
+"imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+" For cursor moving in insert mode(Not recommended)
+inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
+inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
+inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
+inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+
+" AutoComplPop like behavior.
+"let g:neocomplcache_enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplcache_disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+
+" eskk
+NeoBundle 'tyru/eskk.vim'
+NeoBundle 'tyru/cul.vim'
+NeoBundle 'tyru/savemap.vim'
+NeoBundle 'tyru/vice.vim'
+" eskk settings via. http://d.hatena.ne.jp/hamaco/20100708/1278598112
+if has('vim_starting')
+	let g:eskk_dictionary = '~/.skk-jisyo'
+
+	if has('mac')
+		let g:eskk_large_dictionary = "~/Library/Application\ Support/AquaSKK/SKK-JISYO.L"
+	elseif has('win32') || has('win64')
+		let g:eskk_large_dictionary = "~/dic/SKK_JISYO.L"
+	else
+		let g:eskk_large_dictionary = "~/dic/SKK-JISYO.L"
+	endif
+endif
+let g:eskk_debug = 0
+let g:eskk_egg_like_newline = 1
+let g:eskk_revert_henkan_style = "okuri"
+let g:eskk_enable_completion = 0
+
+" load the rails plugin:
+NeoBundle 'tpope/vim-rails'
+au BufNewFile,BufRead app/**/*.rhtml set fenc=utf-8
+au BufNewFile,BufRead app/**/*.rb set fenc=utf-8
+
+" load the nerdtree plugin:
+NeoBundle 'scrooloose/nerdtree'
+" and configure it to open using \d and \D
+nmap <leader>d :NERDTreeToggle<CR>
+nmap <leader>D :NERDTreeFind<CR>
+
+NeoBundle 'scrooloose/nerdcommenter'
+" add a space between the comment delimiter and text
+let NERDSpaceDelims=1
+
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-repeat'
+" tell surround not to break the visual s keystroke (:help vs)
+xmap S <Plug>Vsurround
+
+NeoBundle 'chrismetcalf/vim-taglist'
+nmap <leader>l :TlistToggle<CR>
+
+" unite.vim
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'thinca/vim-unite-history'
+nmap br :Unite file_mru<CR>
+nmap bR :UniteWithCurrentDir file_mru<CR>
+nmap bg :Unite file_rec -buffer-name=files<CR>
+nmap bG :UniteWithBufferDir file -buffer-name=files<CR>
+nmap ;; :Unite buffer<CR>
+nmap bo :Unite outline<CR>
+nmap bh :Unite history/command<CR>
+nnoremap bf :UniteWithInput file_rec<CR>
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()
+  imap <buffer> jj <Plug>(unite_insert_leave)
+  imap <buffer> <ESC> <Plug>(unite_exit)
+  imap <buffer> <C-o> <Plug>(unite_insert_leave):<C-u>call unite#mappings#do_action('above')<CR>
+endfunction
+let g:unite_source_file_mru_limit = 200
+
+highlight Pmenu ctermbg=4
+highlight PmenuSel ctermbg=1
+highlight PMenuSbar ctermbg=4
+
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vimproc'
+let g:vimshell_right_prompt = 'vimshell#vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
+
+NeoBundle 'tyru/operator-camelize.vim'
+NeoBundle 'kana/vim-operator-user'
+map <Leader>c <Plug>(operator-camelize)
+map <Leader>C <Plug>(operator-decamelize)
+
+NeoBundle 'sjl/gundo.vim'
+nmap U :<C-u>GundoToggle<CR>
+
+NeoBundle 'h1mesuke/vim-alignta'
+nnoremap [unite] <Nop>
+xnoremap [unite] <Nop>
+nmap f [unite]
+xmap f [unite]
+
+let g:unite_source_alignta_preset_arguments = [
+      \ ["Align at '='", '=>\='],  
+      \ ["Align at ':'", '01 :'],
+      \ ["Align at '|'", '|'   ],
+      \ ["Align at ')'", '0 )' ],
+      \ ["Align at ']'", '0 ]' ],
+      \ ["Align at '}'", '}'   ],
+      \]
+
+let s:comment_leadings = '^\s*\("\|#\|/\*\|//\|<!--\)'
+let g:unite_source_alignta_preset_options = [
+      \ ["Justify Left",      '<<' ],
+      \ ["Justify Center",    '||' ],
+      \ ["Justify Right",     '>>' ],
+      \ ["Justify None",      '==' ],
+      \ ["Shift Left",        '<-' ],
+      \ ["Shift Right",       '->' ],
+      \ ["Shift Left  [Tab]", '<--'],
+      \ ["Shift Right [Tab]", '-->'],
+      \ ["Margin 0:0",        '0'  ],
+      \ ["Margin 0:1",        '01' ],
+      \ ["Margin 1:0",        '10' ],
+      \ ["Margin 1:1",        '1'  ],
+      \
+      \ 'v/' . s:comment_leadings,
+      \ 'g/' . s:comment_leadings,
+      \]
+unlet s:comment_leadings
+
+nnoremap <silent> [unite]a :<C-u>Unite alignta:options<CR>
+xnoremap <silent> [unite]a :<C-u>Unite alignta:arguments<CR>
+
+NeoBundle 'thinca/vim-quickrun'
+let g:quickrun_config = {}
+let g:quickrun_config._ = {'runner' : 'vimproc'}
+let g:quickrun_config['rspec/bundle'] = {
+  \ 'type': 'rspec/bundle',
+  \ 'command': 'rspec',
+  \ 'exec': 'bundle exec %c %s'
+  \}
+let g:quickrun_config['rspec/normal'] = {
+  \ 'type': 'rspec/normal',
+  \ 'command': 'spec',
+  \ 'exec': '%c %s'
+  \}
+function! RSpecQuickrun()
+  let b:quickrun_config = {'type' : 'rspec/normal'}
+endfunction
+autocmd BufReadPost *_spec.rb call RSpecQuickrun()
+
+NeoBundle 'mileszs/ack.vim'
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'bronson/vim-closebuffer'
+NeoBundle 'kana/vim-smartword'
+NeoBundle 'mattn/googletranslate-vim'
+NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'motemen/git-vim'
+NeoBundle 'sudo.vim'
+NeoBundle 'thinca/vim-qfreplace'
+NeoBundle 'tpope/vim-cucumber'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'ujihisa/neco-look'
+NeoBundle 'vim-ruby/vim-ruby'
+
+" colorscheme
+NeoBundle 'Railscasts-Theme-GUIand256color'
+NeoBundle 'Solarized'
+NeoBundle 'molokai'
+NeoBundle 'vim-scripts/Lucius'
+NeoBundle 'scrooloose/syntastic'
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
+
+filetype plugin indent on
+" ------------------------------------------------------------------------------
+"  settings
 " ------------------------------------------------------------------------------
 set incsearch " find the next match as we type the search
 set hlsearch " hilight searches by default
@@ -287,275 +562,6 @@ nnoremap ,<C-w>   :ls<CR>
 nnoremap ,a       :e #<CR>
 nnoremap ,<C-a>   :e #<CR>
 
-" ------------------------------------------------------------------------------
-" plugins
-" ------------------------------------------------------------------------------
-NeoBundle 'mattn/zencoding-vim'
-
-"coffee
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
-setlocal splitright
-
-" load the code2html plugin:
-NeoBundle 'code2html'
-let html_use_css = 1
-
-" load the SeeTab plugin:
-NeoBundle 'SeeTab'
-let g:SeeTabCtermFG="yellow"
-let g:SeeTabCtermBG="red"
-
-" YankRing.vim
-NeoBundle 'chrismetcalf/vim-yankring'
-nmap ,y :YRShow<CR>
-
-" neocomplcache
-NeoBundle 'Shougo/neocomplcache'
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-      \ 'default' : '',
-      \ 'vimshell' : $HOME.'/.vimshell_hist',
-      \ 'scheme' : $HOME.'/.gosh_completions'
-      \ }
-
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-smap <C-k>     <Plug>(neocomplcache_snippets_expand)
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-" SuperTab like snippets behavior.
-"imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-" For cursor moving in insert mode(Not recommended)
-inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
-inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
-inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
-inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
-
-" AutoComplPop like behavior.
-"let g:neocomplcache_enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplcache_enable_auto_select = 1
-"let g:neocomplcache_disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-
-" eskk
-NeoBundle 'tyru/eskk.vim'
-NeoBundle 'tyru/cul.vim'
-NeoBundle 'tyru/savemap.vim'
-NeoBundle 'tyru/vice.vim'
-" eskk settings via. http://d.hatena.ne.jp/hamaco/20100708/1278598112
-if has('vim_starting')
-	let g:eskk_dictionary = '~/.skk-jisyo'
-
-	if has('mac')
-		let g:eskk_large_dictionary = "~/Library/Application\ Support/AquaSKK/SKK-JISYO.L"
-	elseif has('win32') || has('win64')
-		let g:eskk_large_dictionary = "~/dic/SKK_JISYO.L"
-	else
-		let g:eskk_large_dictionary = "~/dic/SKK-JISYO.L"
-	endif
-endif
-let g:eskk_debug = 0
-let g:eskk_egg_like_newline = 1
-let g:eskk_revert_henkan_style = "okuri"
-let g:eskk_enable_completion = 0
-
-" load the rails plugin:
-NeoBundle 'tpope/vim-rails'
-au BufNewFile,BufRead app/**/*.rhtml set fenc=utf-8
-au BufNewFile,BufRead app/**/*.rb set fenc=utf-8
-
-" load the nerdtree plugin:
-NeoBundle 'scrooloose/nerdtree'
-" and configure it to open using \d and \D
-nmap <leader>d :NERDTreeToggle<CR>
-nmap <leader>D :NERDTreeFind<CR>
-
-NeoBundle 'scrooloose/nerdcommenter'
-" add a space between the comment delimiter and text
-let NERDSpaceDelims=1
-
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-repeat'
-" tell surround not to break the visual s keystroke (:help vs)
-xmap S <Plug>Vsurround
-
-NeoBundle 'chrismetcalf/vim-taglist'
-nmap <leader>l :TlistToggle<CR>
-
-" unite.vim
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'thinca/vim-unite-history'
-nmap br :Unite file_mru<CR>
-nmap bR :UniteWithCurrentDir file_mru<CR>
-nmap bg :Unite file_rec -buffer-name=files<CR>
-nmap bG :UniteWithBufferDir file -buffer-name=files<CR>
-nmap ;; :Unite buffer<CR>
-nmap bo :Unite outline<CR>
-nmap bh :Unite history/command<CR>
-nnoremap bf :UniteWithInput file_rec<CR>
-autocmd FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()
-  imap <buffer> jj <Plug>(unite_insert_leave)
-  imap <buffer> <ESC> <Plug>(unite_exit)
-  imap <buffer> <C-o> <Plug>(unite_insert_leave):<C-u>call unite#mappings#do_action('above')<CR>
-endfunction
-let g:unite_source_file_mru_limit = 200
-
-highlight Pmenu ctermbg=4
-highlight PmenuSel ctermbg=1
-highlight PMenuSbar ctermbg=4
-
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vimproc'
-let g:vimshell_right_prompt = 'vimshell#vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
-
-NeoBundle 'tyru/operator-camelize.vim'
-NeoBundle 'kana/vim-operator-user'
-map <Leader>c <Plug>(operator-camelize)
-map <Leader>C <Plug>(operator-decamelize)
-
-NeoBundle 'sjl/gundo.vim'
-nmap U :<C-u>GundoToggle<CR>
-
-NeoBundle 'h1mesuke/vim-alignta'
-nnoremap [unite] <Nop>
-xnoremap [unite] <Nop>
-nmap f [unite]
-xmap f [unite]
-
-let g:unite_source_alignta_preset_arguments = [
-      \ ["Align at '='", '=>\='],  
-      \ ["Align at ':'", '01 :'],
-      \ ["Align at '|'", '|'   ],
-      \ ["Align at ')'", '0 )' ],
-      \ ["Align at ']'", '0 ]' ],
-      \ ["Align at '}'", '}'   ],
-      \]
-
-let s:comment_leadings = '^\s*\("\|#\|/\*\|//\|<!--\)'
-let g:unite_source_alignta_preset_options = [
-      \ ["Justify Left",      '<<' ],
-      \ ["Justify Center",    '||' ],
-      \ ["Justify Right",     '>>' ],
-      \ ["Justify None",      '==' ],
-      \ ["Shift Left",        '<-' ],
-      \ ["Shift Right",       '->' ],
-      \ ["Shift Left  [Tab]", '<--'],
-      \ ["Shift Right [Tab]", '-->'],
-      \ ["Margin 0:0",        '0'  ],
-      \ ["Margin 0:1",        '01' ],
-      \ ["Margin 1:0",        '10' ],
-      \ ["Margin 1:1",        '1'  ],
-      \
-      \ 'v/' . s:comment_leadings,
-      \ 'g/' . s:comment_leadings,
-      \]
-unlet s:comment_leadings
-
-nnoremap <silent> [unite]a :<C-u>Unite alignta:options<CR>
-xnoremap <silent> [unite]a :<C-u>Unite alignta:arguments<CR>
-
-NeoBundle 'thinca/vim-quickrun'
-let g:quickrun_config = {}
-let g:quickrun_config._ = {'runner' : 'vimproc'}
-let g:quickrun_config['rspec/bundle'] = {
-  \ 'type': 'rspec/bundle',
-  \ 'command': 'rspec',
-  \ 'exec': 'bundle exec %c %s'
-  \}
-let g:quickrun_config['rspec/normal'] = {
-  \ 'type': 'rspec/normal',
-  \ 'command': 'spec',
-  \ 'exec': '%c %s'
-  \}
-function! RSpecQuickrun()
-  let b:quickrun_config = {'type' : 'rspec/normal'}
-endfunction
-autocmd BufReadPost *_spec.rb call RSpecQuickrun()
-
-NeoBundle 'mileszs/ack.vim'
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'bronson/vim-closebuffer'
-NeoBundle 'kana/vim-smartword'
-NeoBundle 'mattn/googletranslate-vim'
-NeoBundle 'motemen/git-vim'
-NeoBundle 'thinca/vim-qfreplace'
-NeoBundle 'tpope/vim-cucumber'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'ujihisa/neco-look'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'sudo.vim'
-
-" colorscheme
-NeoBundle 'Railscasts-Theme-GUIand256color'
-NeoBundle 'Solarized'
-NeoBundle 'molokai'
-NeoBundle 'vim-scripts/Lucius'
-NeoBundle 'scrooloose/syntastic'
-syntax enable
-set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
 
 "" 後から入れないと困る設定
 if has("autocmd")
@@ -595,5 +601,4 @@ endif
 set listchars=tab:>-,trail:-,nbsp:%,extends:>,precedes:<
 hi StatusLine term=NONE cterm=NONE ctermfg=black ctermbg=gray
 
-filetype plugin indent on
 
