@@ -253,6 +253,12 @@ autocmd BufReadPost *_spec.rb call RSpecQuickrun()
 NeoBundle 'mileszs/ack.vim'
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
+NeoBundle 'hallettj/jslint.vim'
+let $JS_CMD='node'
+
+NeoBundle 'Lokaltog/vim-powerline'
+let g:Powerline_symbols = 'fancy'
+
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'bronson/vim-closebuffer'
 NeoBundle 'kana/vim-smartword'
@@ -266,8 +272,6 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'ujihisa/neco-look'
 NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'hallettj/jslint.vim'
-let $JS_CMD='node'
 
 " colorscheme
 NeoBundle 'Railscasts-Theme-GUIand256color'
