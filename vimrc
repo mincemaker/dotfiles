@@ -266,6 +266,8 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'ujihisa/neco-look'
 NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'hallettj/jslint.vim'
+let $JS_CMD='node'
 
 " colorscheme
 NeoBundle 'Railscasts-Theme-GUIand256color'
