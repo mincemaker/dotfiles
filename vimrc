@@ -184,7 +184,6 @@ highlight PMenuSbar ctermbg=4
 
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimproc'
-let g:vimshell_right_prompt = 'vimshell#vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
 
 NeoBundle 'tyru/operator-camelize.vim'
 NeoBundle 'kana/vim-operator-user'
