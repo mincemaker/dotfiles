@@ -17,9 +17,9 @@ if [ -d ~/.pythonbrew ]; then
   fi
 fi
 
-# nave
-if [ -d ~/.nave ]; then
-  $HOME/git/dotfiles/nave/nave.sh use stable
+# nodebrew
+if [ -d ~/.nodebrew ]; then
+  export PATH=$HOME/.nodebrew/current/bin:$PATH
 fi
 
 # RVM
