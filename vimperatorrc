@@ -284,6 +284,7 @@ let g:twittperator_use_chirp = 1
 let g:twittperator_plugin_echo_tweet = 1
 let g:twittperator_plugin_twlist_win = 1
 let g:twittperator_screen_name = "mincemaker"
+let g:twittperator_use_ssl_connection_for_api_ep = 1
 cabbrev -j .reply let (e=doc.querySelector('.hentry.status'))('@' + e.getAttribute('class').match(/u-(\S+)/)[1] + "#" + e.getAttribute('id').match(/\d+/))
 
 " RefControl
