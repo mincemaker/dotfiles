@@ -162,6 +162,7 @@ nmap <leader>l :TlistToggle<CR>
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'thinca/vim-unite-history'
+NeoBundle 'kmnk/vim-unite-giti'
 nmap br :Unite file_mru<CR>
 nmap bR :UniteWithCurrentDir file_mru<CR>
 nmap bg :Unite file_rec -buffer-name=files<CR>
@@ -281,6 +282,8 @@ call unite#custom_action('file', 'my_vsplit', my_action)
 NeoBundle 'bronson/vim-closebuffer'
 NeoBundle 'kana/vim-smartword'
 NeoBundle 'mattn/googletranslate-vim'
+NeoBundle 'mattn/vdbi-vim'
+NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'motemen/git-vim'
 NeoBundle 'sudo.vim'
