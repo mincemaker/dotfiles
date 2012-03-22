@@ -140,12 +140,6 @@ NeoBundle 'tpope/vim-rails'
 au BufNewFile,BufRead app/**/*.rhtml set fenc=utf-8
 au BufNewFile,BufRead app/**/*.rb set fenc=utf-8
 
-" load the nerdtree plugin:
-NeoBundle 'scrooloose/nerdtree'
-" and configure it to open using \d and \D
-nmap <leader>d :NERDTreeToggle<CR>
-nmap <leader>D :NERDTreeFind<CR>
-
 NeoBundle 'scrooloose/nerdcommenter'
 " add a space between the comment delimiter and text
 let NERDSpaceDelims=1
@@ -257,7 +251,8 @@ NeoBundle 'hallettj/jslint.vim'
 let $JS_CMD='node'
 
 NeoBundle 'Shougo/vimfiler'
-nnoremap <F2> :VimFiler -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<Cr>
+nnoremap <F2> :VimFilerCurrentDir -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<Cr>
+nnoremap <leader>d :VimFilerBufferDir -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<CR>
 autocmd! FileType vimfiler call g:my_vimfiler_settings()
 function! g:my_vimfiler_settings()
   nmap     <buffer><expr><Cr> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
