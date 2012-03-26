@@ -2,6 +2,12 @@ alias pylibdir='python -c "from distutils.sysconfig import get_python_lib; print
 export LSCOLORS=gxfxcxdxbxegedabagacad
 alias cpan-uninstall='sudo perl -MConfig -MExtUtils::Install -e '"'"'($FULLEXT=shift)=~s{-}{/}g;uninstall "$Config{sitearchexp}/auto/$FULLEXT/.packlist",1'"'"
 alias emacs='/usr/local/bin/emacs -nw'
+alias -g CA='| canything'
+
+# canything
+if [ -d ~/bin ]; then
+  export PATH=$HOME/bin:$PATH
+fi
 
 # perlbrew
 if [ -d ~/perl5 ]; then 
