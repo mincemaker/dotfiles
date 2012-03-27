@@ -202,7 +202,6 @@ else
     _update_rprompt
   }
 fi
-source ~/git/dotfiles/zshrc.git
 source ~/git/dotfiles/git-completion.bash
 
 
