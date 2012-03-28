@@ -12,6 +12,9 @@ autoload -U compinit; compinit -u
 
 PROMPT="%U$USER@%m%%%u "
 
+## 「/」も単語区切りとみなす。
+WORDCHARS=${WORDCHARS:s,/,,}
+
 ## Command history configuration
 #
 HISTFILE=~/.zsh_history
