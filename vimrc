@@ -113,28 +113,6 @@ let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
-" eskk
-NeoBundle 'tyru/eskk.vim'
-NeoBundle 'tyru/cul.vim'
-NeoBundle 'tyru/savemap.vim'
-NeoBundle 'tyru/vice.vim'
-" eskk settings via. http://d.hatena.ne.jp/hamaco/20100708/1278598112
-if has('vim_starting')
-	let g:eskk_dictionary = '~/.skk-jisyo'
-
-	if has('mac')
-		let g:eskk_large_dictionary = "~/Library/Application\ Support/AquaSKK/SKK-JISYO.L"
-	elseif has('win32') || has('win64')
-		let g:eskk_large_dictionary = "~/dic/SKK_JISYO.L"
-	else
-		let g:eskk_large_dictionary = "~/dic/SKK-JISYO.L"
-	endif
-endif
-let g:eskk_debug = 0
-let g:eskk_egg_like_newline = 1
-let g:eskk_revert_henkan_style = "okuri"
-let g:eskk_enable_completion = 0
-
 " load the rails plugin:
 NeoBundle 'tpope/vim-rails'
 au BufNewFile,BufRead app/**/*.rhtml set fenc=utf-8
@@ -273,6 +251,9 @@ function! my_action.func(candidates)
   exec 'vsplit '. a:candidates[0].action__path
 endfunction
 call unite#custom_action('file', 'my_vsplit', my_action)
+
+NeoBundle 'kien/ctrlp.vim'
+let g:ctrlp_map = '<c-o>'
 
 NeoBundle 'bronson/vim-closebuffer'
 NeoBundle 'kana/vim-smartword'
