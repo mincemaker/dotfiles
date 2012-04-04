@@ -33,6 +33,9 @@ nmap ,y :YRShow<CR>
 
 " neocomplcache
 NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplcache-snippets-complete'
+NeoBundle 'ujihisa/neco-look'
+NeoBundle 'ujihisa/neco-ruby'
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
@@ -267,7 +270,6 @@ NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'tpope/vim-cucumber'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'ujihisa/neco-look'
 NeoBundle 'vim-ruby/vim-ruby'
 
 " colorscheme
