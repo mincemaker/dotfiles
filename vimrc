@@ -271,6 +271,8 @@ NeoBundle 'tpope/vim-cucumber'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'matchit.zip'
+NeoBundle 'ruby-matchit'
 
 " colorscheme
 NeoBundle 'Lokaltog/vim-powerline'
