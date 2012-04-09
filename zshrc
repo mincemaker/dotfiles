@@ -73,6 +73,7 @@ alias df="df -h"
 
 alias su="su -l"
 alias screen="env LC_TIME=C screen -D -RR"
+alias tmux="env LC_TIME=C tmux -2 a || tmux -2"
 
 ## cdgem
 # http://subtech.g.hatena.ne.jp/secondlife/20101224/1293179431
