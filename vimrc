@@ -253,6 +253,10 @@ call unite#custom_action('file', 'my_vsplit', my_action)
 NeoBundle 'kien/ctrlp.vim'
 let g:ctrlp_map = '<c-o>'
 
+NeoBundle 'scrooloose/syntastic'
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=1
+
 NeoBundle 'bronson/vim-closebuffer'
 NeoBundle 'kana/vim-smartword'
 NeoBundle 'mattn/googletranslate-vim'
@@ -275,7 +279,7 @@ NeoBundle 'Railscasts-Theme-GUIand256color'
 NeoBundle 'Solarized'
 NeoBundle 'molokai'
 NeoBundle 'vim-scripts/Lucius'
-NeoBundle 'scrooloose/syntastic'
+
 syntax enable
 set background=dark
 let g:solarized_termcolors=256
