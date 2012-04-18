@@ -168,7 +168,6 @@ nmap U :<C-u>GundoToggle<CR>
 NeoBundle 'h1mesuke/vim-alignta'
 nnoremap [unite] <Nop>
 xnoremap [unite] <Nop>
-nmap f [unite]
 xmap f [unite]
 
 let g:unite_source_alignta_preset_arguments = [
