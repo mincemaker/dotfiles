@@ -161,6 +161,7 @@ liberator.globalVariables.plugin_loader_plugins = <>
   opener
   pino
   pluginManager
+  proxy
   reload-image
   sbmcommentsviewer
   spatial-navigation
@@ -289,6 +290,66 @@ cabbrev -j .reply let (e=doc.querySelector('.hentry.status'))('@' + e.getAttribu
 
 " RefControl
 set! refcontrol.actions="@DEFAULT= ameba.jp= dtiblog.com=@FORGE fc2.com= image.itmedia.co.jp=@FORGE img.itmedia.co.jp=@FORGE minkch.com=@NORMAL momi7.momi3.net=@FORGE www.b-idol.com=@FORGE xyzzz.blog.shinobi.jp=@FORGE"
+
+" proxy
+javascript <<EOM
+liberator.globalVariables.proxy_settings = [
+  {
+    conf_name: 'disable',
+    conf_usage: 'direct connection',
+    settings: [
+      {
+         label: 'type',
+         param: 0
+      }
+    ]
+  },
+  {
+    conf_name: 'localhost',
+    conf_usage: 'use squid cache proxy',
+    settings: [
+      {
+         label: 'type',
+         param: 1
+      },
+      {
+         label: 'http',
+         param: 'localhost'
+      },
+      {
+         label: 'http_port',
+         param: 8080
+      },
+      {
+         label: 'ssl',
+         param: 'localhost'
+      },
+      {
+         label: 'ssl_port',
+         param: 8080
+      }
+    ]
+  },
+  {
+    conf_name: 'polipo',
+    conf_usage: 'use polipo cache proxy',
+    settings: [
+      {
+        label: 'type',
+        param: 1
+      },
+      {
+        label: 'http',
+        param: 'localhost'
+      },
+      {
+        label: 'http_port',
+        param: 8123
+      }
+    ]
+  }
+];
+EOM
 
 source ~/.vimperatorrc.css
 
