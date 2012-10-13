@@ -352,8 +352,6 @@ set nolist
 set showcmd
 "括弧入力時の対応する括弧を表示
 set showmatch
-"検索結果文字列のハイライトを有効にしない
-set nohlsearch
 "ステータスラインを常に表示
 set laststatus=2
 
@@ -620,4 +618,12 @@ augroup END
 hi clear CursorLine
 hi CursorLine gui=underline
 highlight CursorLine ctermbg=black guibg=black
+
+"Escの2回押しでハイライト消去
+nmap <ESC><ESC> :nohlsearch<CR><ESC>
+
+" Ctrl-iでヘルプ
+nnoremap <C-i>  :<C-u>help<Space>
+" カーソル下のキーワードをヘルプでひく
+nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 
