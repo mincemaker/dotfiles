@@ -332,6 +332,12 @@ js<<EOM
     // リストの最大保持数
     listMax: 100,
 
+    // リストの表示順（昇順／降順）
+    listAscendingOrder: true,
+
+    // ツイートされる度に最新ツイート位置までスクロールする
+    listAutoScroll: true,
+
     // 日本語だけ for filter stream
     jpOnly: true,
 
