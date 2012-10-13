@@ -3,6 +3,7 @@ export LSCOLORS=gxfxcxdxbxegedabagacad
 alias cpan-uninstall='sudo perl -MConfig -MExtUtils::Install -e '"'"'($FULLEXT=shift)=~s{-}{/}g;uninstall "$Config{sitearchexp}/auto/$FULLEXT/.packlist",1'"'"
 alias emacs='/usr/local/bin/emacs -nw'
 alias -g CA='| canything'
+alias pip-upgrade-all='pip freeze | grep -v "\-e" | cut -d= -f1 | xargs pip install -U'
 
 # canything
 if [ -d ~/bin ]; then
@@ -10,7 +11,7 @@ if [ -d ~/bin ]; then
 fi
 
 # perlbrew
-if [ -d ~/perl5 ]; then 
+if [ -d ~/perl5 ]; then
   source $HOME/perl5/perlbrew/etc/bashrc
 fi
 
