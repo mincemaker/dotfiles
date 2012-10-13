@@ -284,11 +284,70 @@ map A :tombloo!Bookmark<CR>
 
 " twittperator
 let g:twittperator_use_chirp = 1
+let g:twittperator_history_limit = 5000
+let g:twittperator_use_ssl_connection_for_api_ep = 1
+let g:twittperator_screen_name = "mincemaker"
+let g:twittperator_lang = "ja"
+let g:twittperator_count = 50
 let g:twittperator_plugin_echo_tweet = 1
 let g:twittperator_plugin_twlist_win = 1
-let g:twittperator_screen_name = "mincemaker"
-let g:twittperator_use_ssl_connection_for_api_ep = 1
+let g:twittperator_plugin_twsidebar = 1
+let g:twittperator_plugin_twsidebar_expand_url = 1
 cabbrev -j .reply let (e=doc.querySelector('.hentry.status'))('@' + e.getAttribute('class').match(/u-(\S+)/)[1] + "#" + e.getAttribute('id').match(/\d+/))
+
+js<<EOM
+(function () {
+  function makeAudio (path, volume) {
+    let audio = new Audio(path);
+    // XXX 効いてない
+    if (volume)
+      audio.volume = volume;
+    return audio;
+  }
+
+  liberator.globalVariables.twittperator_sidebar_config = {
+    // for Keyword タグ
+    keyword: /mince|vimp|sst|xss/i,
+
+    // ツイート内に含まれると、表示上抹殺される (reply とか除く
+    vanish: /たらRT/i,
+
+    // 自分のスクリーンネーム
+    screenName: 'mincemaker',
+
+    // 自分のその他の名前
+    myNames: /mince|みんち|挽肉屋/i,
+
+    // ログファイル てけとーなフォーマットで保存されます
+    //logFile: io.File('~/.chirpstream'),
+    //myLogFile: io.File('~/.mychirpstream'),
+
+    // 各イベント時に音がなる
+    sound: {
+    },
+
+    // 文字のサイズ
+    fontSize: 12,
+
+    // リストの最大保持数
+    listMax: 100,
+
+    // 日本語だけ for filter stream
+    jpOnly: true,
+
+    // 地震ツイートの本文に場所をくっつける
+    earthquake: true,
+
+    // サイドバーを閉じても機能を停止しない
+    dontStop: true,
+
+    // サイドバーが閉じていても、こっそり開始しておく
+    silentStart: true,
+  };
+})();
+EOM
+
+
 
 " RefControl
 set! refcontrol.actions="@DEFAULT= ameba.jp= dtiblog.com=@FORGE fc2.com= image.itmedia.co.jp=@FORGE img.itmedia.co.jp=@FORGE minkch.com=@NORMAL momi7.momi3.net=@FORGE www.b-idol.com=@FORGE xyzzz.blog.shinobi.jp=@FORGE"
