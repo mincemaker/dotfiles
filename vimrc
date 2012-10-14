@@ -257,6 +257,22 @@ NeoBundle 'scrooloose/syntastic'
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
 
+NeoBundle 'https://github.com/basyura/bitly.vim.git'
+NeoBundle 'https://github.com/basyura/TweetVim.git'
+NeoBundle 'https://github.com/basyura/twibill.vim.git'
+NeoBundle 'https://github.com/h1mesuke/unite-outline.git'
+NeoBundle 'https://github.com/mattn/webapi-vim.git'
+NeoBundle 'https://github.com/tyru/open-browser.vim.git'
+NeoBundle 'https://github.com/yomi322/neco-tweetvim.git'
+NeoBundle 'https://github.com/yomi322/unite-tweetvim.git'
+let g:tweetvim_tweet_per_page = 50
+
+nnoremap bw :<C-u>Unite tweetvim<CR>
+nnoremap ,th :<C-u>TweetVimHomeTimeline<CR>
+nnoremap ,tm :<C-u>TweetVimMentions<CR>
+nnoremap ,ts :<C-u>TweetVimSay<CR>
+nnoremap ,tc :<C-u>TweetVimCommandSay
+
 NeoBundle 'bronson/vim-closebuffer'
 NeoBundle 'kana/vim-smartword'
 NeoBundle 'mattn/googletranslate-vim'
