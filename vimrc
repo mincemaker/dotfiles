@@ -28,12 +28,12 @@ let g:SeeTabCtermFG="yellow"
 let g:SeeTabCtermBG="red"
 
 " YankRing.vim
-NeoBundle 'chrismetcalf/vim-yankring'
+NeoBundle 'vim-scripts/YankRing.vim'
 nmap ,y :YRShow<CR>
 
 " neocomplcache
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neocomplcache-snippets-complete'
+NeoBundle 'Shougo/neosnippet'
 NeoBundle 'ujihisa/neco-look'
 NeoBundle 'ujihisa/neco-ruby'
 
@@ -257,14 +257,14 @@ NeoBundle 'scrooloose/syntastic'
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
 
-NeoBundle 'https://github.com/basyura/bitly.vim.git'
-NeoBundle 'https://github.com/basyura/TweetVim.git'
-NeoBundle 'https://github.com/basyura/twibill.vim.git'
-NeoBundle 'https://github.com/h1mesuke/unite-outline.git'
-NeoBundle 'https://github.com/mattn/webapi-vim.git'
-NeoBundle 'https://github.com/tyru/open-browser.vim.git'
-NeoBundle 'https://github.com/yomi322/neco-tweetvim.git'
-NeoBundle 'https://github.com/yomi322/unite-tweetvim.git'
+NeoBundle 'basyura/bitly.vim.git'
+NeoBundle 'basyura/TweetVim.git'
+NeoBundle 'basyura/twibill.vim.git'
+NeoBundle 'h1mesuke/unite-outline.git'
+NeoBundle 'mattn/webapi-vim.git'
+NeoBundle 'tyru/open-browser.vim.git'
+NeoBundle 'yomi322/neco-tweetvim.git'
+NeoBundle 'yomi322/unite-tweetvim.git'
 let g:tweetvim_tweet_per_page = 50
 
 nnoremap bw :<C-u>Unite tweetvim<CR>
@@ -288,6 +288,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'matchit.zip'
 NeoBundle 'ruby-matchit'
+NeoBundle 'vim-indent-guides'
 
 " colorscheme
 NeoBundle 'Lokaltog/vim-powerline'
