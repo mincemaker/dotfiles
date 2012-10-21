@@ -288,7 +288,8 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'matchit.zip'
 NeoBundle 'ruby-matchit'
-NeoBundle 'vim-indent-guides'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'davidhalter/jedi'
 
 " colorscheme
 NeoBundle 'Lokaltog/vim-powerline'
