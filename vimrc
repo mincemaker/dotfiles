@@ -155,7 +155,14 @@ highlight PmenuSel ctermbg=1
 highlight PMenuSbar ctermbg=4
 
 NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'echo "Sorry, cannot update vimproc binary file in Windows."',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
 
 NeoBundle 'tyru/operator-camelize.vim'
 NeoBundle 'kana/vim-operator-user'
