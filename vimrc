@@ -1,11 +1,12 @@
 set nocompatible
-filetype plugin indent off
 
 if has('vim_starting')
   set runtimepath+=~/.vim/neobundle.vim
-  filetype off
-  call neobundle#rc(expand('~/.vim/bundle'))
 endif
+
+call neobundle#rc(expand('~/.vim/bundle'))
+filetype plugin on
+filetype indent on
 
 " ------------------------------------------------------------------------------
 " plugins
@@ -131,7 +132,7 @@ nmap <leader>l :TlistToggle<CR>
 
 " unite.vim
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'h1mesuke/unite-outline'
+"NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'kmnk/vim-unite-giti'
 nmap br :Unite file_mru<CR>
@@ -267,7 +268,6 @@ let g:syntastic_auto_loc_list=1
 NeoBundle 'basyura/bitly.vim.git'
 NeoBundle 'basyura/TweetVim.git'
 NeoBundle 'basyura/twibill.vim.git'
-NeoBundle 'h1mesuke/unite-outline.git'
 NeoBundle 'mattn/webapi-vim.git'
 NeoBundle 'tyru/open-browser.vim.git'
 NeoBundle 'yomi322/neco-tweetvim.git'
@@ -284,7 +284,6 @@ NeoBundle 'bronson/vim-closebuffer'
 NeoBundle 'kana/vim-smartword'
 NeoBundle 'mattn/googletranslate-vim'
 NeoBundle 'mattn/vdbi-vim'
-NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'motemen/git-vim'
 NeoBundle 'sudo.vim'
@@ -310,7 +309,10 @@ set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
-filetype plugin indent on
+NeoBundleCheck
+
+autocmd VimEnter * execute 'source' expand('<sfile>')
+
 " ------------------------------------------------------------------------------
 "  settings
 " ------------------------------------------------------------------------------
