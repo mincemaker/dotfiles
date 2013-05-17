@@ -141,8 +141,8 @@ style -name toolbarbutton-feed-icon chrome://* #liberator-customize-toolbar > #f
 "" Plugins
 
 let g:plugin_loader_roots = "~/.vimperator/vimperator-plugins/ ~/.vimperator/load"
-js <<EOF
-liberator.globalVariables.plugin_loader_plugins = <>
+js <<EOM
+liberator.globalVariables.plugin_loader_plugins = `
   _libly
   appendAnchor
   auto_source
@@ -172,8 +172,8 @@ liberator.globalVariables.plugin_loader_plugins = <>
   twittperator
   walk-input
   x-hint
-</>.toString().split(/\s+/).filter(function(n)n);
-EOF
+`.split(/\s+/).filter(function(n) !/^!/.test(n));
+EOM
 
 " ime_controller.js
 let g:ex_ime_mode = "inactive"
