@@ -159,6 +159,7 @@ liberator.globalVariables.plugin_loader_plugins = `
   migemo_completion
   migemo_hint
   multi_requester
+  maine_coon
   opener
   pino
   pluginManager
@@ -417,6 +418,8 @@ liberator.globalVariables.proxy_settings = [
   }
 ];
 EOM
+
+colorscheme sweets_snaka
 
 source ~/.vimperatorrc.css
 
