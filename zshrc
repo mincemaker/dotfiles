@@ -211,6 +211,6 @@ else
     _update_rprompt
   }
 fi
-source ~/dotfiles/git-completion.bash
+source ~/git/dotfiles/git-completion.bash
 
 
