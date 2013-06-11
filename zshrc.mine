@@ -57,3 +57,11 @@ if [ -f /usr/local/bin/ack ]; then
   alias ack-grep="/usr/local/bin/ack"
 fi
 
+# git
+if [ -f /usr/local/bin/brew ]; then
+  fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+else
+  fpath=(~/.zsh/completion $fpath)
+fi
+autoload -U compinit
+compinit -u
