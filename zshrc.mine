@@ -29,10 +29,8 @@ if [ -d ~/.nodebrew ]; then
   export PATH=$HOME/.nodebrew/current/bin:$PATH
 fi
 
-# RVM
-if [ -d ~/.rvm ]; then
-  [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-fi
+# gvm
+[[ -s $HOME/.gvm/bin/gvm-init.sh ]] && source $HOME/.gvm/bin/gvm-init.sh
 
 # rbenv
 if [ -d ~/.rbenv ]; then
@@ -42,9 +40,11 @@ if [ -d ~/.rbenv ]; then
 fi
 
 # macvim-kaoriya
-alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-alias gvim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim -g "$@"'
-export EDITOR='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+if [ -f /usr/local/Cellar/lv/4.51 ]; then
+  alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+  alias gvim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim -g "$@"'
+  export EDITOR='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+fi
 
 # bundler
 [ -f ~/.bundler-exec.sh ] && source ~/.bundler-exec.sh
@@ -65,3 +65,10 @@ else
 fi
 autoload -U compinit
 compinit -u
+
+# z
+. `brew --prefix`/etc/profile.d/z.sh
+function precmd () {
+  _z --add "$(pwd -P)"
+}
+

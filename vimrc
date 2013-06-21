@@ -132,9 +132,11 @@ nmap <leader>l :TlistToggle<CR>
 
 " unite.vim
 NeoBundle 'Shougo/unite.vim'
-"NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'kmnk/vim-unite-giti'
+NeoBundle 'tsukkee/unite-tag'
+
 nmap br :Unite file_mru<CR>
 nmap bR :UniteWithCurrentDir file_mru<CR>
 nmap bg :Unite file_rec -buffer-name=files<CR>
@@ -228,8 +230,9 @@ function! RSpecQuickrun()
 endfunction
 autocmd BufReadPost *_spec.rb call RSpecQuickrun()
 
-NeoBundle 'mileszs/ack.vim'
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+"NeoBundle 'mileszs/ack.vim'
+"let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+NeoBundle 'ag.vim'
 
 NeoBundle 'hallettj/jslint.vim'
 let $JS_CMD='node'
@@ -285,17 +288,32 @@ NeoBundle 'kana/vim-smartword'
 NeoBundle 'mattn/googletranslate-vim'
 NeoBundle 'mattn/vdbi-vim'
 NeoBundle 'mattn/zencoding-vim'
-NeoBundle 'motemen/git-vim'
 NeoBundle 'sudo.vim'
 NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'tpope/vim-cucumber'
 NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'matchit.zip'
 NeoBundle 'ruby-matchit'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'davidhalter/jedi'
+
+" gitv
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'tpope/vim-fugitive'
+autocmd FileType git :setlocal foldlevel=99
+autocmd FileType gitv call s:my_gitv_settings()
+function! s:my_gitv_settings()
+  setlocal iskeyword+=/,-,.
+  nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR>
+  nnoremap <buffer> <Space>rb :<C-u>Git rebase <C-r>=GitvGetCurrentHash()<CR><Space>
+  nnoremap <buffer> <Space>R :<C-u>Git revert <C-r>=GitvGetCurrentHash()<CR><CR>
+  nnoremap <buffer> <Space>h :<C-u>Git cherry-pick <C-r>=GitvGetCurrentHash()<CR><CR>
+  nnoremap <buffer> <Space>rh :<C-u>Git reset --hard <C-r>=GitvGetCurrentHash()<CR>
+endfunction
+function! s:gitv_get_current_hash()
+  return matchstr(getline('.'), '\[\zs.\{7\}\ze\]$')
+endfunction
 
 " colorscheme
 NeoBundle 'Lokaltog/vim-powerline'
