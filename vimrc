@@ -275,6 +275,7 @@ NeoBundle 'mattn/webapi-vim.git'
 NeoBundle 'tyru/open-browser.vim.git'
 NeoBundle 'yomi322/neco-tweetvim.git'
 NeoBundle 'yomi322/unite-tweetvim.git'
+let g:tweetvim_display_source = 1
 let g:tweetvim_tweet_per_page = 50
 
 nnoremap bw :<C-u>Unite tweetvim<CR>
