@@ -54,7 +54,7 @@ if [ -d ~/.rbenv ]; then
 fi
 
 # macvim-kaoriya
-if [ -f /usr/local/Cellar/lv/4.51 ]; then
+if [ -d /Applications/MacVim.app ]; then
   alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
   alias gvim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim -g "$@"'
   export EDITOR='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
