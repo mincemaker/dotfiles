@@ -132,6 +132,7 @@ nmap <leader>l :TlistToggle<CR>
 " unite.vim
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'tsukkee/unite-tag'
