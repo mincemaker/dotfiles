@@ -68,8 +68,8 @@ map <S-Right> :tabmove! +1<CR>
 map <S-Left>  :tabmove! -1<CR>
 
 noremap <C-1> :set gui=all<cr>
-noremap <C-2> :set gui=nobookmarks,nomenu,nonavigation,tabs,statuslinetoolbar<cr>
-noremap <C-3> :set gui=none,notabs,statuslinetoolbar<cr>
+noremap <C-2> :set gui=nobookmarks,nomenu,nonavigation,tabs<cr>
+noremap <C-3> :set gui=none,notabs<cr>
 
 " ex modeでC-jを無効化
 cmap <C-j> <Nop>
@@ -169,7 +169,6 @@ liberator.globalVariables.plugin_loader_plugins = `
   reload-image
   sbmcommentsviewer
   spatial-navigation
-  statusline-toolbar
   tombloo
   twittperator
   walk-input
@@ -189,7 +188,7 @@ let g:ldrc_hints = "true"
 nnoremap Q :toggleldrc<CR>
 
 " sbmcommentsviewer
-map . :viewSBMComments -t h<CR>
+map . :viewSBMComments<Space>-t<Space>h<Space>-f<Space>id,comment<CR>
 let g:def_sbm_format = "id,timestamp,tags,comment"
 
 let g:ldrc_captureMappings = "['?','j','k','p','o']"
