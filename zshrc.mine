@@ -80,9 +80,3 @@ fi
 autoload -U compinit
 compinit -u
 
-# z
-. `brew --prefix`/etc/profile.d/z.sh
-function precmd () {
-  _z --add "$(pwd -P)"
-}
-
