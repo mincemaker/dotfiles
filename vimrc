@@ -243,12 +243,12 @@ NeoBundle 'hallettj/jslint.vim'
 NeoBundle 'Shougo/vimfiler'
   nnoremap <F2> :VimFilerCurrentDir -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<Cr>
   nnoremap <leader>d :VimFilerBufferDir -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<CR>
-  autocmd! FileType vimfiler call g:my_vimfiler_settings()
-  function! g:my_vimfiler_settings()
-    nmap     <buffer><expr><Cr> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
-    nnoremap <buffer>s          :call vimfiler#mappings#do_action('my_split')<Cr>
-    nnoremap <buffer>v          :call vimfiler#mappings#do_action('my_vsplit')<Cr>
-  endfunction
+"  autocmd! FileType vimfiler call g:my_vimfiler_settings()
+"  function! g:my_vimfiler_settings()
+"    nmap     <buffer><expr><Cr> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
+"    nnoremap <buffer>s          :call vimfiler#mappings#do_action('my_split')<Cr>
+"    nnoremap <buffer>v          :call vimfiler#mappings#do_action('my_vsplit')<Cr>
+"  endfunction
 
   let my_action = { 'is_selectable' : 1 }
   function! my_action.func(candidates)
