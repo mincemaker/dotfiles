@@ -15,13 +15,18 @@ if [ -d ~/perl5 ]; then
   source $HOME/perl5/perlbrew/etc/bashrc
 fi
 
-# pythonbrew
-if [ -d ~/.pythonbrew ]; then
-  source $HOME/.pythonbrew/etc/bashrc
-  # virtualenv
-  if [ -f ~/.pythonbrew/bin/virtualenvwrapper.sh ]; then
-    source $HOME/.pythonbrew/bin/virtualenvwrapper.sh
-  fi
+# pythonz
+if [ -d ~/.pythonz ]; then
+  source $HOME/.pythonz/etc/bashrc
+fi
+
+# virtualenv
+which virtualenvwrapper.sh > /dev/null
+if [ $? -eq 0 ]; then
+    source `which virtualenvwrapper.sh`
+    mkdir -p ~/.virtualenvs
+    export WORKON_HOME=~/.virtualenvs
+    export PIP_RESPECT_VIRTUALENV=true
 fi
 
 # nodebrew
@@ -64,7 +69,10 @@ fi
 [ -f ~/.bundler-exec.sh ] && source ~/.bundler-exec.sh
 
 # homebrew
-export PATH=/usr/local/sbin:$PATH
+if [ -f /usr/local/bin/brew ]; then
+  export PATH=/usr/local/sbin:$PATH
+  export HOMEBREW_BREWFILE=~/.brewfile
+fi
 
 # ack
 if [ -f /usr/local/bin/ack ]; then
@@ -80,3 +88,19 @@ fi
 autoload -U compinit
 compinit -u
 
+# peco
+if [ -f /usr/bin/peco ]; then
+  function peco-select-history() {
+      local tac
+      if which tac > /dev/null; then
+          tac="tac"
+      else
+          tac="tail -r"
+      fi
+      BUFFER=$(history -n 1 | eval $tac | peco --query "$LBUFFER")
+      CURSOR=$#BUFFER
+      # zle clear-screen
+  }
+  zle -N peco-select-history
+  bindkey '^r' peco-select-history
+fi
