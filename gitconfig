@@ -40,3 +40,8 @@
   generic = g move-first-line
   generic = G move-last-line
 
+[ghq]
+  root = ~/.ghq
+  root = ~/development
+  root = ~/code/go-local/src
+

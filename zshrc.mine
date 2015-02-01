@@ -89,7 +89,7 @@ autoload -U compinit
 compinit -u
 
 # peco
-if [ -f /usr/bin/peco ]; then
+if [ -x "`which peco`" ]; then
   function peco-select-history() {
       local tac
       if which tac > /dev/null; then
@@ -103,4 +103,16 @@ if [ -f /usr/bin/peco ]; then
   }
   zle -N peco-select-history
   bindkey '^r' peco-select-history
+  alias g='cd $(ghq list -p | peco)'
+
+  if [ -x "`which gh-open`" ]; then
+    alias gh='gh-open $(ghq list -p | peco)'
+  fi
+fi
+
+# golang
+if [ -x "`which go`" ]; then
+  export GOROOT=`go env GOROOT`
+  export GOPATH=$HOME/code/go-local
+  export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 fi
