@@ -116,3 +116,10 @@ if [ -x "`which go`" ]; then
   export GOPATH=$HOME/code/go-local
   export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 fi
+
+# direnv
+if [ -x "`which direnv`" ]; then
+  eval "$(direnv hook zsh)"
+fi
+
+
