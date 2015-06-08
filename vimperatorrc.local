@@ -1,0 +1,92 @@
+let g:plugin_loader_roots = "~/.vimperator/vimperator-plugins/"
+js <<EOM
+liberator.globalVariables.plugin_loader_plugins = `
+  _libly
+  migemo_hint
+  migemo_completion
+  migemized_find
+  proxy
+  copy
+  sbmcommentsviewer
+  commandBookmarklet
+  opener
+  walk-input
+`.split(/\s+/).filter(function(n) !/^!/.test(n));
+EOM
+
+" proxy
+javascript <<EOM
+liberator.globalVariables.proxy_settings = [
+  {
+    conf_name: 'disable',
+    conf_usage: 'direct connection',
+    settings: [
+      {
+         label: 'type',
+         param: 0
+      }
+    ]
+  },
+  {
+    conf_name: 'localhost',
+    conf_usage: 'use squid cache proxy',
+    settings: [
+      {
+         label: 'type',
+         param: 1
+      },
+      {
+         label: 'http',
+         param: 'localhost'
+      },
+      {
+         label: 'http_port',
+         param: 8080
+      },
+      {
+         label: 'ssl',
+         param: 'localhost'
+      },
+      {
+         label: 'ssl_port',
+         param: 8080
+      }
+    ]
+  },
+  {
+    conf_name: 'polipo',
+    conf_usage: 'use polipo cache proxy',
+    settings: [
+      {
+        label: 'type',
+        param: 1
+      },
+      {
+        label: 'http',
+        param: 'localhost'
+      },
+      {
+        label: 'http_port',
+        param: 8123
+      }
+    ]
+  }
+];
+EOM
+
+" copy.js
+javascript <<EOM
+liberator.globalVariables.copy_templates = [
+  { label: 'titleAndURL',    value: '%TITLE%\n%URL%' },
+  { label: 'title',          value: '%TITLE%', map: ',y' },
+  { label: 'anchor',         value: '<a href="%URL%">%TITLE%</a>' },
+  { label: 'selanchor',      value: '<a href="%URL%" title="%TITLE%">%SEL%</a>' },
+  { label: 'htmlblockquote', value: '<blockquote cite="%URL%" title="%TITLE%">%HTMLSEL%</blockquote>' },
+  { label: 'ASIN',   value: 'copy ASIN code from Amazon', custom: function(){return 'http://amazon.co.jp/o/ASIN/' + content.document.getElementById('ASIN').value;} },
+];
+EOM
+
+" sbmcommentsviewer
+map . :viewSBMComments<Space>-t<Space>h<Space>-f<Space>id,comment<CR>
+let g:def_sbm_format = "id,timestamp,tags,comment"
+
