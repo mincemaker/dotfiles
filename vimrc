@@ -321,6 +321,8 @@ NeoBundle 'tpope/vim-fugitive'
 
 " colorscheme
 NeoBundle 'Lokaltog/vim-powerline'
+  let g:Powerline_symbols = 'fancy'
+
 NeoBundle 'Railscasts-Theme-GUIand256color'
 NeoBundle 'Solarized'
 NeoBundle 'molokai'
@@ -344,6 +346,7 @@ set visualbell t_vb=
 set nocompatible  " Use Vim defaults instead of 100% vi compatibility
 set backspace=indent,eol,start  " more powerful backspacing
 set cmdheight=1
+set noundofile
 
 " Now we set some defaults for the editor
 set textwidth=0   " Don't wrap words by default
