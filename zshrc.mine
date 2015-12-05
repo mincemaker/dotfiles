@@ -15,19 +15,9 @@ if [ -d ~/perl5 ]; then
   source $HOME/perl5/perlbrew/etc/bashrc
 fi
 
-# pythonz
-if [ -d ~/.pythonz ]; then
-  source $HOME/.pythonz/etc/bashrc
-fi
-
-# virtualenv
-which virtualenvwrapper.sh > /dev/null
-if [ $? -eq 0 ]; then
-    source `which virtualenvwrapper.sh`
-    mkdir -p ~/.virtualenvs
-    export WORKON_HOME=~/.virtualenvs
-    export PIP_RESPECT_VIRTUALENV=true
-fi
+# pyenv
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 # nodebrew
 if [ -d ~/.nodebrew ]; then
