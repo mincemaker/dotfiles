@@ -134,8 +134,8 @@ call dein#add('tpope/vim-repeat')
 " tell surround not to break the visual s keystroke (:help vs)
   xmap S <Plug>Vsurround
 
-call dein#add('chrismetcalf/vim-taglist')
-  nmap <leader>l :TlistToggle<CR>
+call dein#add('majutsushi/tagbar')
+  nmap <leader>l :TagbarToggle<CR>
 
 " unite.vim
 call dein#add('Shougo/unite.vim')
