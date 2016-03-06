@@ -1,46 +1,50 @@
-set nocompatible
+" プラグインが実際にインストールされるディレクトリ
+let s:dein_dir = expand('~/.cache/dein')
+" dein.vim 本体
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-if has('vim_starting')
-  set runtimepath+=~/.vim/neobundle.vim
+" dein.vim がなければ github から落としてくる
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
-call neobundle#rc(expand('~/.vim/bundle'))
-filetype plugin on
-filetype indent on
+" 設定開始
+call dein#begin(s:dein_dir)
 
 " ------------------------------------------------------------------------------
 " plugins
 " ------------------------------------------------------------------------------
-NeoBundle 'Shougo/neobundle.vim'
-
 "coffee
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'nathanaelkane/vim-indent-guides'
+call dein#add('kchmck/vim-coffee-script')
+call dein#add('nathanaelkane/vim-indent-guides')
   nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
   setlocal splitright
 
 " load the code2html plugin:
-NeoBundle 'code2html'
+call dein#add('code2html')
   let html_use_css = 1
 
 " load the SeeTab plugin:
-NeoBundle 'SeeTab'
+call dein#add('SeeTab')
   let g:SeeTabCtermFG="yellow"
   let g:SeeTabCtermBG="red"
 
 " YankRing.vim
-NeoBundle 'vim-scripts/YankRing.vim'
+call dein#add('vim-scripts/YankRing.vim')
 nmap ,y :YRShow<CR>
 
 " neocomplete
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
+call dein#add('Shougo/neocomplete')
+call dein#add('Shougo/neosnippet')
+call dein#add('Shougo/neosnippet-snippets')
   imap <C-k>     <Plug>(neosnippet_expand_or_jump)
   smap <C-k>     <Plug>(neosnippet_expand_or_jump)
   xmap <C-k>     <Plug>(neosnippet_expand_target)
-NeoBundle 'ujihisa/neco-look'
-NeoBundle 'ujihisa/neco-ruby'
+call dein#add('ujihisa/neco-look')
+call dein#add('ujihisa/neco-ruby')
 
   "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
   " Disable AutoComplPop.
@@ -104,42 +108,42 @@ NeoBundle 'ujihisa/neco-ruby'
   "--
 
 " for ruby
-NeoBundle 'matchit.zip'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'ruby-matchit'
-NeoBundle 'ecomba/vim-ruby-refactoring'
-NeoBundle 'tpope/vim-cucumber'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'rhysd/unite-ruby-require.vim'
+call dein#add('matchit.zip')
+call dein#add('vim-ruby/vim-ruby')
+call dein#add('ruby-matchit')
+call dein#add('ecomba/vim-ruby-refactoring')
+call dein#add('tpope/vim-cucumber')
+call dein#add('tpope/vim-endwise')
+call dein#add('rhysd/unite-ruby-require.vim')
 
 " load the rails plugin:
-NeoBundle 'tpope/vim-rails'
+call dein#add('tpope/vim-rails')
   au BufNewFile,BufRead app/**/*.rhtml set fenc=utf-8
   au BufNewFile,BufRead app/**/*.rb set fenc=utf-8
 
 " for python
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'davidhalter/jedi'
+call dein#add('nathanaelkane/vim-indent-guides')
+call dein#add('davidhalter/jedi')
 
-NeoBundle 'scrooloose/nerdcommenter'
+call dein#add('scrooloose/nerdcommenter')
 " add a space between the comment delimiter and text
   let NERDSpaceDelims=1
 
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-repeat'
+call dein#add('tpope/vim-surround')
+call dein#add('tpope/vim-repeat')
 " tell surround not to break the visual s keystroke (:help vs)
   xmap S <Plug>Vsurround
 
-NeoBundle 'chrismetcalf/vim-taglist'
+call dein#add('chrismetcalf/vim-taglist')
   nmap <leader>l :TlistToggle<CR>
 
 " unite.vim
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'thinca/vim-unite-history'
-NeoBundle 'kmnk/vim-unite-giti'
-NeoBundle 'tsukkee/unite-tag'
+call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/unite-outline')
+call dein#add('Shougo/neomru.vim')
+call dein#add('thinca/vim-unite-history')
+call dein#add('kmnk/vim-unite-giti')
+call dein#add('tsukkee/unite-tag')
   nmap br :Unite file_mru<CR>
   nmap bR :UniteWithCurrentDir file_mru<CR>
   nmap bg :Unite file_rec -buffer-name=files<CR>
@@ -160,25 +164,25 @@ NeoBundle 'tsukkee/unite-tag'
   highlight PmenuSel ctermbg=1
   highlight PMenuSbar ctermbg=4
 
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'echo "Sorry, cannot update vimproc binary file in Windows."',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
-
-NeoBundle 'tyru/operator-camelize.vim'
-NeoBundle 'kana/vim-operator-user'
+call dein#add('Shougo/vimshell')
+call dein#add('Shougo/vimproc.vim', {
+    \ 'build': {
+    \     'windows': 'tools\\update-dll-mingw',
+    \     'cygwin': 'make -f make_cygwin.mak',
+    \     'mac': 'make -f make_mac.mak',
+    \     'linux': 'make',
+    \     'unix': 'gmake',
+    \    },
+    \ })
+call dein#add('tyru/operator-camelize.vim')
+call dein#add('kana/vim-operator-user')
   map <Leader>c <Plug>(operator-camelize)
   map <Leader>C <Plug>(operator-decamelize)
 
-NeoBundle 'sjl/gundo.vim'
+call dein#add('sjl/gundo.vim')
   nmap U :<C-u>GundoToggle<CR>
 
-NeoBundle 'h1mesuke/vim-alignta'
+call dein#add('h1mesuke/vim-alignta')
   nnoremap [unite] <Nop>
   xnoremap [unite] <Nop>
   xmap f [unite]
@@ -215,7 +219,7 @@ NeoBundle 'h1mesuke/vim-alignta'
   nnoremap <silent> [unite]a :<C-u>Unite alignta:options<CR>
   xnoremap <silent> [unite]a :<C-u>Unite alignta:arguments<CR>
 
-NeoBundle 'thinca/vim-quickrun'
+call dein#add('thinca/vim-quickrun')
   let g:quickrun_config = {}
   let g:quickrun_config._ = {'runner' : 'vimproc'}
   let g:quickrun_config['rspec/bundle'] = {
@@ -233,14 +237,14 @@ NeoBundle 'thinca/vim-quickrun'
   endfunction
   autocmd BufReadPost *_spec.rb call RSpecQuickrun()
 
-"NeoBundle 'mileszs/ack.vim'
+"call dein#add('mileszs/ack.vim')
 "let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-NeoBundle 'ag.vim'
+call dein#add('ag.vim')
 
-NeoBundle 'hallettj/jslint.vim'
+call dein#add('hallettj/jslint.vim')
   let $JS_CMD='node'
 
-NeoBundle 'Shougo/vimfiler'
+call dein#add('Shougo/vimfiler')
   nnoremap <F2> :VimFilerCurrentDir -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<Cr>
   nnoremap <leader>d :VimFilerBufferDir -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<CR>
 "  autocmd! FileType vimfiler call g:my_vimfiler_settings()
@@ -264,20 +268,20 @@ NeoBundle 'Shougo/vimfiler'
   endfunction
   call unite#custom_action('file', 'my_vsplit', my_action)
 
-NeoBundle 'kien/ctrlp.vim'
+call dein#add('kien/ctrlp.vim')
   let g:ctrlp_map = '<c-o>'
 
-NeoBundle 'scrooloose/syntastic'
+call dein#add('scrooloose/syntastic')
   let g:syntastic_enable_signs=1
   let g:syntastic_auto_loc_list=1
 
-NeoBundle 'basyura/bitly.vim.git'
-NeoBundle 'basyura/TweetVim.git'
-NeoBundle 'basyura/twibill.vim.git'
-NeoBundle 'mattn/webapi-vim.git'
-NeoBundle 'tyru/open-browser.vim.git'
-NeoBundle 'yomi322/neco-tweetvim.git'
-NeoBundle 'yomi322/unite-tweetvim.git'
+call dein#add('basyura/bitly.vim.git')
+call dein#add('basyura/TweetVim.git')
+call dein#add('basyura/twibill.vim.git')
+call dein#add('mattn/webapi-vim.git')
+call dein#add('tyru/open-browser.vim.git')
+call dein#add('yomi322/neco-tweetvim.git')
+call dein#add('yomi322/unite-tweetvim.git')
   let g:tweetvim_display_source = 1
   let g:tweetvim_tweet_per_page = 50
 
@@ -287,24 +291,24 @@ NeoBundle 'yomi322/unite-tweetvim.git'
   nnoremap ,ts :<C-u>TweetVimSay<CR>
   nnoremap ,tc :<C-u>TweetVimCommandSay
 
-NeoBundle 'haya14busa/vim-easymotion'
+call dein#add('haya14busa/vim-easymotion')
   hi link EasyMotionTarget ErrorMsg
   hi link EasyMotionShade  Comment
   nmap s <Plug>(easymotion-s)
   vmap s <Plug>(easymotion-s)
   omap z <Plug>(easymotion-s)
 
-NeoBundle 'bronson/vim-closebuffer'
-NeoBundle 'kana/vim-smartword'
-NeoBundle 'mattn/googletranslate-vim'
-NeoBundle 'mattn/vdbi-vim'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'sudo.vim'
-NeoBundle 'thinca/vim-qfreplace'
+call dein#add('bronson/vim-closebuffer')
+call dein#add('kana/vim-smartword')
+call dein#add('mattn/googletranslate-vim')
+call dein#add('mattn/vdbi-vim')
+call dein#add('mattn/emmet-vim')
+call dein#add('sudo.vim')
+call dein#add('thinca/vim-qfreplace')
 
 " gitv
-NeoBundle 'gregsexton/gitv'
-NeoBundle 'tpope/vim-fugitive'
+call dein#add('gregsexton/gitv')
+call dein#add('tpope/vim-fugitive')
   autocmd FileType git :setlocal foldlevel=99
   autocmd FileType gitv call s:my_gitv_settings()
   function! s:my_gitv_settings()
@@ -319,22 +323,33 @@ NeoBundle 'tpope/vim-fugitive'
     return matchstr(getline('.'), '\[\zs.\{7\}\ze\]$')
   endfunction
 
-" colorscheme
-NeoBundle 'Lokaltog/vim-powerline'
-  let g:Powerline_symbols = 'fancy'
+if !has('gui_running')
+  set t_Co=256
+endif
+call dein#add('itchyny/lightline.vim')
 
-NeoBundle 'Railscasts-Theme-GUIand256color'
-NeoBundle 'Solarized'
-NeoBundle 'molokai'
-NeoBundle 'vim-scripts/Lucius'
+let g:lightline = {
+      \ 'colorscheme': 'wombat'
+      \ }
+
+" colorscheme
+call dein#add('Railscasts-Theme-GUIand256color')
+call dein#add('Solarized')
+call dein#add('molokai')
+call dein#add('vim-scripts/Lucius')
   syntax enable
-  set background=dark
-  let g:solarized_termcolors=256
+"  set background=dark
+"  let g:solarized_termcolors=256
+"  colorscheme solarized
   colorscheme solarized
 
-NeoBundleCheck
+" 設定終了
+call dein#end()
 
-autocmd VimEnter * execute 'source' expand('<sfile>')
+" もし、未インストールものものがあったらインストール
+if dein#check_install()
+  call dein#install()
+endif
 
 " ------------------------------------------------------------------------------
 "  settings
@@ -363,7 +378,6 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 " Make p in Visual mode replace the selected text with the "" register.
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
-set t_Co=256
 "autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
 " Debian uses compressed helpfiles. We must inform vim that the main
